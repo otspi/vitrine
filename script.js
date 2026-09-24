@@ -24,3 +24,22 @@
     }
   });
 })();
+
+// Compte à rebours vers une échéance réglementaire (data-countdown="AAAA-MM-JJ").
+// Sans JavaScript, la date reste affichée telle quelle.
+(function () {
+  var DAY = 86400000;
+  document.querySelectorAll('[data-countdown]').forEach(function (el) {
+    var parts = el.getAttribute('data-countdown').split('-').map(Number);
+    var target = Date.UTC(parts[0], parts[1] - 1, parts[2]);
+    var now = new Date();
+    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    var days = Math.round((target - today) / DAY);
+    if (days > 0) {
+      el.textContent = 'J-' + days;
+      el.setAttribute('title', 'Échéance : ' + new Date(target).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }));
+    } else {
+      el.textContent = 'En vigueur';
+    }
+  });
+})();
