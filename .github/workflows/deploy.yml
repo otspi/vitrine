@@ -37,5 +37,5 @@ jobs:
             set ftp:ssl-allow no;
             set ftp:passive-mode yes;
             set net:max-retries 2;
-            mirror --reverse --verbose --no-perms --exclude '^\\.git(/|$)' --exclude '^\\.github/' --exclude '^\\.gitignore$' --exclude '^README\\.md$' --exclude '^LICENSE$' ./ '$FTP_SERVER_DIR';
+            mirror --reverse --verbose --no-perms --exclude '^\\.git(/|$)' --exclude '^\\.github/' --exclude '^\\.gitignore$' --exclude '^README\\.md$' --exclude '^LICENSE$' --exclude '^scripts/' ./ '$FTP_SERVER_DIR';
             bye"

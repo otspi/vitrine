@@ -20,7 +20,9 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Page d'accueil : repères, constat, réponse, services, sécurité, statuts, feuille de route, appel à partenaires |
+| `manifeste.html` | Manifeste pour une identité numérique libre et ouverte et liste des signataires |
 | `mentions-legales.html` | Mentions légales et données personnelles |
+| `scripts/signataires.py` | Génération de la liste publique des signataires (non déployé) |
 | `style.css` | Feuille de style |
 | `script.js` | Menu de navigation mobile |
 | `.htaccess` | HTTPS, domaine canonique, en-têtes de sécurité, cache |
@@ -49,6 +51,41 @@ Secrets et variables du dépôt (**Settings > Secrets and variables > Actions**)
 | `FTP_SERVER_DIR` | variable, optionnelle | Répertoire cible (racine du compte, `./`, par défaut) |
 
 Côté Infomaniak : activer le certificat SSL Let's Encrypt pour `www.otspi.org` et `otspi.org`.
+
+## Manifeste : recueil des signatures
+
+Les signatures sont recueillies sur un formulaire [Framaforms](https://framaforms.org) (Framasoft) :
+<https://framaforms.org/manifeste-pour-une-identite-numerique-libre-et-ouverte-1790280399>
+(nœud 1538128, compte de l'association).
+
+### Champs du formulaire
+
+| Libellé | Clé (Form Key) | Type | Obligatoire | Remarque |
+|---|---|---|---|---|
+| Prénom | `prenom` | texte | oui | |
+| Nom | `nom` | texte | oui | |
+| Adresse e-mail | `adresse_e_mail` | courriel | oui | jamais publiée |
+| Fonction | `fonction` | texte | non | |
+| Organisation | `organisation` | texte | non | |
+| Publication | `publication` | case à cocher | non | accord pour figurer dans la liste publique |
+| Suites | `suites` | case à cocher | non | être informé·e des suites |
+| Consentement | `consentement` | case à cocher | oui | traitement des données (mentions légales) |
+
+Résultats non publics. Le script s'appuie sur les **clés** : ne pas les modifier.
+
+**Expiration** : Framaforms limite la durée de vie d'un formulaire à 6 mois (échéance actuelle : 24 mars 2027).
+Avant l'échéance, prolonger en modifiant le formulaire (« Modifier » > date d'expiration).
+Le formulaire est limité à 5 000 réponses.
+
+### Mise à jour de la liste publique
+
+1. Framaforms > Résultats > Télécharger : format **Texte délimité** (tabulation), en-têtes **Form Key**,
+   liste des options **Compact**. Enregistrer l'export hors du dépôt.
+2. `python3 scripts/signataires.py ~/export-framaforms.csv --exclure ~/retraits.txt`
+   (`retraits.txt` : adresses à exclure — retraits de signature et signatures douteuses, une par ligne).
+3. Relire la liste générée dans `manifeste.html`, puis commiter et pousser.
+
+Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
 
 ## Aperçu local
 

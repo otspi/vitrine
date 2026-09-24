@@ -35,6 +35,7 @@
           <li><a href="#confiance">Sécurité</a></li>
           <li><a href="#garanties">Statuts</a></li>
           <li><a href="#feuille-de-route">Feuille de route</a></li>
+          <li><a href="manifeste.html">Manifeste</a></li>
           <li><a class="nav-cta" href="#partenaires">Devenir partenaire</a></li>
         </ul>
       </nav>
@@ -114,6 +115,32 @@
             <p>Créer un logiciel de gestion, une plateforme ou un service public local suppose aujourd'hui de payer chaque preuve. Cette barrière d'entrée n'a aucune justification technique.</p>
           </article>
         </div>
+        <figure class="diagram">
+          <h3 class="diagram-title">Une chaîne de confiance automatisable de bout en bout</h3>
+          <ol class="flow">
+            <li>
+              <h4>Identifier</h4>
+              <p>Attestation vérifiable de la contrepartie, issue d'un portefeuille d'identité.</p>
+              <span class="flow-actor">EUDI Wallet · portefeuilles d'entreprise</span>
+            </li>
+            <li>
+              <h4>Facturer</h4>
+              <p>Émission de la facture structurée et transmission par une plateforme agréée.</p>
+              <span class="flow-actor">Plateformes agréées</span>
+            </li>
+            <li class="flow-otspi">
+              <h4>Sceller et horodater</h4>
+              <p>Cachet et horodatage qualifiés au fil de l'eau, par API, sans tarification à l'acte.</p>
+              <span class="flow-actor">Rôle d'OTSPI</span>
+            </li>
+            <li>
+              <h4>Archiver</h4>
+              <p>Versement en archivage avec une preuve d'intégrité opposable pendant toute la durée de conservation.</p>
+              <span class="flow-actor">Systèmes d'archivage</span>
+            </li>
+          </ol>
+          <figcaption>L'étape 3 conditionne toute la chaîne&nbsp;: si chaque preuve est facturée, l'automatisation reste réservée aux organisations capables d'en absorber le coût.</figcaption>
+        </figure>
         <div class="callout">
           <p><strong>Le Web a connu cette situation.</strong> En 2015, moins de 30&nbsp;% des pages Web étaient chiffrées. Let's Encrypt, porté par une structure à but non lucratif, a rendu les certificats gratuits et automatisés&nbsp;: environ 80&nbsp;% des pages sont chiffrées aujourd'hui. OTSPI applique cette méthode aux services qualifiés eIDAS, en assumant leurs exigences propres de responsabilité, de contrôle et d'audit.</p>
         </div>
@@ -208,6 +235,85 @@
             <p>Journal Merkle vérifiable des jetons émis, code source ouvert et constructions reproductibles, Déclaration des Pratiques de Certification publique selon la RFC&nbsp;3647, résultats d'audit publiés.</p>
           </article>
         </div>
+        <figure class="diagram">
+          <h3 class="diagram-title">Deux hiérarchies de certification distinctes</h3>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 960 440" role="img" aria-labelledby="hier-titre hier-desc" xmlns="http://www.w3.org/2000/svg">
+              <title id="hier-titre">Hiérarchies de certification d'OTSPI</title>
+              <desc id="hier-desc">À gauche, la racine qualifiée hors ligne sous quorum 3 sur 5 certifie l'AC d'horodatage, qui certifie les unités d'horodatage des sites A et B, ainsi que les futures AC qualifiées de cachet, de signature et d'attestations. À droite, une racine TLS WebTrust séparée certifie l'AC émettrice TLS, qui délivre les certificats de sites DV, OV et QWAC. Cette AC émettrice est aussi signée de façon croisée par une autorité WebTrust reconnue, sous réserve d'accord, et par la hiérarchie qualifiée pour le statut QWAC.</desc>
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-arrow" d="M0 0 L10 5 L0 10 z"/></marker>
+                <marker id="arrc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-arrow-cross" d="M0 0 L10 5 L0 10 z"/></marker>
+              </defs>
+
+              <text class="dg-group" x="20" y="22">HIÉRARCHIE QUALIFIÉE eIDAS</text>
+              <text class="dg-group" x="505" y="22">HIÉRARCHIE TLS — RACINE WEBTRUST SÉPARÉE</text>
+              <line class="dg-separator" x1="485" y1="34" x2="485" y2="392"/>
+
+              <!-- Liens de certification -->
+              <path class="dg-edge" d="M240 104 C240 140 125 134 125 168" marker-end="url(#arr)"/>
+              <path class="dg-edge dg-edge-future" d="M240 104 C240 140 360 134 360 168" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M125 230 C125 265 70 265 70 298" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M125 230 C125 265 180 265 180 298" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M605 104 C605 150 690 145 690 188" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M720 254 L720 318" marker-end="url(#arr)"/>
+
+              <!-- Signatures croisées -->
+              <path class="dg-edge-cross" d="M832 104 C832 150 760 145 760 188" marker-end="url(#arrc)"/>
+              <path class="dg-edge-cross" d="M370 72 C470 72 510 222 598 222" marker-end="url(#arrc)"/>
+              <text class="dg-label" x="842" y="150">signature croisée</text>
+              <text class="dg-label" x="497" y="256">signature croisée</text>
+              <text class="dg-label" x="497" y="272">(statut QWAC)</text>
+
+              <!-- Hiérarchie qualifiée -->
+              <rect class="dg-box-root" x="110" y="40" width="260" height="64" rx="8"/>
+              <text class="dg-title" x="240" y="67" text-anchor="middle">Racine qualifiée OTSPI</text>
+              <text class="dg-sub" x="240" y="88" text-anchor="middle">hors ligne · quorum 3 sur 5</text>
+
+              <rect class="dg-box" x="20" y="170" width="210" height="60" rx="8"/>
+              <text class="dg-title" x="125" y="195" text-anchor="middle">AC Horodatage</text>
+              <text class="dg-sub" x="125" y="215" text-anchor="middle">intermédiaire dédiée</text>
+
+              <rect class="dg-box-future" x="250" y="170" width="220" height="60" rx="8"/>
+              <text class="dg-title" x="360" y="195" text-anchor="middle">AC qualifiées futures</text>
+              <text class="dg-sub" x="360" y="215" text-anchor="middle">cachet · signature · attestations</text>
+
+              <rect class="dg-box" x="20" y="300" width="100" height="56" rx="8"/>
+              <text class="dg-title" x="70" y="324" text-anchor="middle">TSU A</text>
+              <text class="dg-sub" x="70" y="343" text-anchor="middle">HSM site A</text>
+
+              <rect class="dg-box" x="130" y="300" width="100" height="56" rx="8"/>
+              <text class="dg-title" x="180" y="324" text-anchor="middle">TSU B</text>
+              <text class="dg-sub" x="180" y="343" text-anchor="middle">HSM site B</text>
+
+              <!-- Hiérarchie TLS -->
+              <rect class="dg-box-root" x="505" y="40" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="605" y="67" text-anchor="middle">Racine TLS OTSPI</text>
+              <text class="dg-sub" x="605" y="88" text-anchor="middle">WebTrust · hors ligne</text>
+
+              <rect class="dg-box-ext" x="725" y="40" width="215" height="64" rx="8"/>
+              <text class="dg-title" x="832" y="67" text-anchor="middle">Autorité WebTrust</text>
+              <text class="dg-sub" x="832" y="88" text-anchor="middle">reconnue · sous réserve d'accord</text>
+
+              <rect class="dg-box" x="600" y="190" width="240" height="64" rx="8"/>
+              <text class="dg-title" x="720" y="217" text-anchor="middle">AC émettrice TLS</text>
+              <text class="dg-sub" x="720" y="238" text-anchor="middle">une clé · trois certificats d'AC</text>
+
+              <rect class="dg-box" x="600" y="320" width="240" height="60" rx="8"/>
+              <text class="dg-title" x="720" y="345" text-anchor="middle">Certificats de sites</text>
+              <text class="dg-sub" x="720" y="366" text-anchor="middle">DV · OV · QWAC</text>
+
+              <!-- Légende -->
+              <line class="dg-edge" x1="20" y1="420" x2="54" y2="420" marker-end="url(#arr)"/>
+              <text class="dg-legend-text" x="62" y="424">certification</text>
+              <line class="dg-edge-cross" x1="170" y1="420" x2="204" y2="420" marker-end="url(#arrc)"/>
+              <text class="dg-legend-text" x="212" y="424">signature croisée</text>
+              <rect class="dg-box-future" x="345" y="411" width="34" height="18" rx="4"/>
+              <text class="dg-legend-text" x="387" y="424">tiers ou service futur</text>
+            </svg>
+          </div>
+          <figcaption>Les clés de l'horodatage et de la TLS ne sont jamais partagées. Un même certificat de site peut être reconnu par les navigateurs et comme certificat qualifié (QWAC).</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -269,6 +375,20 @@
             <p>Certificats qualifiés de cachet et de signature, signature à distance par API, attestations électroniques d'attributs pour les portefeuilles européens.</p>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <!-- Manifeste -->
+    <section class="section" aria-labelledby="manifeste-titre">
+      <div class="container">
+        <div class="manifesto-band">
+          <div>
+            <p class="eyebrow">Manifeste</p>
+            <h2 id="manifeste-titre">Pour une identité numérique libre et ouverte</h2>
+            <p>Dix principes pour que l'identité numérique européenne et les services de confiance restent des biens communs. Personnes et organisations peuvent le signer.</p>
+          </div>
+          <a class="btn btn-accent" href="manifeste.html">Lire et signer le manifeste</a>
+        </div>
       </div>
     </section>
 
@@ -359,6 +479,7 @@
             <li><a href="https://about.otspi.org/statuts/statuts-association/">Statuts</a></li>
             <li><a href="https://about.otspi.org/gouvernance/charte-ethique/">Charte d'éthique</a></li>
             <li><a href="https://about.otspi.org/">Portail de gouvernance</a></li>
+            <li><a href="manifeste.html">Manifeste</a></li>
           </ul>
         </div>
         <div>

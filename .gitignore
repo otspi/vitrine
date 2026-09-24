@@ -1,1 +1,5 @@
 .DS_Store
+
+# Données personnelles des signataires : ne jamais commiter
+*.csv
+retraits*.txt
