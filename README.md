@@ -25,7 +25,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `script.js` | Menu de navigation mobile |
 | `.htaccess` | HTTPS, domaine canonique, en-têtes de sécurité, cache |
 | `assets/` | Logos et favicons OTSPI |
-| `.github/workflows/deploy.yml` | Déploiement FTPS vers Infomaniak à chaque push sur `main` |
+| `.github/workflows/deploy.yml` | Déploiement SFTP vers Infomaniak à chaque push sur `main` |
 
 Le script d'amorçage en ligne (`document.documentElement.classList.add('js')`) est autorisé dans la CSP par son empreinte SHA-256.
 Toute modification de ce script impose de recalculer l'empreinte dans `.htaccess` :
@@ -36,17 +36,21 @@ printf '%s' "document.documentElement.classList.add('js');" | openssl dgst -sha2
 
 ## Déploiement
 
-Secrets du dépôt (**Settings > Secrets and variables > Actions**) :
+Le site est déployé par SFTP (`lftp mirror`) vers Infomaniak à chaque push sur `main`.
+La clé d'hôte du serveur est vérifiée strictement.
+
+Secrets et variables du dépôt (**Settings > Secrets and variables > Actions**) :
 
 | Nom | Type | Description |
 |---|---|---|
-| `FTP_SERVER` | secret | Hôte FTP Infomaniak (`xxxx.ftp.infomaniak.com`) |
-| `FTP_USERNAME` | secret | Utilisateur FTP |
-| `FTP_PASSWORD` | secret | Mot de passe FTP |
-| `FTP_PORT` | secret, optionnel | Port (21 par défaut, FTPS explicite) |
-| `FTP_SERVER_DIR` | variable | Répertoire du site www.otspi.org sur l'hébergement, avec `/` final |
+| `SFTP_HOST` | secret | Hôte SSH/SFTP de l'hébergement Infomaniak |
+| `SFTP_PORT` | secret, optionnel | Port SSH (22 par défaut) |
+| `SFTP_USERNAME` | secret | Utilisateur SSH/SFTP |
+| `SFTP_PASSWORD` | secret | Mot de passe SSH/SFTP |
+| `SFTP_KNOWN_HOSTS` | secret | Ligne(s) `known_hosts` du serveur (`ssh-keyscan -p 22 <hôte>`, empreinte vérifiée dans le Manager) |
+| `SFTP_SERVER_DIR` | variable | Répertoire du site www.otspi.org sur l'hébergement |
 
-Côté Infomaniak : rattacher `www.otspi.org` et `otspi.org` à ce répertoire et activer le certificat SSL Let's Encrypt.
+Côté Infomaniak : activer l'accès SSH, rattacher `www.otspi.org` et `otspi.org` au répertoire du site et activer le certificat SSL Let's Encrypt.
 
 ## Aperçu local
 
