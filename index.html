@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OTSPI — Les services de confiance eIDAS comme commun numérique européen</title>
+  <meta name="description" content="OTSPI, association d'intérêt général, construit un prestataire de services de confiance qualifié ouvert, auditable et inaliénable pour eIDAS&nbsp;2.0. Livre blanc et appel à partenaires.">
+  <meta name="theme-color" content="#0f2042">
+  <link rel="canonical" href="https://www.otspi.org/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OTSPI — Livre blanc : une infrastructure qualifiée d'utilité publique pour eIDAS 2.0">
+  <meta property="og:description" content="Horodatage qualifié, autorité TLS européenne, cachet, signature et identité : un commun numérique protégé par des statuts intangibles. Appel à partenaires.">
+  <meta property="og:url" content="https://www.otspi.org/">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="OTSPI — accueil">
+        <img class="logo-light" src="assets/logo-horizontal.svg" alt="OTSPI — Open Trusted Service Provider Initiative" width="216" height="48">
+        <img class="logo-dark" src="assets/logo-horizontal-dark.svg" alt="" width="216" height="48">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu</button>
+      <nav class="site-nav" id="navigation" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#constat">Constat</a></li>
+          <li><a href="#reponse">Réponse</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#confiance">Sécurité</a></li>
+          <li><a href="#garanties">Statuts</a></li>
+          <li><a href="#feuille-de-route">Feuille de route</a></li>
+          <li><a class="nav-cta" href="#partenaires">Devenir partenaire</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="titre">
+      <div class="container">
+        <p class="kicker">Livre blanc — consultation publique v0.9</p>
+        <h1 id="titre">Les services de confiance eIDAS comme commun numérique européen</h1>
+        <p class="lead">
+          OTSPI est une association d'intérêt général qui construit un prestataire de services de confiance qualifié ouvert, auditable et inaliénable&nbsp;: horodatage, certificats, cachet, signature et identité, accessibles par API normalisées, sans tarification à l'acte et protégés par des statuts qui en interdisent toute appropriation.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://about.otspi.org/livre-blanc/otspi-livre-blanc.pdf">Télécharger le livre blanc (PDF)</a>
+          <a class="btn btn-outline" href="https://about.otspi.org/livre-blanc/">Lire en ligne</a>
+          <a class="btn btn-outline" href="#partenaires">Devenir partenaire</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chiffres clés -->
+    <section class="section" aria-labelledby="chiffres">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Repères</p>
+          <h2 id="chiffres">Un calendrier réglementaire qui s'accélère</h2>
+          <p>Les services de confiance deviennent une condition d'exercice d'activités ordinaires&nbsp;: s'identifier, facturer, archiver, prouver, publier un site Web.</p>
+        </div>
+        <ul class="figures">
+          <li class="figure">
+            <span class="figure-value">24&nbsp;déc. 2026</span>
+            <p>Chaque État membre doit fournir un portefeuille européen d'identité numérique (EUDI Wallet). Les grands acteurs privés devront l'accepter au 24&nbsp;décembre 2027.</p>
+            <a class="source" href="https://www.eadtrust.eu/en/blog/december-2026-deadline-eudi-wallet/">Règlement (UE) 2024/1183, art.&nbsp;5&nbsp;bis et 5&nbsp;septies</a>
+          </li>
+          <li class="figure">
+            <span class="figure-value">1<sup>er</sup>&nbsp;sept. 2026</span>
+            <p>Réception obligatoire des factures électroniques par toutes les entreprises en France&nbsp;; émission pour les PME et TPE au 1<sup>er</sup>&nbsp;septembre 2027.</p>
+            <a class="source" href="https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/guide_pratique_facturation_electronique.pdf">DGFiP, guide de démarrage</a>
+          </li>
+          <li class="figure">
+            <span class="figure-value">0,03 à 0,15&nbsp;€</span>
+            <p>Coût public indicatif d'un seul jeton d'horodatage qualifié, soit près de 10&nbsp;000&nbsp;€&nbsp;HT par an pour 15&nbsp;000 horodatages mensuels.</p>
+            <a class="source" href="https://about.otspi.org/livre-blanc/#21-inadequation-des-offres-commerciales-aux-besoins-de-lopen-source-et-de-linnovation-publique">Livre blanc, §&nbsp;2.1</a>
+          </li>
+          <li class="figure">
+            <span class="figure-value">47&nbsp;jours</span>
+            <p>Durée de validité maximale des certificats TLS en 2029. Le renouvellement automatisé devient une obligation de fait pour tous les sites Web.</p>
+            <a class="source" href="https://cabforum.org/2025/04/11/ballot-sc081v3-introduce-schedule-of-reducing-validity-and-data-reuse-periods/">CA/Browser Forum, ballot SC-081v3</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Constat -->
+    <section class="section section-alt" id="constat" aria-labelledby="constat-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Le constat</p>
+          <h2 id="constat-titre">Le verrou n'est pas le nombre d'acteurs, mais leur modèle d'accès</h2>
+          <p>Au 24&nbsp;septembre 2026, les listes de confiance de l'EEE recensent 280&nbsp;prestataires qualifiés, dont 158 proposent l'horodatage qualifié. Tous partagent pourtant le même modèle&nbsp;: contrat préalable, tarification à l'unité, interfaces propriétaires, marchés cloisonnés par pays.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>L'automatisation reste hors de portée</h3>
+            <p>Chaînes d'intégration continue, archivage électronique, facturation&nbsp;: les usages à forte volumétrie et à faible valeur unitaire sont rendus économiquement irrationnels par la facturation au jeton.</p>
+          </article>
+          <article class="card">
+            <h3>L'indépendance citoyenne est incomplète</h3>
+            <p>L'EUDI Wallet offre une signature qualifiée gratuite, que les États peuvent réserver aux usages non professionnels. L'indépendant, la TPE ou l'association qui agit à titre professionnel retombe dans le modèle payant.</p>
+          </article>
+          <article class="card">
+            <h3>La liberté d'entreprendre a un droit d'entrée</h3>
+            <p>Créer un logiciel de gestion, une plateforme ou un service public local suppose aujourd'hui de payer chaque preuve. Cette barrière d'entrée n'a aucune justification technique.</p>
+          </article>
+        </div>
+        <div class="callout">
+          <p><strong>Le Web a connu cette situation.</strong> En 2015, moins de 30&nbsp;% des pages Web étaient chiffrées. Let's Encrypt, porté par une structure à but non lucratif, a rendu les certificats gratuits et automatisés&nbsp;: environ 80&nbsp;% des pages sont chiffrées aujourd'hui. OTSPI applique cette méthode aux services qualifiés eIDAS, en assumant leurs exigences propres de responsabilité, de contrôle et d'audit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réponse -->
+    <section class="section" id="reponse" aria-labelledby="reponse-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Notre réponse</p>
+          <h2 id="reponse-titre">Un prestataire qualifié d'utilité publique</h2>
+          <p>OTSPI couvre, conformément à son objet statutaire, l'ensemble de la chaîne de confiance, et la rend accessible à tous dans les mêmes conditions.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="card">
+            <span class="card-number" aria-hidden="true">1</span>
+            <h3>Un commun inaliénable</h3>
+            <p>Association loi 1901 à gestion désintéressée. Objet intangible, transformation en société commerciale interdite à perpétuité, actifs et clés hors de toute appropriation.</p>
+          </article>
+          <article class="card">
+            <span class="card-number" aria-hidden="true">2</span>
+            <h3>Un code intégralement ouvert</h3>
+            <p>Toute la pile logicielle est publiée sous licence EUPL&nbsp;1.2, licence européenne à réciprocité compatible avec l'AGPL&nbsp;v3&nbsp;: les améliorations restent libres, y compris lorsqu'elles sont exploitées en service.</p>
+          </article>
+          <article class="card">
+            <span class="card-number" aria-hidden="true">3</span>
+            <h3>Des API normalisées, sans tarif à l'acte</h3>
+            <p>RFC&nbsp;3161, ETSI EN&nbsp;319&nbsp;422, ACME&nbsp;: aucune surcouche propriétaire. Le service de base est gratuit et identique pour tous&nbsp;; seuls les engagements renforcés font l'objet d'une contribution.</p>
+          </article>
+          <article class="card">
+            <span class="card-number" aria-hidden="true">4</span>
+            <h3>Une gouvernance à fonctions séparées</h3>
+            <p>Direction opérationnelle, Comité des Politiques de Confiance et Officiers d'Autorité sont strictement dissociés, conformément à l'ETSI EN&nbsp;319&nbsp;401 et aux exigences WebTrust.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section-alt" id="services" aria-labelledby="services-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Services</p>
+          <h2 id="services-titre">Un déploiement progressif, service par service</h2>
+          <p>Chaque service n'ouvre qu'après la qualification et la stabilisation du précédent. L'horodatage qualifié ouvre la voie&nbsp;: il ne nécessite aucune vérification d'identité et concentre l'exigence sur l'exactitude temporelle et la protection des clés.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="card">
+            <span class="tag tag-pilot">Service pilote</span>
+            <h3>Horodatage électronique qualifié</h3>
+            <p>Conforme aux ETSI EN&nbsp;319&nbsp;421 et 422 et à la RFC&nbsp;3161. Référence temporelle Galileo authentifiée (OSNMA) et GPS, maintien sur oscillateurs, arrêt automatique en cas de dérive. Présomption légale d'exactitude (article&nbsp;41 du règlement eIDAS).</p>
+          </article>
+          <article class="card">
+            <span class="tag">Moyen terme</span>
+            <h3>Autorité de certification TLS européenne</h3>
+            <p>Certificats DV et OV automatisés par ACME, sur une racine WebTrust séparée. L'AC émettrice est signée de façon croisée par une autorité WebTrust reconnue et par la hiérarchie qualifiée&nbsp;: un même certificat est reconnu par les navigateurs et comme QWAC.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Moyen terme</span>
+            <h3>Cachet et signature qualifiés</h3>
+            <p>Certificats qualifiés de cachet et de signature, puis signature et scellement à distance par API&nbsp;: sceller, horodater et archiver chaque facture électronique sans abonnement à un prestataire unique.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Moyen terme, en parallèle</span>
+            <h3>Identité et attestations</h3>
+            <p>Attestations électroniques d'attributs pour l'EUDI Wallet et les portefeuilles d'entreprise, et briques d'intégration ouvertes pour les collectivités, l'enseignement et les associations. La délivrance de l'identité reste du ressort des États.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sécurité -->
+    <section class="section" id="confiance" aria-labelledby="confiance-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Architecture de confiance</p>
+          <h2 id="confiance-titre">Une sécurité vérifiable, pas déclarative</h2>
+          <p>L'architecture est conçue pour l'audit&nbsp;: chaque contrôle est documenté, chaque cérémonie est témoignée, chaque jeton émis est inscrit dans un journal public.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>Isolation cryptographique</h3>
+            <p>Clés générées et utilisées exclusivement dans des HSM certifiés Common Criteria EAL4+ selon le profil CEN EN&nbsp;419&nbsp;221-5, hébergés sur deux sites européens certifiés ISO/IEC&nbsp;27001.</p>
+          </article>
+          <article class="card">
+            <h3>Clé racine sous quorum</h3>
+            <p>AC racine hors ligne, activée par 3&nbsp;cartes sur&nbsp;5 détenues par des officiers distincts. Cartes de secours sous scellés auprès d'offices notariaux distincts, sous clause d'activation exclusive.</p>
+          </article>
+          <article class="card">
+            <h3>Transparence publique</h3>
+            <p>Journal Merkle vérifiable des jetons émis, code source ouvert et constructions reproductibles, Déclaration des Pratiques de Certification publique selon la RFC&nbsp;3647, résultats d'audit publiés.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Garanties statutaires -->
+    <section class="section section-alt" id="garanties" aria-labelledby="garanties-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Statuts</p>
+          <h2 id="garanties-titre">Des statuts conçus pour qu'aucun acteur ne puisse s'approprier l'infrastructure</h2>
+          <p>De nombreux projets ouverts ont été rachetés, transformés en offres commerciales ou abandonnés. Pour une infrastructure qui porte des preuves juridiques sur des décennies, et à terme des éléments d'identité, ce risque est exclu par construction.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Garantie</th><th scope="col">Mécanisme statutaire</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Objet intangible</td><td>L'objet d'intérêt général et les clauses de pérennité sont déclarés permanents et intangibles (articles&nbsp;2 et&nbsp;13).</td></tr>
+              <tr><td>Aucune transformation lucrative</td><td>L'association ne peut, à aucune époque, devenir une société commerciale ou une entité à but lucratif (article&nbsp;13.1).</td></tr>
+              <tr><td>Actifs inaliénables</td><td>Logiciels, marques, noms de domaine et matériels ne peuvent être cédés à une entité lucrative (article&nbsp;13.2).</td></tr>
+              <tr><td>Clés hors d'appropriation</td><td>Clés privées, certificats racines et accès aux HSM sont placés sous séquestre technique&nbsp;; nul ne peut y revendiquer un droit privatif (article&nbsp;8&nbsp;ter).</td></tr>
+              <tr><td>Révision quasi impossible</td><td>Quorum de 75&nbsp;%, unanimité des membres titulaires votants et droit de veto de l'ensemble des membres&nbsp;; les articles protégés ne sont révisables que sur injonction d'une autorité ou d'un auditeur (articles&nbsp;11 et 11&nbsp;bis).</td></tr>
+              <tr><td>Continuité garantie</td><td>Fonds de réserve sanctuarisé pour le plan de fin d'activité, dévolution perpétuelle à un organisme analogue, reprise obligatoire des mêmes clauses par tout successeur (articles&nbsp;12&nbsp;bis, 13 et 13&nbsp;bis).</td></tr>
+              <tr><td>Accès universel</td><td>Services accessibles de manière universelle, neutre et non discriminatoire (article&nbsp;12&nbsp;quater).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="callout"><strong>Comme pour la clé racine, aucun acteur ne peut agir seul.</strong> Les statuts complets sont publiés sur <a href="https://about.otspi.org/statuts/statuts-association/">about.otspi.org</a>.</p>
+      </div>
+    </section>
+
+    <!-- Feuille de route -->
+    <section class="section" id="feuille-de-route" aria-labelledby="route-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Feuille de route</p>
+          <h2 id="route-titre">Cinq phases, de la consultation à la qualification</h2>
+          <p>Les phases 4 et 5 ne sont pas strictement successives&nbsp;: leur ordre dépendra des financements et partenariats réunis en phase&nbsp;1.</p>
+        </div>
+        <ol class="timeline">
+          <li>
+            <h3>Consultation institutionnelle et gouvernance</h3>
+            <p>ANSSI, DINUM, DGE, Campus Cyber et laboratoires de recherche&nbsp;; constitution du comité consultatif&nbsp;; publication du budget pluriannuel.</p>
+          </li>
+          <li>
+            <h3>Banc d'essai et documentation pilote</h3>
+            <p>Environnement d'essai public (API RFC&nbsp;3161, journal de transparence), validation de la chaîne temporelle, Politique d'Horodatage et DPC pilote, cérémonie de l'AC racine&nbsp;; premiers travaux sur l'identité.</p>
+          </li>
+          <li>
+            <h3>Évaluation de la conformité et qualification</h3>
+            <p>Audit par un organisme accrédité (ETSI EN&nbsp;319&nbsp;403-1), octroi du statut qualifié, inscription sur la liste de confiance nationale et la LOTL européenne.</p>
+          </li>
+          <li>
+            <h3>Autorité de certification TLS européenne</h3>
+            <p>Racine WebTrust séparée, AC émettrice signée de façon croisée, service ACME DV puis OV, qualification QWAC, audits WebTrust, inclusion dans les programmes racines.</p>
+          </li>
+          <li>
+            <h3>Cachet, signature et identité</h3>
+            <p>Certificats qualifiés de cachet et de signature, signature à distance par API, attestations électroniques d'attributs pour les portefeuilles européens.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Partenaires -->
+    <section class="section section-alt" id="partenaires" aria-labelledby="partenaires-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Appel à partenaires</p>
+          <h2 id="partenaires-titre">Rejoindre le projet</h2>
+          <p>OTSPI est porté par une équipe fondatrice restreinte et bénévole. Sa crédibilité repose sur la rigueur de son ingénierie et sur la qualité des partenaires qui s'y associent. Nous sollicitons dès à présent&nbsp;:</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card partner-card">
+            <h3>Hébergeurs et cloud souverain</h3>
+            <dl>
+              <dt>Apport</dt><dd>Colocation sécurisée et connectivité sur deux sites européens.</dd>
+              <dt>Cadre</dt><dd>Mécénat technologique valorisé et déclaré.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <h3>Financeurs et fondations</h3>
+            <dl>
+              <dt>Apport</dt><dd>Financement des phases de consultation, de banc d'essai et du premier audit.</dd>
+              <dt>Cadre</dt><dd>Subventions pour communs numériques, mécénat, redevabilité publique sur l'usage des fonds.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <h3>Laboratoires de recherche</h3>
+            <dl>
+              <dt>Apport</dt><dd>Revue indépendante de l'architecture et du code&nbsp;: cryptographie appliquée, métrologie du temps, méthodes formelles.</dd>
+              <dt>Cadre</dt><dd>Collaboration scientifique et publications ouvertes.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <h3>Auditeurs et experts eIDAS</h3>
+            <dl>
+              <dt>Apport</dt><dd>Revue critique des politiques, de la DPC et des procédures avant l'audit de qualification.</dd>
+              <dt>Cadre</dt><dd>Participation au comité consultatif.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <h3>Éditeurs et plateformes de facturation</h3>
+            <dl>
+              <dt>Apport</dt><dd>Intégration du scellement et de l'horodatage qualifiés dans les chaînes de facturation et d'archivage.</dd>
+              <dt>Cadre</dt><dd>Accès universel aux mêmes conditions que tous.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <h3>Collectivités et administrations</h3>
+            <dl>
+              <dt>Apport</dt><dd>Cas d'usage pilotes&nbsp;: archivage probant, marchés publics, intégration de l'EUDI Wallet.</dd>
+              <dt>Cadre</dt><dd>Adhésion institutionnelle et participation à la gouvernance.</dd>
+            </dl>
+          </article>
+        </div>
+        <div class="cta-band">
+          <div>
+            <h3>Discutons de votre contribution</h3>
+            <p>Le livre blanc est en consultation publique. Vos remarques, critiques et propositions de partenariat sont attendues.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Écrire à contact@otspi.org</a>
+            <a class="btn btn-outline" href="https://about.otspi.org/adhesion/bulletin-adhesion/">Adhérer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="assets/logo-horizontal-dark.svg" alt="OTSPI" width="234" height="52">
+          <p>Open Trusted Service Provider Initiative — association d'intérêt général régie par la loi du 1<sup>er</sup>&nbsp;juillet 1901.</p>
+        </div>
+        <div>
+          <h2>Livre blanc</h2>
+          <ul>
+            <li><a href="https://about.otspi.org/livre-blanc/otspi-livre-blanc.pdf">Version PDF</a></li>
+            <li><a href="https://about.otspi.org/livre-blanc/">Version en ligne</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Association</h2>
+          <ul>
+            <li><a href="https://about.otspi.org/statuts/statuts-association/">Statuts</a></li>
+            <li><a href="https://about.otspi.org/gouvernance/charte-ethique/">Charte d'éthique</a></li>
+            <li><a href="https://about.otspi.org/">Portail de gouvernance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="mailto:contact@otspi.org">contact@otspi.org</a></li>
+            <li><a href="https://github.com/otspi">github.com/otspi</a></li>
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Contenus sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC-BY-4.0</a> · Code du site sous licence <a href="https://eupl.eu/1.2/fr/">EUPL&nbsp;1.2</a>.</p>
+        <p>Ce site n'utilise ni cookie, ni traceur, ni ressource externe.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
