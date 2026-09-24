@@ -6,15 +6,14 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # TEMPORAIRE : redirection HTTPS désactivée tant que le certificat SSL
-  # de www.otspi.org n'est pas activé dans le Manager Infomaniak.
-  # À réactiver dès que https://www.otspi.org répond correctement.
-  # RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
-  # RewriteCond %{HTTPS} off
-  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Tout domaine autre que www.otspi.org (otspi.org, otspi.com, otspi.eu,
+  # otspi.fr et leurs variantes www) redirige vers l'adresse canonique
+  RewriteCond %{HTTP_HOST} !^www\.otspi\.org$ [NC]
+  RewriteRule ^(.*)$ https://www.otspi.org/$1 [L,R=301]
 
-  RewriteCond %{HTTP_HOST} ^otspi\.org$ [NC]
-  RewriteRule ^(.*)$ http://www.otspi.org/$1 [L,R=301]
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://www.otspi.org%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # 2. En-têtes de sécurité
