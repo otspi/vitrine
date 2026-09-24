@@ -6,12 +6,15 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # TEMPORAIRE : redirection HTTPS désactivée tant que le certificat SSL
+  # de www.otspi.org n'est pas activé dans le Manager Infomaniak.
+  # À réactiver dès que https://www.otspi.org répond correctement.
+  # RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   RewriteCond %{HTTP_HOST} ^otspi\.org$ [NC]
-  RewriteRule ^(.*)$ https://www.otspi.org/$1 [L,R=301]
+  RewriteRule ^(.*)$ http://www.otspi.org/$1 [L,R=301]
 </IfModule>
 
 # 2. En-têtes de sécurité
@@ -47,5 +50,6 @@
   ExpiresByType image/svg+xml "access plus 30 days"
 </IfModule>
 
-# 6. Pas de listage des répertoires
+# 6. Pas de listage des répertoires ni d'accès aux métadonnées de dépôt
 Options -Indexes
+RedirectMatch 404 (^|/)\.(git|github)(/|$)
