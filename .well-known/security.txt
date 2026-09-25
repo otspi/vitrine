@@ -1,0 +1,9 @@
+# Politique de signalement des vulnérabilités de l'initiative OTSPI (RFC 9116)
+# Vulnerability disclosure policy of the OTSPI initiative (RFC 9116)
+
+Contact: mailto:contact@otspi.org
+Contact: https://github.com/otspi/open-eidas/security/advisories/new
+Expires: 2027-03-25T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://www.otspi.org/.well-known/security.txt
+Policy: https://github.com/otspi/open-eidas/blob/dev/SECURITY.md
