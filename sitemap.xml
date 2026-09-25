@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.otspi.org/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/en/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/manifeste.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/manifeste.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/manifesto.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/en/manifesto.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/manifeste.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/manifesto.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/actualites.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/actualites.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/news.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/en/news.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/actualites.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/news.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/mentions-legales.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/legal-notice.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/en/legal-notice.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/legal-notice.html"/>
+  </url>
+</urlset>

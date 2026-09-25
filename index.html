@@ -27,6 +27,7 @@
   <meta name="twitter:title" content="OTSPI — Les services de confiance eIDAS comme commun numérique européen">
   <meta name="twitter:description" content="Horodatage qualifié, certificats, signature et identité : ouverts, auditables, sans péage. Livre blanc en consultation publique.">
   <meta name="twitter:image" content="https://www.otspi.org/assets/og/og-fr.png">
+  <link rel="alternate" type="application/atom+xml" title="OTSPI — Actualités" href="feed.xml">
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -45,6 +46,7 @@
           <li><a href="#constat">Constat</a></li>
           <li><a href="#reponse">Réponse</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#pilote">Démo</a></li>
           <li><a href="#confiance">Sécurité</a></li>
           <li><a href="#garanties">Statuts</a></li>
           <li><a href="#feuille-de-route">Feuille de route</a></li>
@@ -249,6 +251,46 @@
             <p>Attestations électroniques d'attributs pour l'EUDI Wallet et les portefeuilles d'entreprise, et briques d'intégration ouvertes pour les collectivités, l'enseignement et les associations. La délivrance de l'identité reste du ressort des États.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- Pilote en fonctionnement -->
+    <section class="section" id="pilote" aria-labelledby="pilote-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Preuve de concept</p>
+          <h2 id="pilote-titre">Le pilote tourne déjà</h2>
+          <p>Le service d'horodatage RFC&nbsp;3161 fonctionne aujourd'hui en environnement d'essai public, sur un moteur écrit en Rust et publié en source ouverte. Vous pouvez l'essayer dès maintenant.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card share-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"/></svg></span>
+            <h3>Essayer dans le navigateur</h3>
+            <p>Calculez l'empreinte d'un document localement, obtenez un jeton d'horodatage et vérifiez-le. Aucun fichier n'est envoyé&nbsp;: seule l'empreinte quitte votre navigateur.</p>
+            <a class="btn btn-accent share-cta" href="https://demo.open-eidas.eu/" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow"/></svg> Ouvrir le démonstrateur</a>
+          </article>
+          <article class="card share-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#plug"/></svg></span>
+            <h3>Interroger l'API</h3>
+            <p>Obtenez un vrai jeton RFC&nbsp;3161 avec les outils standard, sans compte ni clé d'API&nbsp;:</p>
+            <pre class="code-block" id="pilote-cmd"><code>printf 'OTSPI' &gt; demo.txt
+openssl ts -query -data demo.txt -sha256 -cert -out demo.tsq
+curl -s -H "Content-Type: application/timestamp-query" \
+     --data-binary @demo.tsq -o demo.tsr https://api.staging.open-eidas.eu/tsa
+openssl ts -reply -in demo.tsr -text</code></pre>
+            <button type="button" class="share-btn js-only" data-copy-target="pilote-cmd" data-copied="Copié !"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#invoice"/></svg> Copier la commande</button>
+          </article>
+          <article class="card share-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#code"/></svg></span>
+            <h3>Lire le code</h3>
+            <p>Moteur d'horodatage en Rust, démonstrateur Web et configuration de déploiement, publiés sur GitHub.</p>
+            <div class="share-buttons share-cta">
+              <a class="share-btn" href="https://github.com/otspi/open-eidas" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#code"/></svg> Moteur (Rust)</a>
+              <a class="share-btn" href="https://github.com/otspi/demo" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#code"/></svg> Démonstrateur</a>
+            </div>
+          </article>
+        </div>
+        <p class="callout"><strong>Environnement d'essai.</strong> Les jetons émis ne sont pas qualifiés et n'ont aucune valeur juridique&nbsp;; ils servent à démontrer le fonctionnement et l'interopérabilité du service. Le démonstrateur porte encore l'ancien nom du projet, Open&nbsp;eIDAS.</p>
       </div>
     </section>
 
@@ -507,7 +549,7 @@
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"/></svg> Écrire à contact@otspi.org</a>
-            <a class="btn btn-outline" href="manifeste.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pen"/></svg> Signer le manifeste</a>
+            <a class="btn btn-outline" href="https://github.com/otspi/organisation/discussions/new?category=ideas"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#book"/></svg> Commenter le livre blanc</a>
           </div>
         </div>
       </div>
@@ -596,6 +638,7 @@
           <ul>
             <li><a href="mailto:contact@otspi.org">contact@otspi.org</a></li>
             <li><a href="https://github.com/otspi">github.com/otspi</a></li>
+            <li><a href="actualites.html">Actualités (flux Atom)</a></li>
             <li><a href="mentions-legales.html">Mentions légales</a></li>
             <li><a href="en/" hreflang="en" lang="en">English version</a></li>
           </ul>

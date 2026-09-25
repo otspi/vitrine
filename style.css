@@ -207,7 +207,7 @@ a:hover {
   display: none;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1240px) {
   .js .nav-toggle {
     display: inline-flex;
     align-items: center;
@@ -1460,4 +1460,46 @@ html:not(.js) .js-only {
   margin: 0 0 0.75rem;
   font-size: 1.05rem;
   overflow-wrap: anywhere;
+}
+
+/* Bloc de code (démonstration de l'API) */
+.code-block {
+  margin: 0 0 0.75rem;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: #0b1222;
+  color: #e6ebf5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.share-card .code-block + .share-btn {
+  align-self: flex-start;
+}
+
+/* Actualités */
+.news-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.news-item h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.news-date {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero .lead-spaced {
+  margin-top: 2.5rem;
 }

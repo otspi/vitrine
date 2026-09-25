@@ -22,6 +22,8 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `index.html` | Page d'accueil : repères, constat, réponse, services, sécurité, statuts, feuille de route, appel à partenaires |
 | `manifeste.html` | Manifeste pour une identité numérique libre et ouverte et liste des signataires |
 | `mentions-legales.html` | Mentions légales et données personnelles |
+| `actualites.html`, `en/news.html` | Actualités, avec flux Atom `feed.xml` et `en/feed.xml` |
+| `404.html`, `robots.txt`, `sitemap.xml` | Page d'erreur bilingue et fichiers de référencement |
 | `en/` | Version anglaise : `index.html`, `manifesto.html`, `legal-notice.html` (balises `hreflang`, la version française fait foi) |
 | `scripts/signataires.py` | Génération de la liste publique des signataires (non déployé) |
 | `style.css` | Feuille de style |
@@ -89,6 +91,11 @@ Le formulaire est limité à 5 000 réponses.
 Les **signataires de base** (`scripts/signataires-base.json`, consentement recueilli directement) sont toujours ajoutés à la liste. Sans export, `python3 scripts/signataires.py` régénère la liste à partir de ces seuls signataires.
 
 Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
+
+## Publier une actualité
+
+Ajouter l'entrée **en tête** de `actualites.html` et `en/news.html`, ainsi que dans `feed.xml` et `en/feed.xml`
+(identifiant stable, date `updated`, résumé), puis mettre à jour la date `updated` du flux et `lastmod` dans `sitemap.xml`.
 
 ## Aperçu local
 

@@ -56,6 +56,17 @@
   ExpiresByType image/png "access plus 30 days"
 </IfModule>
 
-# 6. Pas de listage des répertoires ni d'accès aux métadonnées de dépôt
+# Types des fichiers XML
+<FilesMatch "^feed\.xml$">
+  ForceType application/atom+xml
+</FilesMatch>
+<FilesMatch "^sitemap\.xml$">
+  ForceType application/xml
+</FilesMatch>
+
+# 6. Page d'erreur personnalisée
+ErrorDocument 404 /404.html
+
+# 7. Pas de listage des répertoires ni d'accès aux métadonnées de dépôt
 Options -Indexes
 RedirectMatch 404 (^|/)\.(git|github)(/|$)

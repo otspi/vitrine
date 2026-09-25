@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="fr">
+  <title>OTSPI — Actualités</title>
+  <id>https://www.otspi.org/feed.xml</id>
+  <link rel="self" href="https://www.otspi.org/feed.xml"/>
+  <link rel="alternate" href="https://www.otspi.org/actualites.html"/>
+  <updated>2026-09-25T09:00:00Z</updated>
+  <author><name>OTSPI</name><email>contact@otspi.org</email></author>
+  <entry>
+    <title>Consultation publique : commentez le livre blanc</title>
+    <id>https://www.otspi.org/actualites.html#ouverture-consultation</id>
+    <link href="https://github.com/otspi/organisation/discussions"/>
+    <updated>2026-09-25T09:00:00Z</updated>
+    <summary>Un espace de discussion public est ouvert sur GitHub pour recueillir vos remarques, section par section, à l&#x27;aide d&#x27;un formulaire guidé. Les retours seront pris en compte dans la prochaine version du livre blanc.</summary>
+  </entry>
+  <entry>
+    <title>Le livre blanc et le site disponibles en anglais</title>
+    <id>https://www.otspi.org/actualites.html#version-anglaise</id>
+    <link href="https://about.otspi.org/white-paper/"/>
+    <updated>2026-09-25T09:00:00Z</updated>
+    <summary>La traduction intégrale du livre blanc (version web et PDF) et une version anglaise du site sont en ligne pour les partenaires européens et internationaux. La version française fait foi.</summary>
+  </entry>
+  <entry>
+    <title>Lancement du Manifeste pour une identité numérique libre et ouverte</title>
+    <id>https://www.otspi.org/actualites.html#manifeste</id>
+    <link href="https://www.otspi.org/manifeste"/>
+    <updated>2026-09-24T09:00:00Z</updated>
+    <summary>Dix principes pour que l&#x27;identité numérique européenne et les services de confiance restent des biens communs. Personnes et organisations peuvent le signer dès maintenant.</summary>
+  </entry>
+  <entry>
+    <title>Publication du livre blanc v0.9 en consultation publique</title>
+    <id>https://www.otspi.org/actualites.html#livre-blanc-v0-9</id>
+    <link href="https://about.otspi.org/livre-blanc/"/>
+    <updated>2026-09-24T09:00:00Z</updated>
+    <summary>OTSPI publie son livre blanc : une infrastructure de services de confiance qualifiés d&#x27;utilité publique pour eIDAS 2.0, de l&#x27;horodatage qualifié à l&#x27;identité numérique.</summary>
+  </entry>
+</feed>

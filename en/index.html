@@ -27,6 +27,7 @@
   <meta name="twitter:title" content="OTSPI — eIDAS trust services as a European digital commons">
   <meta name="twitter:description" content="Qualified time-stamping, certificates, signatures and identity: open, auditable, toll-free. White paper open for public consultation.">
   <meta name="twitter:image" content="https://www.otspi.org/assets/og/og-en.png">
+  <link rel="alternate" type="application/atom+xml" title="OTSPI — News" href="feed.xml">
   <link rel="stylesheet" href="../style.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -45,6 +46,7 @@
           <li><a href="#problem">Problem</a></li>
           <li><a href="#response">Response</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#pilot">Demo</a></li>
           <li><a href="#security">Security</a></li>
           <li><a href="#statutes">Statutes</a></li>
           <li><a href="#roadmap">Roadmap</a></li>
@@ -249,6 +251,46 @@
             <p>Electronic attestations of attributes for the EUDI Wallet and business wallets, and open integration building blocks for local authorities, education and associations. Issuing identity data remains the responsibility of Member States.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- Pilote en fonctionnement -->
+    <section class="section" id="pilot" aria-labelledby="pilot-titre">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Proof of concept</p>
+          <h2 id="pilot-titre">The pilot is already running</h2>
+          <p>The RFC&nbsp;3161 time-stamping service already runs in a public test environment, on an engine written in Rust and published as open source. You can try it right now.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card share-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#clock"/></svg></span>
+            <h3>Try it in your browser</h3>
+            <p>Hash a document locally, get a time-stamp token and verify it. No file is uploaded: only the fingerprint leaves your browser.</p>
+            <a class="btn btn-accent share-cta" href="https://demo.open-eidas.eu/" rel="noopener"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#arrow"/></svg> Open the demo</a>
+          </article>
+          <article class="card share-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#plug"/></svg></span>
+            <h3>Query the API</h3>
+            <p>Get a real RFC&nbsp;3161 token with standard tools, with no account and no API key:</p>
+            <pre class="code-block" id="pilot-cmd"><code>printf 'OTSPI' &gt; demo.txt
+openssl ts -query -data demo.txt -sha256 -cert -out demo.tsq
+curl -s -H "Content-Type: application/timestamp-query" \
+     --data-binary @demo.tsq -o demo.tsr https://api.staging.open-eidas.eu/tsa
+openssl ts -reply -in demo.tsr -text</code></pre>
+            <button type="button" class="share-btn js-only" data-copy-target="pilot-cmd" data-copied="Copied!"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#invoice"/></svg> Copy the command</button>
+          </article>
+          <article class="card share-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#code"/></svg></span>
+            <h3>Read the code</h3>
+            <p>Time-stamping engine in Rust, Web demo and deployment configuration, published on GitHub.</p>
+            <div class="share-buttons share-cta">
+              <a class="share-btn" href="https://github.com/otspi/open-eidas" rel="noopener"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#code"/></svg> Engine (Rust)</a>
+              <a class="share-btn" href="https://github.com/otspi/demo" rel="noopener"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#code"/></svg> Demo</a>
+            </div>
+          </article>
+        </div>
+        <p class="callout"><strong>Test environment.</strong> Tokens issued are not qualified and have no legal value; they demonstrate how the service works and interoperates. The demo still carries the project's former name, Open&nbsp;eIDAS.</p>
       </div>
     </section>
 
@@ -506,7 +548,7 @@
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="mailto:contact@otspi.org?subject=OTSPI%20partnership"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#mail"/></svg> Write to contact@otspi.org</a>
-            <a class="btn btn-outline" href="manifesto.html"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#pen"/></svg> Sign the manifesto</a>
+            <a class="btn btn-outline" href="https://github.com/otspi/organisation/discussions/new?category=ideas"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#book"/></svg> Comment on the white paper</a>
           </div>
         </div>
       </div>
@@ -596,6 +638,7 @@
           <ul>
             <li><a href="mailto:contact@otspi.org">contact@otspi.org</a></li>
             <li><a href="https://github.com/otspi">github.com/otspi</a></li>
+            <li><a href="news.html">News (Atom feed)</a></li>
             <li><a href="legal-notice.html">Legal notice</a></li>
             <li><a href="../" hreflang="fr" lang="fr">Version française</a></li>
           </ul>

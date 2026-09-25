@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>OTSPI — News</title>
+  <id>https://www.otspi.org/en/feed.xml</id>
+  <link rel="self" href="https://www.otspi.org/en/feed.xml"/>
+  <link rel="alternate" href="https://www.otspi.org/en/news.html"/>
+  <updated>2026-09-25T09:00:00Z</updated>
+  <author><name>OTSPI</name><email>contact@otspi.org</email></author>
+  <entry>
+    <title>Public consultation: comment on the white paper</title>
+    <id>https://www.otspi.org/en/news.html#consultation-open</id>
+    <link href="https://github.com/otspi/organisation/discussions"/>
+    <updated>2026-09-25T09:00:00Z</updated>
+    <summary>A public discussion space is open on GitHub to collect your comments, section by section, through a guided form. Feedback will be taken into account in the next version of the white paper.</summary>
+  </entry>
+  <entry>
+    <title>White paper and website now available in English</title>
+    <id>https://www.otspi.org/en/news.html#english-version</id>
+    <link href="https://about.otspi.org/white-paper/"/>
+    <updated>2026-09-25T09:00:00Z</updated>
+    <summary>The full translation of the white paper (web and PDF) and an English version of the website are online for European and international partners. The French version is the reference text.</summary>
+  </entry>
+  <entry>
+    <title>Launch of the Manifesto for a free and open digital identity</title>
+    <id>https://www.otspi.org/en/news.html#manifesto</id>
+    <link href="https://www.otspi.org/en/manifesto"/>
+    <updated>2026-09-24T09:00:00Z</updated>
+    <summary>Ten principles to keep European digital identity and trust services as common goods. Individuals and organisations can sign it now.</summary>
+  </entry>
+  <entry>
+    <title>White paper v0.9 published for public consultation</title>
+    <id>https://www.otspi.org/en/news.html#white-paper-v0-9</id>
+    <link href="https://about.otspi.org/white-paper/"/>
+    <updated>2026-09-24T09:00:00Z</updated>
+    <summary>OTSPI publishes its white paper: a public-interest qualified trust service infrastructure for eIDAS 2.0, from qualified time-stamping to digital identity.</summary>
+  </entry>
+</feed>
