@@ -23,7 +23,12 @@ import re
 import sys
 from pathlib import Path
 
-PAGE = Path(__file__).resolve().parent.parent / "manifeste.html"
+ROOT = Path(__file__).resolve().parent.parent
+# Pages mises à jour et libellés du compteur, par langue
+PAGES = {
+    ROOT / "manifeste.html": "fr",
+    ROOT / "en" / "manifesto.html": "en",
+}
 START = "<!-- SIGNATAIRES:DEBUT — contenu généré par scripts/signataires.py, ne pas modifier à la main -->"
 END = "<!-- SIGNATAIRES:FIN -->"
 
@@ -106,32 +111,36 @@ def main():
         key=lambda s: (s["nom"].casefold(), s["prenom"].casefold()),
     )
 
-    lines = [START]
-    lines.append(
-        f'        <p class="signatures-count"><strong>{len(signatures)}</strong> '
-        f'signature{"s" if len(signatures) > 1 else ""}, dont {len(public)} publiée{"s" if len(public) > 1 else ""} '
-        "avec l'accord de leurs auteurs.</p>"
-    )
-    if public:
-        lines.append('        <ul class="signatures-list">')
-        for s in public:
-            quality = ", ".join(part for part in (s["fonction"], s["organisation"]) if part)
-            full_name = " ".join(part for part in (s["prenom"], s["nom"]) if part)
-            item = f"<strong>{html.escape(full_name)}</strong>"
-            if quality:
-                item += f'<span class="sig-quality">{html.escape(quality)}</span>'
-            lines.append(f"          <li>{item}</li>")
-        lines.append("        </ul>")
-    lines.append(f"        {END}")
+    def render(lang):
+        total, shown = len(signatures), len(public)
+        if lang == "en":
+            count = (f'<strong>{total}</strong> signature{"s" if total != 1 else ""}, '
+                     f'{shown} of which {"are" if shown != 1 else "is"} published with the consent of their authors.')
+        else:
+            count = (f'<strong>{total}</strong> signature{"s" if total > 1 else ""}, '
+                     f'dont {shown} publiée{"s" if shown > 1 else ""} avec l\'accord de leurs auteurs.')
+        lines = [START, f'        <p class="signatures-count">{count}</p>']
+        if public:
+            lines.append('        <ul class="signatures-list">')
+            for s in public:
+                quality = ", ".join(part for part in (s["fonction"], s["organisation"]) if part)
+                full_name = " ".join(part for part in (s["prenom"], s["nom"]) if part)
+                item = f"<strong>{html.escape(full_name)}</strong>"
+                if quality:
+                    item += f'<span class="sig-quality">{html.escape(quality)}</span>'
+                lines.append(f"          <li>{item}</li>")
+            lines.append("        </ul>")
+        lines.append(f"        {END}")
+        return "\n".join(lines)
 
-    page = PAGE.read_text(encoding="utf-8")
-    start, end = page.find(START), page.find(END)
-    if start == -1 or end == -1:
-        sys.exit(f"Marqueurs SIGNATAIRES introuvables dans {PAGE.name}")
-    page = page[:start] + "\n".join(lines) + page[end + len(END):]
-    PAGE.write_text(page, encoding="utf-8")
+    for page_path, lang in PAGES.items():
+        page = page_path.read_text(encoding="utf-8")
+        start, end = page.find(START), page.find(END)
+        if start == -1 or end == -1:
+            sys.exit(f"Marqueurs SIGNATAIRES introuvables dans {page_path.name}")
+        page_path.write_text(page[:start] + render(lang) + page[end + len(END):], encoding="utf-8")
 
-    print(f"{len(signatures)} signature(s) valide(s), {len(public)} publiée(s) dans {PAGE.name}.")
+    print(f"{len(signatures)} signature(s) valide(s), {len(public)} publiée(s) dans {', '.join(p.name for p in PAGES)}.")
 
 
 if __name__ == "__main__":

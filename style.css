@@ -179,6 +179,7 @@ a:hover {
 
 .site-nav a {
   display: block;
+  white-space: nowrap;
   padding: 0.5rem 0.7rem;
   color: var(--text);
   text-decoration: none;
@@ -206,7 +207,7 @@ a:hover {
   display: none;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1180px) {
   .js .nav-toggle {
     display: inline-flex;
     align-items: center;
@@ -1335,4 +1336,11 @@ td:last-child {
   .footer-grid {
     gap: 1.5rem;
   }
+}
+
+/* Sélecteur de langue */
+.site-nav .lang-switch {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
 }

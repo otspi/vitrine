@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OTSPI — eIDAS trust services as a European digital commons</title>
+  <meta name="description" content="OTSPI, a public-interest non-profit association being formed in France, is building an open, auditable and inalienable qualified trust service provider for eIDAS&nbsp;2.0. White paper and call for partners.">
+  <meta name="theme-color" content="#0f2042">
+  <link rel="canonical" href="https://www.otspi.org/en/">
+  <link rel="alternate" hreflang="fr" href="https://www.otspi.org/">
+  <link rel="alternate" hreflang="en" href="https://www.otspi.org/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.otspi.org/">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../assets/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OTSPI — White paper: a public-interest qualified infrastructure for eIDAS 2.0">
+  <meta property="og:description" content="Qualified time-stamping, a European TLS certificate authority, seals, signatures and identity: a digital commons protected by entrenched statutes. Call for partners.">
+  <meta property="og:url" content="https://www.otspi.org/en/">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <link rel="stylesheet" href="../style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="OTSPI — home">
+        <img class="logo-light" src="../assets/logo-horizontal.svg" alt="OTSPI — Open Trusted Service Provider Initiative" width="216" height="48">
+        <img class="logo-dark" src="../assets/logo-horizontal-dark.svg" alt="" width="216" height="48">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu</button>
+      <nav class="site-nav" id="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#response">Response</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#statutes">Statutes</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="manifesto.html">Manifesto</a></li>
+          <li><a class="lang-switch" href="../" hreflang="fr" lang="fr">FR</a></li>
+          <li><a class="nav-cta" href="#partners">Become a partner</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="title">
+      <div class="container">
+        <p class="kicker">White paper — public consultation v0.9</p>
+        <h1 id="title">eIDAS trust services as a European digital commons</h1>
+        <p class="lead">
+          OTSPI is a public-interest non-profit association, currently being formed, that is building an open, auditable and inalienable qualified trust service provider: time-stamping, certificates, seals, signatures and identity, available through standard APIs, with no per-transaction fees, and protected by statutes that forbid any appropriation.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://about.otspi.org/livre-blanc/otspi-livre-blanc.pdf" hreflang="fr"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#download"/></svg> Download the white paper (PDF, in French)</a>
+          <a class="btn btn-outline" href="https://about.otspi.org/livre-blanc/" hreflang="fr"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#book"/></svg> Read online (in French)</a>
+          <a class="btn btn-outline" href="#partners"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#users"/></svg> Become a partner</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key figures -->
+    <section class="section" aria-labelledby="figures">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Key figures</p>
+          <h2 id="figures">Fixed deadlines, very real costs</h2>
+          <p>Digital identity, e-invoicing and Web certificates are becoming mandatory or unavoidable within less than three years. Yet the proof that makes them legally enforceable is still billed per transaction.</p>
+        </div>
+        <ul class="figures">
+          <li class="figure">
+            <span class="figure-head"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#idcard"/></svg>Digital identity</span>
+            <span class="figure-value" data-countdown="2026-12-24">24.12.2026</span>
+            <p class="figure-lead">until each of the 27 Member States must provide a European Digital Identity Wallet.</p>
+            <p>One year later, banks, energy, transport and telecom operators will have to accept it.</p>
+            <a class="source" href="https://www.eadtrust.eu/en/blog/december-2026-deadline-eudi-wallet/">Regulation (EU) 2024/1183, Art.&nbsp;5a and 5f</a>
+          </li>
+          <li class="figure">
+            <span class="figure-head"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#invoice"/></svg>E-invoicing</span>
+            <span class="figure-value">10&nbsp;million</span>
+            <p class="figure-lead">economic actors in France affected by mandatory e-invoicing.</p>
+            <p>Receiving e-invoices has been mandatory since 1&nbsp;September 2026; SMEs and micro-businesses must issue them from 1&nbsp;September 2027.</p>
+            <a class="source" href="https://www.economie.gouv.fr/tout-savoir-sur-la-facturation-electronique-pour-les-entreprises" hreflang="fr">economie.gouv.fr</a>
+          </li>
+          <li class="figure">
+            <span class="figure-head"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#coins"/></svg>Cost of proof</span>
+            <span class="figure-value">€10,000 <small>excl. VAT / year</small></span>
+            <p class="figure-lead">to time-stamp 15,000 documents a month with a qualified provider, at public list prices.</p>
+            <p>An act with a near-zero marginal cost, billed token by token.</p>
+            <a class="source" href="https://about.otspi.org/livre-blanc/#21-inadequation-des-offres-commerciales-aux-besoins-de-lopen-source-et-de-linnovation-publique" hreflang="fr">White paper, §&nbsp;2.1</a>
+          </li>
+          <li class="figure figure-highlight">
+            <span class="figure-head"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#unlock"/></svg>Our commitment</span>
+            <span class="figure-value">€0</span>
+            <p class="figure-lead">for the OTSPI baseline service, identical for everyone and with no prior contract.</p>
+            <p>Only enhanced commitments (volumes, availability, support) involve a contribution.</p>
+            <a class="source" href="https://about.otspi.org/livre-blanc/#54-modele-dexploitation-perenne" hreflang="fr">White paper, §&nbsp;5.4</a>
+          </li>
+          <li class="figure">
+            <span class="figure-head"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#refresh"/></svg>Web certificates</span>
+            <span class="figure-value">47&nbsp;days</span>
+            <p class="figure-lead">maximum validity of a TLS certificate in 2029, down from 398&nbsp;days in 2025.</p>
+            <p>Nearly eight renewals per year and per site: without automation, nobody will keep up.</p>
+            <a class="source" href="https://cabforum.org/2025/04/11/ballot-sc081v3-introduce-schedule-of-reducing-validity-and-data-reuse-periods/">CA/Browser Forum, ballot SC-081v3</a>
+          </li>
+          <li class="figure">
+            <span class="figure-head"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#alert"/></svg>Dependency</span>
+            <span class="figure-value">64&nbsp;%</span>
+            <p class="figure-lead">of websites rely on a single certificate authority, established outside the Union.</p>
+            <p>An exemplary commons, but a single point of dependency for the European Internet.</p>
+            <a class="source" href="https://w3techs.com/technologies/details/sc-letsencrypt">W3Techs, September 2026</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section section-alt" id="problem" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The problem</p>
+          <h2 id="problem-title">The bottleneck is not the number of providers, but their access model</h2>
+          <p>As of 24&nbsp;September 2026, the EEA trusted lists include 280&nbsp;qualified providers, 158 of which offer qualified time-stamping. Yet they all share the same model: prior contract, per-unit pricing, proprietary interfaces and markets fragmented by country.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#workflow"/></svg></span>
+            <h3>Automation remains out of reach</h3>
+            <p>Continuous integration pipelines, electronic archiving, invoicing: high-volume, low-value uses are made economically irrational by per-token billing.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#user"/></svg></span>
+            <h3>Citizen independence is incomplete</h3>
+            <p>The EUDI Wallet provides a free qualified signature, which Member States may restrict to non-professional use. Self-employed workers, micro-businesses and associations acting in a professional capacity fall back into the paid model.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#bulb"/></svg></span>
+            <h3>Freedom to innovate comes with an entry fee</h3>
+            <p>Building business software, a platform or a local public service currently means paying for every single proof. This barrier to entry has no technical justification.</p>
+          </article>
+        </div>
+        <figure class="diagram">
+          <h3 class="diagram-title">An end-to-end automatable chain of trust</h3>
+          <ol class="flow">
+            <li>
+              <h4><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#idcard"/></svg> Identify</h4>
+              <p>Verifiable attestation of the counterparty, issued from an identity wallet.</p>
+              <span class="flow-actor">EUDI Wallet · business wallets</span>
+            </li>
+            <li>
+              <h4><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#invoice"/></svg> Invoice</h4>
+              <p>Structured invoice issued and transmitted through an approved platform.</p>
+              <span class="flow-actor">Approved platforms</span>
+            </li>
+            <li class="flow-otspi">
+              <h4><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#shield"/></svg> Seal and time-stamp</h4>
+              <p>Qualified seal and time-stamp on the fly, through an API, with no per-transaction fee.</p>
+              <span class="flow-actor">OTSPI's role</span>
+            </li>
+            <li>
+              <h4><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#server"/></svg> Archive</h4>
+              <p>Transfer to archiving with enforceable proof of integrity for the entire retention period.</p>
+              <span class="flow-actor">Archiving systems</span>
+            </li>
+          </ol>
+          <figcaption>Step 3 determines the whole chain: if every proof is billed, automation remains reserved for organisations able to absorb the cost.</figcaption>
+        </figure>
+        <div class="callout">
+          <p><strong>The Web has been here before.</strong> In 2015, fewer than 30&nbsp;% of Web pages were encrypted. Let's Encrypt, run by a non-profit organisation, made certificates free and automated: around 80&nbsp;% of pages are encrypted today. OTSPI applies this method to eIDAS qualified services, while fully accepting their specific liability, supervision and audit requirements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Response -->
+    <section class="section" id="response" aria-labelledby="response-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Our response</p>
+          <h2 id="response-title">A public-interest qualified provider</h2>
+          <p>In line with its statutory purpose, OTSPI covers the entire chain of trust and makes it available to everyone on the same terms.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#landmark"/></svg></span>
+            <h3>An inalienable commons</h3>
+            <p>A non-profit association under the French law of 1901, currently being formed. Its draft statutes entrench its purpose, permanently forbid any conversion into a commercial company and place assets and keys beyond any appropriation.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#code"/></svg></span>
+            <h3>Fully open code</h3>
+            <p>The whole software stack is published under the EUPL&nbsp;1.2, a European copyleft licence compatible with the AGPL&nbsp;v3: improvements stay free, including when they are operated as a service.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#plug"/></svg></span>
+            <h3>Standard APIs, no per-transaction fee</h3>
+            <p>RFC&nbsp;3161, ETSI EN&nbsp;319&nbsp;422, ACME: no proprietary layer. The baseline service is free and identical for everyone; only enhanced commitments involve a contribution.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#scale"/></svg></span>
+            <h3>Governance with segregated duties</h3>
+            <p>Executive management, the Trust Policy Committee and Authority Officers are strictly separated, in line with ETSI EN&nbsp;319&nbsp;401 and WebTrust requirements.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section-alt" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Services</p>
+          <h2 id="services-title">A step-by-step roll-out, one service at a time</h2>
+          <p>Each service opens only once the previous one is qualified and stable. Qualified time-stamping comes first: it requires no identity verification and focuses the effort on time accuracy and key protection.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="card">
+            <div class="card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#clock"/></svg></span><span class="tag tag-pilot">Pilot service</span></div>
+            <h3>Qualified electronic time-stamping</h3>
+            <p>Compliant with ETSI EN&nbsp;319&nbsp;421 and 422 and RFC&nbsp;3161. Authenticated Galileo (OSNMA) and GPS time reference, oscillator holdover, automatic stop in case of drift. Legal presumption of accuracy (Article&nbsp;41 of the eIDAS Regulation).</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg></span><span class="tag">Medium term</span></div>
+            <h3>European TLS certificate authority</h3>
+            <p>Two branches: <strong>DV</strong>, issued instantly through ACME with no prior account, under a WebTrust root; <strong>OV / QWAC</strong>, issued through ACME after a one-time onboarding of the organisation, recognised both by browsers and as eIDAS qualified certificates (regulated uses, PSD2).</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#pen"/></svg></span><span class="tag">Medium term</span></div>
+            <h3>Qualified seals and signatures</h3>
+            <p>Qualified seal and signature certificates, then remote signing and sealing through an API: seal, time-stamp and archive every e-invoice without subscribing to a single provider.</p>
+          </article>
+          <article class="card">
+            <div class="card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#idcard"/></svg></span><span class="tag">Medium term, in parallel</span></div>
+            <h3>Identity and attestations</h3>
+            <p>Electronic attestations of attributes for the EUDI Wallet and business wallets, and open integration building blocks for local authorities, education and associations. Issuing identity data remains the responsibility of Member States.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security -->
+    <section class="section" id="security" aria-labelledby="security-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Trust architecture</p>
+          <h2 id="security-title">Verifiable security, not declarative security</h2>
+          <p>The architecture is designed for audit: every control is documented, every ceremony is witnessed, every token issued is recorded in a public log.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#chip"/></svg></span>
+            <h3>Cryptographic isolation</h3>
+            <p>Keys are generated and used exclusively in HSMs certified Common Criteria EAL4+ against the CEN EN&nbsp;419&nbsp;221-5 protection profile, hosted in two European sites certified ISO/IEC&nbsp;27001.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#key"/></svg></span>
+            <h3>Root key under quorum</h3>
+            <p>Offline root CA, activated by 3 smart cards out of 5 held by separate officers. Backup cards under seal with separate notarial offices, subject to an exclusive activation clause.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#eye"/></svg></span>
+            <h3>Public transparency</h3>
+            <p>Verifiable Merkle log of issued tokens, open source code and reproducible builds, public Certification Practice Statement following RFC&nbsp;3647, published audit results.</p>
+          </article>
+        </div>
+        <figure class="diagram">
+          <h3 class="diagram-title">Strictly separated certification hierarchies</h3>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 960 440" role="img" aria-labelledby="hier-title hier-desc" xmlns="http://www.w3.org/2000/svg">
+              <title id="hier-title">OTSPI certification hierarchies</title>
+              <desc id="hier-desc">On the left, the offline qualified root under a 3-of-5 quorum certifies the time-stamping CA, which certifies the time-stamping units of sites A and B, as well as future qualified CAs for seals, signatures and attestations. On the right, two separate roots: a WebTrust root for browsers and a QWAC root listed on the European trusted list. The WebTrust root certifies a DV sub-CA, which issues DV certificates through instant ACME. A hybrid OV / QWAC sub-CA, holding a single key, is certified both by the WebTrust root and, through cross-signing, by the QWAC root; it issues OV / QWAC certificates after onboarding of the organisation.</desc>
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-arrow" d="M0 0 L10 5 L0 10 z"/></marker>
+                <marker id="arrc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-arrow-cross" d="M0 0 L10 5 L0 10 z"/></marker>
+              </defs>
+
+              <text class="dg-group" x="20" y="22">eIDAS QUALIFIED HIERARCHY</text>
+              <text class="dg-group" x="505" y="22">TLS CERTIFICATES — WEBTRUST AND QWAC ROOTS</text>
+              <line class="dg-separator" x1="485" y1="34" x2="485" y2="392"/>
+
+              <!-- Certification links -->
+              <path class="dg-edge" d="M240 104 C240 140 125 134 125 168" marker-end="url(#arr)"/>
+              <path class="dg-edge dg-edge-future" d="M240 104 C240 140 360 134 360 168" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M125 230 C125 265 70 265 70 298" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M125 230 C125 265 180 265 180 298" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M605 104 L605 178" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M660 104 C660 150 800 138 800 178" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M605 244 L605 318" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M840 244 L840 318" marker-end="url(#arr)"/>
+
+              <!-- Cross-signing -->
+              <path class="dg-edge-cross" d="M885 104 L885 178" marker-end="url(#arrc)"/>
+              <text class="dg-label" x="893" y="145">cross-sign</text>
+
+              <!-- Qualified hierarchy -->
+              <rect class="dg-box-root" x="110" y="40" width="260" height="64" rx="8"/>
+              <text class="dg-title" x="240" y="67" text-anchor="middle">OTSPI qualified root</text>
+              <text class="dg-sub" x="240" y="88" text-anchor="middle">offline · 3-of-5 quorum</text>
+
+              <rect class="dg-box" x="20" y="170" width="210" height="60" rx="8"/>
+              <text class="dg-title" x="125" y="195" text-anchor="middle">Time-stamping CA</text>
+              <text class="dg-sub" x="125" y="215" text-anchor="middle">dedicated intermediate</text>
+
+              <rect class="dg-box-future" x="250" y="170" width="220" height="60" rx="8"/>
+              <text class="dg-title" x="360" y="195" text-anchor="middle">Future qualified CAs</text>
+              <text class="dg-sub" x="360" y="215" text-anchor="middle">seal · signature · attestations</text>
+
+              <rect class="dg-box" x="20" y="300" width="100" height="56" rx="8"/>
+              <text class="dg-title" x="70" y="324" text-anchor="middle">TSU A</text>
+              <text class="dg-sub" x="70" y="343" text-anchor="middle">HSM site A</text>
+
+              <rect class="dg-box" x="130" y="300" width="100" height="56" rx="8"/>
+              <text class="dg-title" x="180" y="324" text-anchor="middle">TSU B</text>
+              <text class="dg-sub" x="180" y="343" text-anchor="middle">HSM site B</text>
+
+              <!-- TLS hierarchies -->
+              <rect class="dg-box-root" x="505" y="40" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="605" y="67" text-anchor="middle">WebTrust root</text>
+              <text class="dg-sub" x="605" y="88" text-anchor="middle">OS and browser stores</text>
+
+              <rect class="dg-box-root" x="740" y="40" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="840" y="67" text-anchor="middle">QWAC root</text>
+              <text class="dg-sub" x="840" y="88" text-anchor="middle">EU trusted list</text>
+
+              <rect class="dg-box" x="505" y="180" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="605" y="207" text-anchor="middle">DV sub-CA</text>
+              <text class="dg-sub" x="605" y="228" text-anchor="middle">WebTrust only</text>
+
+              <rect class="dg-box" x="740" y="180" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="840" y="207" text-anchor="middle">OV / QWAC sub-CA</text>
+              <text class="dg-sub" x="840" y="228" text-anchor="middle">one key · two certificates</text>
+
+              <rect class="dg-box" x="505" y="320" width="200" height="60" rx="8"/>
+              <text class="dg-title" x="605" y="345" text-anchor="middle">DV certificates</text>
+              <text class="dg-sub" x="605" y="366" text-anchor="middle">instant ACME</text>
+
+              <rect class="dg-box" x="740" y="320" width="200" height="60" rx="8"/>
+              <text class="dg-title" x="840" y="345" text-anchor="middle">OV / QWAC certificates</text>
+              <text class="dg-sub" x="840" y="366" text-anchor="middle">ACME after onboarding</text>
+
+              <!-- Legend -->
+              <line class="dg-edge" x1="20" y1="420" x2="54" y2="420" marker-end="url(#arr)"/>
+              <text class="dg-legend-text" x="62" y="424">certification</text>
+              <line class="dg-edge-cross" x1="170" y1="420" x2="204" y2="420" marker-end="url(#arrc)"/>
+              <text class="dg-legend-text" x="212" y="424">cross-signing</text>
+              <rect class="dg-box-future" x="345" y="411" width="34" height="18" rx="4"/>
+              <text class="dg-legend-text" x="387" y="424">future service</text>
+            </svg>
+          </div>
+          <figcaption>Time-stamping and TLS keys are never shared. The DV branch stays outside the eIDAS scope; an OV / QWAC certificate will be recognised both by browsers and as a qualified certificate once the inclusion and qualification decisions have been obtained.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Statutory safeguards -->
+    <section class="section section-alt" id="statutes" aria-labelledby="statutes-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Statutes</p>
+          <h2 id="statutes-title">Draft statutes designed so that no one can take over the infrastructure</h2>
+          <p>Many open projects have been bought out, turned into commercial offerings or abandoned. For an infrastructure carrying legal proof over decades, and eventually identity data, this risk is ruled out by design. These safeguards will take effect once the statutes are adopted by the founding general meeting.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Safeguard</th><th scope="col">Statutory mechanism</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Entrenched purpose</td><td>The public-interest purpose and the continuity clauses are declared permanent and unamendable (Articles&nbsp;2 and&nbsp;13).</td></tr>
+              <tr><td>No for-profit conversion</td><td>The association may never become a commercial company or any other for-profit entity (Article&nbsp;13.1).</td></tr>
+              <tr><td>Inalienable assets</td><td>Software, trademarks, domain names and equipment may not be transferred to a for-profit entity (Article&nbsp;13.2).</td></tr>
+              <tr><td>Keys beyond appropriation</td><td>Private keys, root certificates and HSM access are held in technical escrow; nobody may claim any private right over them (Article&nbsp;8&nbsp;ter).</td></tr>
+              <tr><td>Amendment all but impossible</td><td>75&nbsp;% quorum, unanimity of voting full members and a veto right for all members; protected articles can only be amended at the order of an authority or an auditor (Articles&nbsp;11 and 11&nbsp;bis).</td></tr>
+              <tr><td>Guaranteed continuity</td><td>Ring-fenced reserve fund for the termination plan, perpetual transfer of assets to a similar body, and mandatory adoption of the same clauses by any successor (Articles&nbsp;12&nbsp;bis, 13 and 13&nbsp;bis).</td></tr>
+              <tr><td>Universal access</td><td>Services available on a universal, neutral and non-discriminatory basis (Article&nbsp;12&nbsp;quater).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="callout"><strong>Just as with the root key, no one can act alone.</strong> The full draft statutes are published (in French) on <a href="https://about.otspi.org/statuts/statuts-association/" hreflang="fr">about.otspi.org</a>.</p>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="section" id="roadmap" aria-labelledby="roadmap-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Roadmap</p>
+          <h2 id="roadmap-title">Five phases, from presenting the project to applying for qualification</h2>
+          <p>This roadmap describes the steps OTSPI intends to take. It does not prejudge the opinions of the institutions consulted, nor decisions that fall within their sole competence. No timetable will be set until those opinions have been gathered.</p>
+        </div>
+        <ol class="timeline">
+          <li>
+            <h3>Presenting the project and setting up governance</h3>
+            <p>Presenting the white paper to the competent authorities and the research community to gather their opinions; setting up the advisory board; revising the roadmap and publishing the multi-year budget.</p>
+          </li>
+          <li>
+            <h3>Test bench and pilot documentation</h3>
+            <p>Public test environment (RFC&nbsp;3161 API, transparency log), validation of the time chain, pilot Time-Stamping Policy and Certification Practice Statement, root CA ceremony; first work on identity.</p>
+          </li>
+          <li>
+            <h3>Conformity assessment and application for qualification</h3>
+            <p>Audit by an accredited body (ETSI EN&nbsp;319&nbsp;403-1) and application for qualified status to the supervisory body, which alone is competent to grant it.</p>
+          </li>
+          <li>
+            <h3>European TLS certificate authority</h3>
+            <p>WebTrust and QWAC roots, DV and OV / QWAC sub-CAs, WebTrust and ETSI audits, applications for inclusion and qualification; ACME service in testing, then in production once the WebTrust root is included.</p>
+          </li>
+          <li>
+            <h3>Seals, signatures and identity</h3>
+            <p>Qualified seal and signature certificates, remote signing through an API, electronic attestations of attributes for European wallets.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="section" aria-labelledby="manifesto-title">
+      <div class="container">
+        <div class="manifesto-band">
+          <div>
+            <p class="eyebrow">Manifesto</p>
+            <h2 id="manifesto-title">For a free and open digital identity</h2>
+            <p>Ten principles to keep European digital identity and trust services as common goods. Individuals and organisations can sign it.</p>
+          </div>
+          <a class="btn btn-accent" href="manifesto.html"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#pen"/></svg> Read and sign the manifesto</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="section section-alt" id="partners" aria-labelledby="partners-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Call for partners</p>
+          <h2 id="partners-title">Join the project</h2>
+          <p>OTSPI is driven by a small, volunteer founding team. Its credibility rests on the rigour of its engineering and on the quality of the partners who join it. We are now seeking:</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card partner-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#server"/></svg></span>
+            <h3>Hosting and sovereign cloud providers</h3>
+            <dl>
+              <dt>Contribution</dt><dd>Secure colocation and connectivity in two European sites.</dd>
+              <dt>Framework</dt><dd>In-kind technology sponsorship, valued and declared.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#coins"/></svg></span>
+            <h3>Funders and foundations</h3>
+            <dl>
+              <dt>Contribution</dt><dd>Funding for the consultation phase, the test bench and the first audit.</dd>
+              <dt>Framework</dt><dd>Digital commons grants, sponsorship, public accountability for the use of funds.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#flask"/></svg></span>
+            <h3>Research laboratories</h3>
+            <dl>
+              <dt>Contribution</dt><dd>Independent review of the architecture and code: applied cryptography, time metrology, formal methods.</dd>
+              <dt>Framework</dt><dd>Scientific collaboration and open publications.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#audit"/></svg></span>
+            <h3>Auditors and eIDAS experts</h3>
+            <dl>
+              <dt>Contribution</dt><dd>Critical review of policies, the practice statement and procedures ahead of the qualification audit.</dd>
+              <dt>Framework</dt><dd>Participation in the advisory board.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#invoice"/></svg></span>
+            <h3>Software vendors and e-invoicing platforms</h3>
+            <dl>
+              <dt>Contribution</dt><dd>Integrating qualified sealing and time-stamping into invoicing and archiving pipelines.</dd>
+              <dt>Framework</dt><dd>Universal access on the same terms as everyone else.</dd>
+            </dl>
+          </article>
+          <article class="card partner-card">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#building"/></svg></span>
+            <h3>Local authorities and public administrations</h3>
+            <dl>
+              <dt>Contribution</dt><dd>Pilot use cases: evidential archiving, public procurement, EUDI Wallet integration.</dd>
+              <dt>Framework</dt><dd>Experimentation on the test environment and dialogue with the advisory board.</dd>
+            </dl>
+          </article>
+        </div>
+        <div class="cta-band">
+          <div>
+            <h3>Let's discuss your contribution</h3>
+            <p>The white paper is open for public consultation. Your comments, criticism and partnership proposals are welcome, in English or in French.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:contact@otspi.org?subject=OTSPI%20partnership"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#mail"/></svg> Write to contact@otspi.org</a>
+            <a class="btn btn-outline" href="manifesto.html"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#pen"/></svg> Sign the manifesto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="../assets/logo-horizontal-dark.svg" alt="OTSPI" width="234" height="52">
+          <p>Open Trusted Service Provider Initiative — public-interest non-profit association (French law of 1&nbsp;July 1901) currently being formed.</p>
+        </div>
+        <div>
+          <h2>White paper</h2>
+          <ul>
+            <li><a href="https://about.otspi.org/livre-blanc/otspi-livre-blanc.pdf" hreflang="fr">PDF version (in French)</a></li>
+            <li><a href="https://about.otspi.org/livre-blanc/" hreflang="fr">Online version (in French)</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Association</h2>
+          <ul>
+            <li><a href="https://about.otspi.org/statuts/statuts-association/" hreflang="fr">Draft statutes (in French)</a></li>
+            <li><a href="https://about.otspi.org/gouvernance/charte-ethique/" hreflang="fr">Code of ethics (in French)</a></li>
+            <li><a href="https://about.otspi.org/" hreflang="fr">Governance portal (in French)</a></li>
+            <li><a href="manifesto.html">Manifesto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="mailto:contact@otspi.org">contact@otspi.org</a></li>
+            <li><a href="https://github.com/otspi">github.com/otspi</a></li>
+            <li><a href="legal-notice.html">Legal notice</a></li>
+            <li><a href="../" hreflang="fr" lang="fr">Version française</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a> · Website code licensed under the <a href="https://eupl.eu/1.2/en/">EUPL&nbsp;1.2</a>.</p>
+        <p>This website uses no cookies, no trackers and no external resources.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>

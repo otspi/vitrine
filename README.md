@@ -22,6 +22,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `index.html` | Page d'accueil : repères, constat, réponse, services, sécurité, statuts, feuille de route, appel à partenaires |
 | `manifeste.html` | Manifeste pour une identité numérique libre et ouverte et liste des signataires |
 | `mentions-legales.html` | Mentions légales et données personnelles |
+| `en/` | Version anglaise : `index.html`, `manifesto.html`, `legal-notice.html` (balises `hreflang`, la version française fait foi) |
 | `scripts/signataires.py` | Génération de la liste publique des signataires (non déployé) |
 | `style.css` | Feuille de style |
 | `script.js` | Menu de navigation mobile |
@@ -83,7 +84,7 @@ Le formulaire est limité à 5 000 réponses.
    liste des options **Compact**. Enregistrer l'export hors du dépôt.
 2. `python3 scripts/signataires.py ~/export-framaforms.csv --exclure ~/retraits.txt`
    (`retraits.txt` : adresses à exclure — retraits de signature et signatures douteuses, une par ligne).
-3. Relire la liste générée dans `manifeste.html`, puis commiter et pousser.
+3. Relire la liste générée dans `manifeste.html` et `en/manifesto.html` (mises à jour ensemble), puis commiter et pousser.
 
 Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
 

@@ -29,6 +29,7 @@
 // Sans JavaScript, la date reste affichée telle quelle.
 (function () {
   var DAY = 86400000;
+  var en = document.documentElement.lang === 'en';
   document.querySelectorAll('[data-countdown]').forEach(function (el) {
     var parts = el.getAttribute('data-countdown').split('-').map(Number);
     var target = Date.UTC(parts[0], parts[1] - 1, parts[2]);
@@ -37,9 +38,9 @@
     var days = Math.round((target - today) / DAY);
     if (days > 0) {
       el.textContent = 'J-' + days;
-      el.setAttribute('title', 'Échéance : ' + new Date(target).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }));
+      el.setAttribute('title', (en ? 'Deadline: ' : 'Échéance : ') + new Date(target).toLocaleDateString(en ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }));
     } else {
-      el.textContent = 'En vigueur';
+      el.textContent = en ? 'In force' : 'En vigueur';
     }
   });
 })();
