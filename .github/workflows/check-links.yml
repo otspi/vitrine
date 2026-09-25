@@ -1,0 +1,55 @@
+name: Contrôle mensuel des liens externes
+
+on:
+  schedule:
+    - cron: "43 6 5 * *"   # le 5 de chaque mois, 06 h 43 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Vérifier les liens
+        id: check
+        run: |
+          set +e
+          python3 scripts/check_links.py . --ignore scripts/links-ignore.txt --json /tmp/liens.json | tee /tmp/liens.txt
+          echo "code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Ouvrir un ticket si des liens sont cassés
+        if: steps.check.outputs.code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Liens externes cassés ($(date +%Y-%m))"
+          if gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number' | grep -q .; then
+            echo "Un ticket est déjà ouvert pour ce mois."
+            exit 0
+          fi
+          {
+            echo "Le contrôle mensuel a trouvé des liens externes cassés."
+            echo
+            echo '```'
+            cat /tmp/liens.txt
+            echo '```'
+            echo
+            echo "Les liens « à vérifier » (403, 429) sont des sites qui refusent les requêtes automatisées : ils ne sont pas forcément cassés, à contrôler à la main."
+          } > /tmp/body.md
+          gh issue create --title "$title" --body-file /tmp/body.md
+
+      - name: Conserver le rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: liens
+          path: /tmp/liens.json
+          if-no-files-found: ignore

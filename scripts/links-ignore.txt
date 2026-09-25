@@ -1,0 +1,6 @@
+# Préfixes d'URL ignorés par le contrôle des liens (un par ligne).
+# Adresses d'exemple, ou qui n'existent qu'une fois l'action de l'utilisateur faite.
+https://github.com/otspi/open-eidas/security/advisories/new
+https://github.com/otspi/organisation/discussions/new
+https://api.staging.open-eidas.eu/
+https://www.otspi.org/.well-known/

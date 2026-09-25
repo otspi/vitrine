@@ -96,6 +96,24 @@ Les exports CSV et le fichier de retraits contiennent des données personnelles 
 
 `python3 scripts/build_plaquette.py` régénère `assets/docs/otspi-plaquette-fr.pdf` et `otspi-plaquette-en.pdf` (Chrome ou Chromium requis ; sources dans `scripts/plaquette/`). Les chiffres sont ceux de la page d'accueil : les mettre à jour ensemble.
 
+## Mesure d'audience (non activée)
+
+Le site n'utilise aucun outil de mesure d'audience. Si une mesure devient utile, la voie la plus sobre est **l'analyse des journaux d'accès du serveur** (aucun script, aucun cookie), avec un outil comme GoAccess. Préalable : vérifier qu'Infomaniak met les journaux d'accès à disposition pour cette formule d'hébergement.
+
+Conditions retenues (recommandations de la CNIL pour la mesure d'audience exemptée de consentement) : finalité limitée à la mesure d'audience pour le compte de l'éditeur, statistiques agrégées uniquement, aucun croisement avec d'autres traitements ni suivi entre sites, conservation des journaux limitée (25 mois au plus), information dans les mentions légales.
+
+**Avant d'activer**, remplacer la phrase « n'utilise aucun outil de mesure d'audience » des mentions légales (FR et EN) et ajouter :
+
+> **Mesure d'audience.** Pour connaître la fréquentation du site (pages consultées, provenance approximative), les journaux d'accès du serveur sont analysés de façon agrégée, sans cookie ni traceur. Cette analyse repose sur l'intérêt légitime de l'éditeur à mesurer l'audience de son site ; elle ne sert à aucune autre finalité, n'est croisée avec aucune autre donnée et n'est pas transmise à des tiers. Les journaux sont conservés au plus 25 mois. Vous pouvez vous opposer à ce traitement en écrivant à contact@otspi.org.
+
+> **Audience measurement.** To understand how the site is used (pages viewed, approximate origin), server access logs are analysed in aggregate, without cookies or trackers. This relies on the publisher's legitimate interest in measuring the audience of its site; it serves no other purpose, is not combined with any other data and is not shared with third parties. Logs are kept for at most 25 months. You may object to this processing by writing to contact@otspi.org.
+
+Ces textes sont un projet, à faire valider avant publication.
+
+## Contrôle des liens
+
+`python3 scripts/check_links.py . --ignore scripts/links-ignore.txt` vérifie les liens externes ; un workflow le lance chaque mois et ouvre un ticket si des liens sont cassés. Les sites qui refusent les robots (403) sont listés « à vérifier » sans faire échouer le contrôle.
+
 ## Sécurité
 
 `/.well-known/security.txt` (RFC 9116) indique où signaler une vulnérabilité. **Sa date `Expires` doit être renouvelée avant le 25 mars 2027** ; passé cette date, le fichier est considéré comme périmé.
