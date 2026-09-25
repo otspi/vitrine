@@ -103,7 +103,7 @@ Les exports CSV et le fichier de retraits contiennent des données personnelles 
 
 ## Images de partage
 
-`python3 scripts/build_og.py` régénère `assets/og/og-fr.png` et `og-en.png` (1200 × 630 px, utilisées par les balises Open Graph et Twitter de l'accueil ; Chrome ou Chromium requis). Le titre et le sous-titre du script doivent rester alignés sur le hero de l'accueil. Les images du manifeste (`og-manifeste.png`, `og-manifesto.png`) ne sont pas générées par ce script. Les réseaux sociaux mettent les aperçus en cache : après un changement, forcer le rafraîchissement depuis leurs outils de débogage.
+`python3 scripts/build_og.py` régénère les quatre images de partage de `assets/og/` (`og-fr.png`, `og-en.png` pour l'accueil, `og-manifeste.png`, `og-manifesto.png` pour le manifeste ; 1200 × 630 px, utilisées par les balises Open Graph et Twitter ; Chrome ou Chromium requis). Les textes de l'accueil doivent rester alignés sur le hero de la page d'accueil, ceux du manifeste sur la page du manifeste. Les réseaux sociaux mettent les aperçus en cache : après un changement, forcer le rafraîchissement depuis leurs outils de débogage.
 
 ## Plaquette d'une page
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: EUPL-1.2
-"""Génère les images de partage de l'accueil (1200 × 630) : assets/og/og-fr.png et og-en.png.
+"""Génère les images de partage (1200 × 630) : accueil et manifeste, en français et en anglais, dans assets/og/.
 
 L'image est composée en HTML puis capturée par Chrome ou Chromium en mode headless ; la variable
-d'environnement CHROME permet d'imposer le binaire. Le titre et le sous-titre doivent rester
-identiques à ceux du hero de la page d'accueil.
+d'environnement CHROME permet d'imposer le binaire. Les textes de l'accueil doivent rester
+alignés sur ceux du hero de la page d'accueil, ceux du manifeste sur la page du manifeste.
 
 Usage :
     python3 scripts/build_og.py
@@ -21,13 +21,20 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "og"
 LOGO = ROOT / "assets" / "logo-horizontal-transparent-dark.svg"
 
-TEXTS = {
-    "fr": ("Livre blanc", "Et si la confiance numérique européenne devenait un bien commun&nbsp;?",
-           "La preuve qualifiée eIDAS, ouverte, automatisable et sans péage. Un pilote tourne déjà.",
-           "Consultation publique · appel à partenaires"),
-    "en": ("White paper", "What if European digital trust became a shared resource?",
-           "Qualified eIDAS proof, open, automatable and toll-free. A pilot already runs.",
-           "Public consultation · call for partners"),
+# Fichier de sortie : (pastille, titre, sous-titre, ligne de bas de page, adresse affichée)
+IMAGES = {
+    "og-fr.png": ("Livre blanc", "Et si la confiance numérique européenne devenait un bien commun&nbsp;?",
+                  "La preuve qualifiée eIDAS, ouverte, automatisable et sans péage. Un pilote tourne déjà.",
+                  "Consultation publique · appel à partenaires", "otspi.org"),
+    "og-en.png": ("White paper", "What if European digital trust became a shared resource?",
+                  "Qualified eIDAS proof, open, automatable and toll-free. A pilot already runs.",
+                  "Public consultation · call for partners", "otspi.org"),
+    "og-manifeste.png": ("Manifeste · signez-le", "Pour une identité numérique libre et ouverte",
+                         "Dix principes pour que l'identité numérique européenne reste un bien commun.",
+                         "Personnes et organisations peuvent signer", "otspi.org/manifeste"),
+    "og-manifesto.png": ("Manifesto · sign it", "For a free and open digital identity",
+                         "Ten principles to keep European digital identity a digital commons.",
+                         "Individuals and organisations can sign", "otspi.org/en/manifesto"),
 }
 
 PAGE = """<!doctype html><html><head><meta charset="utf-8"><style>
@@ -48,7 +55,7 @@ h1{position:absolute;left:72px;top:212px;width:1056px;margin:0;font-size:62px;li
 <div class="badge">{{badge}}</div>
 <h1>{{title}}</h1>
 <div class="sub">{{sub}}</div>
-<div class="foot">{{foot}}</div><div class="url">otspi.org</div>
+<div class="foot">{{foot}}</div><div class="url">{{url}}</div>
 <div class="bar"></div><div class="bar2"></div>
 </body></html>"""
 
@@ -68,13 +75,13 @@ def main():
     with tempfile.TemporaryDirectory() as work:
         work = Path(work)
         shutil.copy(LOGO, work / "logo.svg")
-        for lang, (badge, title, sub, foot) in TEXTS.items():
-            page = work / f"{lang}.html"
+        for name, (badge, title, sub, foot, url) in IMAGES.items():
+            page = work / f"{Path(name).stem}.html"
             html = PAGE
-            for key, value in (("badge", badge), ("title", title), ("sub", sub), ("foot", foot)):
+            for key, value in (("badge", badge), ("title", title), ("sub", sub), ("foot", foot), ("url", url)):
                 html = html.replace("{{" + key + "}}", value)
             page.write_text(html, encoding="utf-8")
-            output = OUT / f"og-{lang}.png"
+            output = OUT / name
             with tempfile.TemporaryDirectory() as profile:
                 cmd = [chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars", f"--user-data-dir={profile}",
                        "--allow-file-access-from-files", "--window-size=1200,630", f"--screenshot={output}", page.as_uri()]
