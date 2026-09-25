@@ -1586,3 +1586,68 @@ html:not(.js) .js-only {
     justify-content: center;
   }
 }
+
+/* Partage : boutons de réseaux, logos et contraste */
+.icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.share-card .share-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.share-card .share-buttons .share-btn {
+  justify-content: flex-start;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border-color: color-mix(in srgb, var(--text) 28%, transparent);
+  font-size: 0.95rem;
+}
+
+.share-card .share-buttons .share-btn .icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.share-card .share-buttons .share-native {
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+
+.share-card .share-btn:hover,
+.share-card .share-btn:focus-visible {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  .share-card .share-btn:hover,
+  .share-card .share-btn:focus-visible {
+    color: var(--text);
+  }
+}
+
+@media (max-width: 360px) {
+  .share-card .share-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.share-message .share-buttons {
+  display: flex;
+}
+
+.share-message .share-btn {
+  border-color: color-mix(in srgb, var(--text) 28%, transparent);
+}
+
+/* L'attribut hidden doit l'emporter sur l'affichage des boutons */
+.share-btn[hidden],
+.share-masto[hidden] {
+  display: none !important;
+}

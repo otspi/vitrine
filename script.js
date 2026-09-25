@@ -76,7 +76,8 @@
     });
   });
 
-  if (navigator.share) {
+  // Le partage natif n'a de sens que sur mobile (feuille de partage du système) ; sur ordinateur, les liens directs suffisent.
+  if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
     document.querySelectorAll('.share-native').forEach(function (button) {
       button.hidden = false;
       button.addEventListener('click', function () {
