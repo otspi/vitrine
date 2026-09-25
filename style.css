@@ -1344,3 +1344,120 @@ td:last-child {
   letter-spacing: 0.05em;
   border: 1px solid var(--border);
 }
+
+/* --------------------------------------------------------------------------
+   Partage
+   -------------------------------------------------------------------------- */
+html:not(.js) .js-only {
+  display: none;
+}
+
+.section-share {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+}
+
+.share-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.share-card .share-cta {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.share-card p + .share-cta {
+  margin-top: 1.25rem;
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.share-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.share-btn.share-native {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.share-btn.is-done {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.share-masto {
+  margin-top: 1rem;
+}
+
+.share-masto label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.share-masto-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.share-masto input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.share-message {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.share-label {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.share-text {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}

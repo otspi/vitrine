@@ -44,3 +44,75 @@
     }
   });
 })();
+
+// Partage : partage natif (mobile), copie du message ou du lien, choix de l'instance Mastodon.
+(function () {
+  function flash(button) {
+    var label = button.innerHTML;
+    button.classList.add('is-done');
+    button.textContent = button.getAttribute('data-copied') || '✓';
+    setTimeout(function () {
+      button.innerHTML = label;
+      button.classList.remove('is-done');
+    }, 2000);
+  }
+
+  function copy(text, button) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { flash(button); });
+    }
+  }
+
+  document.querySelectorAll('[data-copy-target]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var source = document.getElementById(button.getAttribute('data-copy-target'));
+      if (source) copy(source.textContent.trim(), button);
+    });
+  });
+
+  document.querySelectorAll('[data-copy-text]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      copy(button.getAttribute('data-copy-text'), button);
+    });
+  });
+
+  if (navigator.share) {
+    document.querySelectorAll('.share-native').forEach(function (button) {
+      button.hidden = false;
+      button.addEventListener('click', function () {
+        navigator.share({
+          title: button.getAttribute('data-share-title'),
+          text: button.getAttribute('data-share-text'),
+          url: button.getAttribute('data-share-url')
+        }).catch(function () {});
+      });
+    });
+  }
+
+  var STORAGE_KEY = 'otspi-mastodon-instance';
+  document.querySelectorAll('[data-mastodon]').forEach(function (button) {
+    var form = document.getElementById(button.getAttribute('aria-controls'));
+    if (!form) return;
+    var input = form.querySelector('input');
+    try { input.value = localStorage.getItem(STORAGE_KEY) || ''; } catch (e) {}
+
+    button.addEventListener('click', function () {
+      var open = form.hidden;
+      form.hidden = !open;
+      button.setAttribute('aria-expanded', String(open));
+      if (open) input.focus();
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var instance = input.value.trim().replace(/^https?:\/\//, '').replace(/[\/@].*$/, '');
+      if (!/^[a-z0-9.-]+\.[a-z]{2,}$/i.test(instance)) {
+        input.focus();
+        return;
+      }
+      try { localStorage.setItem(STORAGE_KEY, instance); } catch (e) {}
+      var text = encodeURIComponent(button.getAttribute('data-mastodon'));
+      window.open('https://' + instance + '/share?text=' + text, '_blank', 'noopener');
+    });
+  });
+})();

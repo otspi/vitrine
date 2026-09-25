@@ -14,6 +14,12 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://www.otspi.org%{REQUEST_URI} [L,R=301]
+
+  # Adresses courtes, faciles à citer de vive voix
+  RewriteRule ^manifeste/$ https://www.otspi.org/manifeste [L,R=301]
+  RewriteRule ^en/manifesto/$ https://www.otspi.org/en/manifesto [L,R=301]
+  RewriteRule ^manifeste$ /manifeste.html [L]
+  RewriteRule ^en/manifesto$ /en/manifesto.html [L]
 </IfModule>
 
 # 2. En-têtes de sécurité
@@ -47,6 +53,7 @@
   ExpiresByType application/javascript "access plus 7 days"
   ExpiresByType text/javascript "access plus 7 days"
   ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
 </IfModule>
 
 # 6. Pas de listage des répertoires ni d'accès aux métadonnées de dépôt
