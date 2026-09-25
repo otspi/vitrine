@@ -8,7 +8,11 @@ en conservant la réponse la plus récente.
 Export attendu (Framaforms > Résultats > Télécharger) : format « Texte délimité »,
 en-têtes de colonnes « Form Key », liste des options « Compact ».
 
+Les signataires de base (scripts/signataires-base.json), qui ont consenti à figurer
+dans la liste, sont toujours ajoutés aux signatures issues du formulaire.
+
 Usage :
+    python3 scripts/signataires.py                     # signataires de base uniquement
     python3 scripts/signataires.py export-framaforms.csv
     python3 scripts/signataires.py export.csv --exclure retraits.txt
 
@@ -19,11 +23,13 @@ ils ne doivent jamais être ajoutés au dépôt.
 import argparse
 import csv
 import html
+import json
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+BASE_SIGNATORIES = Path(__file__).resolve().parent / "signataires-base.json"
 # Pages mises à jour et libellés du compteur, par langue
 PAGES = {
     ROOT / "manifeste.html": "fr",
@@ -71,15 +77,18 @@ def find_header(rows, columns):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("export", type=Path, help="export CSV des réponses Framaforms")
+    parser.add_argument("export", type=Path, nargs="?", help="export CSV des réponses Framaforms (facultatif)")
     parser.add_argument("--exclure", type=Path, help="fichier d'adresses e-mail à exclure (une par ligne)")
     for key, label in DEFAULT_COLUMNS.items():
         parser.add_argument(f"--col-{key}", default=label, help=f"libellé de la colonne (défaut : {label})")
     args = parser.parse_args()
 
     columns = {key: getattr(args, f"col_{key}") for key in DEFAULT_COLUMNS}
-    rows = read_rows(args.export)
-    header_index, positions = find_header(rows, columns)
+    if args.export:
+        rows = read_rows(args.export)
+        header_index, positions = find_header(rows, columns)
+    else:
+        rows, header_index, positions = [], -1, {}
 
     def cell(row, key):
         position = positions[normalize(columns[key])]
@@ -106,6 +115,23 @@ def main():
             "public": bool(cell(row, "publication")),
         }
 
+    # Signataires de base : clé propre, pour ne pas dépendre d'une adresse e-mail
+    if BASE_SIGNATORIES.is_file():
+        for entry in json.loads(BASE_SIGNATORIES.read_text(encoding="utf-8")):
+            key = "base:" + normalize(f"{entry['prenom']} {entry['nom']}")
+            duplicates = [email for email, s in signatures.items()
+                          if normalize(f"{s['prenom']} {s['nom']}") == key[5:]]
+            for email in duplicates:
+                del signatures[email]
+            signatures[key] = {
+                "prenom": entry["prenom"],
+                "nom": entry["nom"],
+                "fonction": entry.get("fonction", ""),
+                "fonction_en": entry.get("fonction_en", ""),
+                "organisation": entry.get("organisation", ""),
+                "public": True,
+            }
+
     public = sorted(
         (s for s in signatures.values() if s["public"]),
         key=lambda s: (s["nom"].casefold(), s["prenom"].casefold()),
@@ -114,16 +140,24 @@ def main():
     def render(lang):
         total, shown = len(signatures), len(public)
         if lang == "en":
-            count = (f'<strong>{total}</strong> signature{"s" if total != 1 else ""}, '
-                     f'{shown} of which {"are" if shown != 1 else "is"} published with the consent of their authors.')
+            head = f'<strong>{total}</strong> signature{"s" if total != 1 else ""}'
+            if shown == total:
+                tail = "published with the author's consent." if total == 1 else "all published with their authors' consent."
+            else:
+                tail = f"{shown} of which {'are' if shown != 1 else 'is'} published with their authors' consent."
         else:
-            count = (f'<strong>{total}</strong> signature{"s" if total > 1 else ""}, '
-                     f'dont {shown} publiée{"s" if shown > 1 else ""} avec l\'accord de leurs auteurs.')
+            head = f'<strong>{total}</strong> signature{"s" if total > 1 else ""}'
+            if shown == total:
+                tail = "publiée avec l'accord de son auteur." if total == 1 else "toutes publiées avec l'accord de leurs auteurs."
+            else:
+                tail = f"dont {shown} publiée{'s' if shown > 1 else ''} avec l'accord de leurs auteurs."
+        count = f"{head}, {tail}"
         lines = [START, f'        <p class="signatures-count">{count}</p>']
         if public:
             lines.append('        <ul class="signatures-list">')
             for s in public:
-                quality = ", ".join(part for part in (s["fonction"], s["organisation"]) if part)
+                role = s.get("fonction_en") if lang == "en" and s.get("fonction_en") else s["fonction"]
+                quality = ", ".join(part for part in (role, s["organisation"]) if part)
                 full_name = " ".join(part for part in (s["prenom"], s["nom"]) if part)
                 item = f"<strong>{html.escape(full_name)}</strong>"
                 if quality:

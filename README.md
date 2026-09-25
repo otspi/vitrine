@@ -86,6 +86,8 @@ Le formulaire est limité à 5 000 réponses.
    (`retraits.txt` : adresses à exclure — retraits de signature et signatures douteuses, une par ligne).
 3. Relire la liste générée dans `manifeste.html` et `en/manifesto.html` (mises à jour ensemble), puis commiter et pousser.
 
+Les **signataires de base** (`scripts/signataires-base.json`, consentement recueilli directement) sont toujours ajoutés à la liste. Sans export, `python3 scripts/signataires.py` régénère la liste à partir de ces seuls signataires.
+
 Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
 
 ## Aperçu local
