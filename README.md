@@ -90,6 +90,14 @@ Le formulaire est limité à 5 000 réponses.
 
 Les **signataires de base** (`scripts/signataires-base.json`, consentement recueilli directement) sont toujours ajoutés à la liste. Sans export, `python3 scripts/signataires.py` régénère la liste à partir de ces seuls signataires.
 
+### Rafraîchissement automatique (cron)
+
+`scripts/refresh-signataires.sh` fait les étapes 2 et 3 à partir du dernier CSV déposé dans `~/otspi-export/` (dossier hors dépôt, droits 700) : si l'export ou `retraits.txt` a changé, il régénère la liste, committe uniquement `manifeste.html` et `en/manifesto.html`, puis pousse (le déploiement suit). Il s'arrête sans rien faire si le dépôt n'est pas sur `main` ou contient des modifications en cours. Seul le téléchargement de l'export Framaforms reste manuel (l'interface exige une session connectée). Le journal est `~/otspi-export/refresh.log`.
+
+```
+17 8 * * * /chemin/vers/otspi-vitrine/scripts/refresh-signataires.sh >> ~/otspi-export/refresh.log 2>&1
+```
+
 Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
 
 ## Plaquette d'une page
