@@ -25,7 +25,7 @@ TEXTS = {
     "fr": ("Livre blanc", "Et si la confiance numérique européenne devenait un bien commun&nbsp;?",
            "La preuve qualifiée eIDAS, ouverte, automatisable et sans péage. Un pilote tourne déjà.",
            "Consultation publique · appel à partenaires"),
-    "en": ("White paper", "What if European digital trust became a common good?",
+    "en": ("White paper", "What if European digital trust became a shared resource?",
            "Qualified eIDAS proof, open, automatable and toll-free. A pilot already runs.",
            "Public consultation · call for partners"),
 }
