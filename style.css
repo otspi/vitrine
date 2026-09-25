@@ -1718,3 +1718,10 @@ html:not(.js) .js-only {
   outline: 2px solid var(--accent, #ffd84d);
   outline-offset: 2px;
 }
+
+/* Liens dans le bandeau d'appel (fond sombre) */
+.cta-band p a {
+  color: #ffd84d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
