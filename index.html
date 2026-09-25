@@ -74,6 +74,7 @@
           <a class="btn btn-outline" href="#partenaires"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users"/></svg> Devenir partenaire</a>
         </div>
         <p class="hero-proof"><strong>Un pilote RFC&nbsp;3161 tourne déjà.</strong> <a href="#pilote">Obtenez un jeton d'horodatage en 30 secondes</a>, sans compte ni clé d'API (environnement d'essai, non qualifié).</p>
+        <nav class="hero-profiles" aria-label="Vous êtes:"><span>Vous êtes&nbsp;:</span><a href="#p-editeur">Éditeur</a><a href="#p-collectivite">Collectivité</a><a href="#p-recherche">Chercheur</a><a href="#p-financeur">Financeur</a><a href="#p-hebergeur">Hébergeur</a><a href="#p-auditeur">Auditeur</a></nav>
       </div>
     </section>
 
@@ -512,7 +513,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
           <p>Nous cherchons des contributions précises. Choisissez la vôtre&nbsp;:</p>
         </div>
         <div class="grid grid-3">
-          <article class="card partner-card">
+          <article class="card partner-card" id="p-hebergeur">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#server"/></svg></span>
             <h3>Hébergeurs et cloud souverain</h3>
             <dl>
@@ -521,7 +522,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
             </dl>
             <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
-          <article class="card partner-card">
+          <article class="card partner-card" id="p-financeur">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#coins"/></svg></span>
             <h3>Financeurs et fondations</h3>
             <dl>
@@ -530,7 +531,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
             </dl>
             <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
-          <article class="card partner-card">
+          <article class="card partner-card" id="p-recherche">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#flask"/></svg></span>
             <h3>Laboratoires de recherche</h3>
             <dl>
@@ -539,7 +540,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
             </dl>
             <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
-          <article class="card partner-card">
+          <article class="card partner-card" id="p-auditeur">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#audit"/></svg></span>
             <h3>Auditeurs et experts eIDAS</h3>
             <dl>
@@ -548,7 +549,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
             </dl>
             <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
-          <article class="card partner-card">
+          <article class="card partner-card" id="p-editeur">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#invoice"/></svg></span>
             <h3>Éditeurs et plateformes de facturation</h3>
             <dl>
@@ -557,7 +558,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
             </dl>
             <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
-          <article class="card partner-card">
+          <article class="card partner-card" id="p-collectivite">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#building"/></svg></span>
             <h3>Collectivités et administrations</h3>
             <dl>

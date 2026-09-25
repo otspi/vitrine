@@ -1688,3 +1688,33 @@ html:not(.js) .js-only {
   margin-top: 0.75rem;
   font-weight: 600;
 }
+
+/* Raccourcis par profil dans le hero */
+.hero-profiles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  color: #dbe4f5;
+}
+
+.hero-profiles a {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero-profiles a:hover,
+.hero-profiles a:focus-visible {
+  border-color: #ffd84d;
+  color: #ffd84d;
+}
+
+.partner-card:target {
+  outline: 2px solid var(--accent, #ffd84d);
+  outline-offset: 2px;
+}
