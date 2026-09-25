@@ -50,7 +50,7 @@
         <p class="kicker">Livre blanc — consultation publique v0.9</p>
         <h1 id="titre">Les services de confiance eIDAS comme commun numérique européen</h1>
         <p class="lead">
-          OTSPI est une association d'intérêt général qui construit un prestataire de services de confiance qualifié ouvert, auditable et inaliénable&nbsp;: horodatage, certificats, cachet, signature et identité, accessibles par API normalisées, sans tarification à l'acte et protégés par des statuts qui en interdisent toute appropriation.
+          OTSPI est une association d'intérêt général, en cours de constitution, qui construit un prestataire de services de confiance qualifié ouvert, auditable et inaliénable&nbsp;: horodatage, certificats, cachet, signature et identité, accessibles par API normalisées, sans tarification à l'acte et protégés par des statuts qui en interdisent toute appropriation.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://about.otspi.org/livre-blanc/otspi-livre-blanc.pdf"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#download"/></svg> Télécharger le livre blanc (PDF)</a>
@@ -184,7 +184,7 @@
           <article class="card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#landmark"/></svg></span>
             <h3>Un commun inaliénable</h3>
-            <p>Association loi 1901 à gestion désintéressée. Objet intangible, transformation en société commerciale interdite à perpétuité, actifs et clés hors de toute appropriation.</p>
+            <p>Association loi 1901 à gestion désintéressée, en cours de constitution. Son projet de statuts rend l'objet intangible, interdit à perpétuité toute transformation en société commerciale et place actifs et clés hors de toute appropriation.</p>
           </article>
           <article class="card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#code"/></svg></span>
@@ -222,7 +222,7 @@
           <article class="card">
             <div class="card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lock"/></svg></span><span class="tag">Moyen terme</span></div>
             <h3>Autorité de certification TLS européenne</h3>
-            <p>Certificats DV et OV automatisés par ACME, sur une racine WebTrust séparée. L'AC émettrice est aussi signée de façon croisée par la hiérarchie qualifiée, afin qu'un même certificat puisse être reconnu par les navigateurs et comme QWAC, une fois la racine incluse dans les programmes racines.</p>
+            <p>Deux branches&nbsp;: <strong>DV</strong>, émis instantanément par ACME sans compte préalable, sous racine WebTrust&nbsp;; <strong>OV / QWAC</strong>, émis par ACME après un enrôlement unique de l'organisation, reconnus à la fois par les navigateurs et comme certificats qualifiés eIDAS (usages régulés, DSP2).</p>
           </article>
           <article class="card">
             <div class="card-head"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pen"/></svg></span><span class="tag">Moyen terme</span></div>
@@ -264,18 +264,18 @@
           </article>
         </div>
         <figure class="diagram">
-          <h3 class="diagram-title">Deux hiérarchies de certification distinctes</h3>
+          <h3 class="diagram-title">Des hiérarchies de certification strictement séparées</h3>
           <div class="diagram-scroll">
             <svg viewBox="0 0 960 440" role="img" aria-labelledby="hier-titre hier-desc" xmlns="http://www.w3.org/2000/svg">
               <title id="hier-titre">Hiérarchies de certification d'OTSPI</title>
-              <desc id="hier-desc">À gauche, la racine qualifiée hors ligne sous quorum 3 sur 5 certifie l'AC d'horodatage, qui certifie les unités d'horodatage des sites A et B, ainsi que les futures AC qualifiées de cachet, de signature et d'attestations. À droite, une racine TLS WebTrust séparée certifie l'AC émettrice TLS, qui délivre les certificats de sites DV, OV et QWAC. Cette AC émettrice est aussi signée de façon croisée par la hiérarchie qualifiée pour le statut QWAC.</desc>
+              <desc id="hier-desc">À gauche, la racine qualifiée hors ligne sous quorum 3 sur 5 certifie l'AC d'horodatage, qui certifie les unités d'horodatage des sites A et B, ainsi que les futures AC qualifiées de cachet, de signature et d'attestations. À droite, deux racines distinctes : une racine WebTrust pour les navigateurs et une racine QWAC inscrite sur la liste de confiance européenne. La racine WebTrust certifie une sous-AC DV, qui émet des certificats DV par ACME instantané. Une sous-AC hybride OV / QWAC, dotée d'une seule clé, est certifiée à la fois par la racine WebTrust et, par signature croisée, par la racine QWAC ; elle émet des certificats OV / QWAC après enrôlement de l'organisation.</desc>
               <defs>
                 <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-arrow" d="M0 0 L10 5 L0 10 z"/></marker>
                 <marker id="arrc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="dg-arrow-cross" d="M0 0 L10 5 L0 10 z"/></marker>
               </defs>
 
               <text class="dg-group" x="20" y="22">HIÉRARCHIE QUALIFIÉE eIDAS</text>
-              <text class="dg-group" x="505" y="22">HIÉRARCHIE TLS — RACINE WEBTRUST SÉPARÉE</text>
+              <text class="dg-group" x="505" y="22">CERTIFICATS TLS — RACINES WEBTRUST ET QWAC</text>
               <line class="dg-separator" x1="485" y1="34" x2="485" y2="392"/>
 
               <!-- Liens de certification -->
@@ -283,13 +283,15 @@
               <path class="dg-edge dg-edge-future" d="M240 104 C240 140 360 134 360 168" marker-end="url(#arr)"/>
               <path class="dg-edge" d="M125 230 C125 265 70 265 70 298" marker-end="url(#arr)"/>
               <path class="dg-edge" d="M125 230 C125 265 180 265 180 298" marker-end="url(#arr)"/>
-              <path class="dg-edge" d="M720 104 L720 188" marker-end="url(#arr)"/>
-              <path class="dg-edge" d="M720 254 L720 318" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M605 104 L605 178" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M660 104 C660 150 800 138 800 178" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M605 244 L605 318" marker-end="url(#arr)"/>
+              <path class="dg-edge" d="M840 244 L840 318" marker-end="url(#arr)"/>
 
-              <!-- Signatures croisées -->
-              <path class="dg-edge-cross" d="M370 72 C470 72 510 222 598 222" marker-end="url(#arrc)"/>
-              <text class="dg-label" x="497" y="256">signature croisée</text>
-              <text class="dg-label" x="497" y="272">(statut QWAC)</text>
+              <!-- Signature croisée -->
+              <path class="dg-edge-cross" d="M885 104 L885 178" marker-end="url(#arrc)"/>
+              <text class="dg-label" x="893" y="138">signature</text>
+              <text class="dg-label" x="893" y="152">croisée</text>
 
               <!-- Hiérarchie qualifiée -->
               <rect class="dg-box-root" x="110" y="40" width="260" height="64" rx="8"/>
@@ -312,19 +314,30 @@
               <text class="dg-title" x="180" y="324" text-anchor="middle">TSU B</text>
               <text class="dg-sub" x="180" y="343" text-anchor="middle">HSM site B</text>
 
-              <!-- Hiérarchie TLS -->
-              <rect class="dg-box-root" x="620" y="40" width="200" height="64" rx="8"/>
-              <text class="dg-title" x="720" y="67" text-anchor="middle">Racine TLS OTSPI</text>
-              <text class="dg-sub" x="720" y="88" text-anchor="middle">WebTrust · hors ligne</text>
+              <!-- Hiérarchies TLS -->
+              <rect class="dg-box-root" x="505" y="40" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="605" y="67" text-anchor="middle">Racine WebTrust</text>
+              <text class="dg-sub" x="605" y="88" text-anchor="middle">magasins OS · navigateurs</text>
 
+              <rect class="dg-box-root" x="740" y="40" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="840" y="67" text-anchor="middle">Racine QWAC</text>
+              <text class="dg-sub" x="840" y="88" text-anchor="middle">liste de confiance UE</text>
 
-              <rect class="dg-box" x="600" y="190" width="240" height="64" rx="8"/>
-              <text class="dg-title" x="720" y="217" text-anchor="middle">AC émettrice TLS</text>
-              <text class="dg-sub" x="720" y="238" text-anchor="middle">une clé · deux certificats d'AC</text>
+              <rect class="dg-box" x="505" y="180" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="605" y="207" text-anchor="middle">Sous-AC DV</text>
+              <text class="dg-sub" x="605" y="228" text-anchor="middle">WebTrust uniquement</text>
 
-              <rect class="dg-box" x="600" y="320" width="240" height="60" rx="8"/>
-              <text class="dg-title" x="720" y="345" text-anchor="middle">Certificats de sites</text>
-              <text class="dg-sub" x="720" y="366" text-anchor="middle">DV · OV · QWAC</text>
+              <rect class="dg-box" x="740" y="180" width="200" height="64" rx="8"/>
+              <text class="dg-title" x="840" y="207" text-anchor="middle">Sous-AC OV / QWAC</text>
+              <text class="dg-sub" x="840" y="228" text-anchor="middle">une clé · deux certificats</text>
+
+              <rect class="dg-box" x="505" y="320" width="200" height="60" rx="8"/>
+              <text class="dg-title" x="605" y="345" text-anchor="middle">Certificats DV</text>
+              <text class="dg-sub" x="605" y="366" text-anchor="middle">ACME instantané</text>
+
+              <rect class="dg-box" x="740" y="320" width="200" height="60" rx="8"/>
+              <text class="dg-title" x="840" y="345" text-anchor="middle">Certificats OV / QWAC</text>
+              <text class="dg-sub" x="840" y="366" text-anchor="middle">ACME après enrôlement</text>
 
               <!-- Légende -->
               <line class="dg-edge" x1="20" y1="420" x2="54" y2="420" marker-end="url(#arr)"/>
@@ -335,7 +348,7 @@
               <text class="dg-legend-text" x="387" y="424">service futur</text>
             </svg>
           </div>
-          <figcaption>Les clés de l'horodatage et de la TLS ne sont jamais partagées. Un même certificat de site pourra être reconnu par les navigateurs et comme certificat qualifié (QWAC), une fois obtenues les décisions d'inclusion et de qualification.</figcaption>
+          <figcaption>Les clés de l'horodatage et de la TLS ne sont jamais partagées. La branche DV reste hors du périmètre eIDAS&nbsp;; un certificat OV / QWAC pourra être reconnu par les navigateurs et comme certificat qualifié, une fois obtenues les décisions d'inclusion et de qualification.</figcaption>
         </figure>
       </div>
     </section>
@@ -345,8 +358,8 @@
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Statuts</p>
-          <h2 id="garanties-titre">Des statuts conçus pour qu'aucun acteur ne puisse s'approprier l'infrastructure</h2>
-          <p>De nombreux projets ouverts ont été rachetés, transformés en offres commerciales ou abandonnés. Pour une infrastructure qui porte des preuves juridiques sur des décennies, et à terme des éléments d'identité, ce risque est exclu par construction.</p>
+          <h2 id="garanties-titre">Un projet de statuts conçu pour qu'aucun acteur ne puisse s'approprier l'infrastructure</h2>
+          <p>De nombreux projets ouverts ont été rachetés, transformés en offres commerciales ou abandonnés. Pour une infrastructure qui porte des preuves juridiques sur des décennies, et à terme des éléments d'identité, ce risque est exclu par construction. Ces garanties prendront effet à l'adoption des statuts par l'assemblée générale constitutive.</p>
         </div>
         <div class="table-wrap">
           <table>
@@ -364,7 +377,7 @@
             </tbody>
           </table>
         </div>
-        <p class="callout"><strong>Comme pour la clé racine, aucun acteur ne peut agir seul.</strong> Les statuts complets sont publiés sur <a href="https://about.otspi.org/statuts/statuts-association/">about.otspi.org</a>.</p>
+        <p class="callout"><strong>Comme pour la clé racine, aucun acteur ne peut agir seul.</strong> Le projet de statuts complet est publié sur <a href="https://about.otspi.org/statuts/statuts-association/">about.otspi.org</a>.</p>
       </div>
     </section>
 
@@ -391,7 +404,7 @@
           </li>
           <li>
             <h3>Autorité de certification TLS européenne</h3>
-            <p>Racine WebTrust séparée, audits WebTrust, demandes d'inclusion dans les programmes racines et de qualification QWAC&nbsp;; service ACME en essai, puis en production une fois la racine incluse.</p>
+            <p>Racines WebTrust et QWAC, sous-AC DV et OV / QWAC, audits WebTrust et ETSI, demandes d'inclusion et de qualification&nbsp;; service ACME en essai, puis en production une fois la racine WebTrust incluse.</p>
           </li>
           <li>
             <h3>Cachet, signature et identité</h3>
@@ -493,7 +506,7 @@
       <div class="footer-grid">
         <div>
           <img class="footer-logo" src="assets/logo-horizontal-dark.svg" alt="OTSPI" width="234" height="52">
-          <p>Open Trusted Service Provider Initiative — association d'intérêt général régie par la loi du 1<sup>er</sup>&nbsp;juillet 1901.</p>
+          <p>Open Trusted Service Provider Initiative — association d'intérêt général (loi du 1<sup>er</sup>&nbsp;juillet 1901) en cours de constitution.</p>
         </div>
         <div>
           <h2>Livre blanc</h2>
@@ -505,7 +518,7 @@
         <div>
           <h2>Association</h2>
           <ul>
-            <li><a href="https://about.otspi.org/statuts/statuts-association/">Statuts</a></li>
+            <li><a href="https://about.otspi.org/statuts/statuts-association/">Projet de statuts</a></li>
             <li><a href="https://about.otspi.org/gouvernance/charte-ethique/">Charte d'éthique</a></li>
             <li><a href="https://about.otspi.org/">Portail de gouvernance</a></li>
             <li><a href="manifeste.html">Manifeste</a></li>
