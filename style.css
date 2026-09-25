@@ -1473,7 +1473,8 @@ html:not(.js) .js-only {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   font-size: 0.78rem;
   line-height: 1.6;
-  white-space: pre;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .share-card .code-block + .share-btn {
@@ -1650,4 +1651,38 @@ html:not(.js) .js-only {
 .share-btn[hidden],
 .share-masto[hidden] {
   display: none !important;
+}
+
+/* Preuve du pilote dans le hero */
+.hero-proof {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+  color: #dbe4f5;
+}
+
+.hero-proof a {
+  color: #ffd84d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Tableau replié */
+.fold > summary {
+  cursor: pointer;
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface, #fff);
+  font-weight: 600;
+}
+
+.fold[open] > summary {
+  margin-bottom: 1rem;
+}
+
+.partner-card .source {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 600;
 }

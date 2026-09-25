@@ -73,6 +73,7 @@
           <a class="btn btn-outline" href="https://about.otspi.org/livre-blanc/"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#book"/></svg> Lire en ligne</a>
           <a class="btn btn-outline" href="#partenaires"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users"/></svg> Devenir partenaire</a>
         </div>
+        <p class="hero-proof"><strong>Un pilote RFC&nbsp;3161 tourne déjà.</strong> <a href="#pilote">Obtenez un jeton d'horodatage en 30 secondes</a>, sans compte ni clé d'API (environnement d'essai, non qualifié).</p>
       </div>
     </section>
 
@@ -128,6 +129,22 @@
             <a class="source" href="https://w3techs.com/technologies/details/sc-letsencrypt">W3Techs, septembre 2026</a>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Pour qui -->
+    <section class="section" aria-labelledby="pourqui">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Pour qui&nbsp;?</p>
+          <h2 id="pourqui">Trois usages, un même principe : la preuve sans péage</h2>
+          <p>Ce que change un prestataire qualifié ouvert, pour ceux que le modèle actuel exclut.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#invoice"/></svg></span><h3>Une PME qui facture</h3><p>15&nbsp;000 documents horodatés par mois coûtent environ 10&nbsp;000&nbsp;€ HT par an au tarif public d'un prestataire qualifié. Avec OTSPI, le service de base est à 0&nbsp;€.</p></article>
+          <article class="card"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#building"/></svg></span><h3>Une collectivité ou une université</h3><p>Archivage probant, marchés publics, diplômes : la preuve qualifiée devient accessible sans marché ni abonnement à un prestataire unique.</p></article>
+          <article class="card"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#code"/></svg></span><h3>Un projet open source</h3><p>Horodater et signer ses versions par API standard (RFC&nbsp;3161, ACME), avec les outils habituels et sans contrat préalable.</p></article>
+        </div>
       </div>
     </section>
 
@@ -417,6 +434,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
           <h2 id="garanties-titre">Un projet de statuts conçu pour qu'aucun acteur ne puisse s'approprier l'infrastructure</h2>
           <p>De nombreux projets ouverts ont été rachetés, transformés en offres commerciales ou abandonnés. Pour une infrastructure qui porte des preuves juridiques sur des décennies, et à terme des éléments d'identité, ce risque est exclu par construction. Ces garanties prendront effet à l'adoption des statuts par l'assemblée générale constitutive.</p>
         </div>
+        <details class="fold"><summary>Voir les sept garanties statutaires</summary>
         <div class="table-wrap">
           <table>
             <thead>
@@ -433,6 +451,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
             </tbody>
           </table>
         </div>
+        </details>
         <p class="callout"><strong>Comme pour la clé racine, aucun acteur ne peut agir seul.</strong> Le projet de statuts complet est publié sur <a href="https://about.otspi.org/statuts/statuts-association/">about.otspi.org</a>.</p>
       </div>
     </section>
@@ -490,7 +509,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
         <div class="section-head">
           <p class="eyebrow">Appel à partenaires</p>
           <h2 id="partenaires-titre">Rejoindre le projet</h2>
-          <p>OTSPI est porté par une <a href="equipe.html">équipe fondatrice</a> restreinte et bénévole. Sa crédibilité repose sur la rigueur de son ingénierie et sur la qualité des partenaires qui s'y associent. Nous sollicitons dès à présent&nbsp;:</p>
+          <p>Nous cherchons des contributions précises. Choisissez la vôtre&nbsp;:</p>
         </div>
         <div class="grid grid-3">
           <article class="card partner-card">
@@ -500,6 +519,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Apport</dt><dd>Colocation sécurisée et connectivité sur deux sites européens.</dd>
               <dt>Cadre</dt><dd>Mécénat technologique valorisé et déclaré.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#coins"/></svg></span>
@@ -508,6 +528,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Apport</dt><dd>Financement des phases de consultation, de banc d'essai et du premier audit.</dd>
               <dt>Cadre</dt><dd>Subventions pour communs numériques, mécénat, redevabilité publique sur l'usage des fonds.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#flask"/></svg></span>
@@ -516,6 +537,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Apport</dt><dd>Revue indépendante de l'architecture et du code&nbsp;: cryptographie appliquée, métrologie du temps, méthodes formelles.</dd>
               <dt>Cadre</dt><dd>Collaboration scientifique et publications ouvertes.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#audit"/></svg></span>
@@ -524,6 +546,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Apport</dt><dd>Revue critique des politiques, de la DPC et des procédures avant l'audit de qualification.</dd>
               <dt>Cadre</dt><dd>Participation au comité consultatif.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#invoice"/></svg></span>
@@ -532,6 +555,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Apport</dt><dd>Intégration du scellement et de l'horodatage qualifiés dans les chaînes de facturation et d'archivage.</dd>
               <dt>Cadre</dt><dd>Accès universel aux mêmes conditions que tous.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#building"/></svg></span>
@@ -540,6 +564,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Apport</dt><dd>Cas d'usage pilotes&nbsp;: archivage probant, marchés publics, intégration de l'EUDI Wallet.</dd>
               <dt>Cadre</dt><dd>Expérimentation sur l'environnement d'essai et échanges avec le comité consultatif.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=Partenariat%20OTSPI">Proposer →</a>
           </article>
         </div>
         <div class="cta-band">

@@ -73,6 +73,7 @@
           <a class="btn btn-outline" href="https://about.otspi.org/white-paper/"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#book"/></svg> Read online</a>
           <a class="btn btn-outline" href="#partners"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#users"/></svg> Become a partner</a>
         </div>
+        <p class="hero-proof"><strong>A working RFC&nbsp;3161 pilot already runs.</strong> <a href="#pilot">Get a time-stamp token in 30 seconds</a>, with no account or API key (test environment, not qualified).</p>
       </div>
     </section>
 
@@ -128,6 +129,22 @@
             <a class="source" href="https://w3techs.com/technologies/details/sc-letsencrypt">W3Techs, September 2026</a>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Pour qui -->
+    <section class="section" aria-labelledby="pourqui">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Who is it for?</p>
+          <h2 id="pourqui">Three uses, one principle: proof without a toll</h2>
+          <p>What an open qualified provider changes for those the current model shuts out.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#invoice"/></svg></span><h3>An SME that invoices</h3><p>Time-stamping 15,000 documents a month costs about €10,000 excl. VAT a year at a qualified provider's public prices. With OTSPI, the baseline service is €0.</p></article>
+          <article class="card"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#building"/></svg></span><h3>A local authority or a university</h3><p>Long-term archiving, public procurement, diplomas: qualified proof becomes accessible with no tender and no subscription to a single provider.</p></article>
+          <article class="card"><span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#code"/></svg></span><h3>An open source project</h3><p>Time-stamp and sign releases through standard APIs (RFC&nbsp;3161, ACME), with the usual tools and no prior contract.</p></article>
+        </div>
       </div>
     </section>
 
@@ -416,6 +433,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
           <h2 id="statutes-title">Draft statutes designed so that no one can take over the infrastructure</h2>
           <p>Many open projects have been bought out, turned into commercial offerings or abandoned. For an infrastructure carrying legal proof over decades, and eventually identity data, this risk is ruled out by design. These safeguards will take effect once the statutes are adopted by the founding general meeting.</p>
         </div>
+        <details class="fold"><summary>Show the seven statutory safeguards</summary>
         <div class="table-wrap">
           <table>
             <thead>
@@ -432,6 +450,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
             </tbody>
           </table>
         </div>
+        </details>
         <p class="callout"><strong>Just as with the root key, no one can act alone.</strong> The full draft statutes are published (in French) on <a href="https://about.otspi.org/statuts/statuts-association/" hreflang="fr">about.otspi.org</a>.</p>
       </div>
     </section>
@@ -489,7 +508,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
         <div class="section-head">
           <p class="eyebrow">Call for partners</p>
           <h2 id="partners-title">Join the project</h2>
-          <p>OTSPI is driven by a small, volunteer <a href="team.html">founding team</a>. Its credibility rests on the rigour of its engineering and on the quality of the partners who join it. We are now seeking:</p>
+          <p>We are looking for specific contributions. Pick yours:</p>
         </div>
         <div class="grid grid-3">
           <article class="card partner-card">
@@ -499,6 +518,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Contribution</dt><dd>Secure colocation and connectivity in two European sites.</dd>
               <dt>Framework</dt><dd>In-kind technology sponsorship, valued and declared.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=OTSPI%20partnership">Offer help →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#coins"/></svg></span>
@@ -507,6 +527,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Contribution</dt><dd>Funding for the consultation phase, the test bench and the first audit.</dd>
               <dt>Framework</dt><dd>Digital commons grants, sponsorship, public accountability for the use of funds.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=OTSPI%20partnership">Offer help →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#flask"/></svg></span>
@@ -515,6 +536,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Contribution</dt><dd>Independent review of the architecture and code: applied cryptography, time metrology, formal methods.</dd>
               <dt>Framework</dt><dd>Scientific collaboration and open publications.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=OTSPI%20partnership">Offer help →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#audit"/></svg></span>
@@ -523,6 +545,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Contribution</dt><dd>Critical review of policies, the practice statement and procedures ahead of the qualification audit.</dd>
               <dt>Framework</dt><dd>Participation in the advisory board.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=OTSPI%20partnership">Offer help →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#invoice"/></svg></span>
@@ -531,6 +554,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Contribution</dt><dd>Integrating qualified sealing and time-stamping into invoicing and archiving pipelines.</dd>
               <dt>Framework</dt><dd>Universal access on the same terms as everyone else.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=OTSPI%20partnership">Offer help →</a>
           </article>
           <article class="card partner-card">
             <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#building"/></svg></span>
@@ -539,6 +563,7 @@ openssl ts -reply -in demo.tsr -text</code></pre>
               <dt>Contribution</dt><dd>Pilot use cases: evidential archiving, public procurement, EUDI Wallet integration.</dd>
               <dt>Framework</dt><dd>Experimentation on the test environment and dialogue with the advisory board.</dd>
             </dl>
+            <a class="source" href="mailto:contact@otspi.org?subject=OTSPI%20partnership">Offer help →</a>
           </article>
         </div>
         <div class="cta-band">
