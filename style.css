@@ -1759,3 +1759,50 @@ html:not(.js) .js-only {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Kit presse : aperçus des logos */
+.press-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.press-logos figure {
+  margin: 0;
+}
+
+.press-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.press-logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.press-light {
+  background: #ffffff;
+}
+
+.press-dark {
+  background: #0f2042;
+}
+
+.press-logos figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.manifesto blockquote {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid var(--accent, #0033a0);
+  background: var(--surface, #fff);
+}

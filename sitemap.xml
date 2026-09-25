@@ -96,4 +96,20 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/faq.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/faq.html"/>
   </url>
+  <url>
+    <loc>https://www.otspi.org/presse.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/presse.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/press.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/en/press.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/presse.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/press.html"/>
+  </url>
 </urlset>
