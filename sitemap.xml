@@ -112,4 +112,20 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/presse.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/press.html"/>
   </url>
+  <url>
+    <loc>https://www.otspi.org/accessibilite.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/accessibilite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/accessibility.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/en/accessibility.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/accessibilite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/accessibility.html"/>
+  </url>
 </urlset>

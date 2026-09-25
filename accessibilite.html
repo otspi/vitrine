@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Déclaration d'accessibilité — OTSPI</title>
+  <meta name="description" content="État réel de l'accessibilité des sites et des documents d'OTSPI, limites connues et moyen de signaler un problème.">
+  <meta name="theme-color" content="#0f2042">
+  <link rel="canonical" href="https://www.otspi.org/accessibilite.html">
+  <link rel="alternate" hreflang="fr" href="https://www.otspi.org/accessibilite.html">
+  <link rel="alternate" hreflang="en" href="https://www.otspi.org/en/accessibility.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.otspi.org/accessibilite.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+  <link rel="alternate" type="application/atom+xml" title="OTSPI — Actualités" href="feed.xml">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="OTSPI — accueil">
+        <img class="logo-light" src="assets/logo-horizontal.svg" alt="OTSPI — Open Trusted Service Provider Initiative" width="216" height="48">
+        <img class="logo-dark" src="assets/logo-horizontal-dark.svg" alt="" width="216" height="48">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu</button>
+      <nav class="site-nav" id="navigation" aria-label="Navigation principale">
+        <ul>
+          <li><a href="./">Accueil</a></li>
+          <li><a href="https://about.otspi.org/livre-blanc/">Livre blanc</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="presse.html">Presse</a></li>
+          <li><a class="lang-switch" href="en/accessibility.html" hreflang="en" lang="en">EN</a></li>
+          <li><a class="nav-cta" href="./#partenaires">Devenir partenaire</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="hero hero-compact" aria-labelledby="titre">
+      <div class="container">
+        <p class="kicker">Accessibilité</p>
+        <h1 id="titre">Déclaration d'accessibilité</h1>
+        <p class="lead">Ce que nous avons vérifié, ce que nous n'avons pas vérifié et comment nous signaler un obstacle. Déclaration volontaire, établie le 25&nbsp;septembre&nbsp;2026.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="perimetre">
+      <div class="container manifesto">
+        <h2 id="perimetre">Périmètre et statut</h2>
+        <p>Cette déclaration porte sur le site de présentation <strong>www.otspi.org</strong>, le portail de gouvernance <strong>about.otspi.org</strong> (livre blanc, statuts en projet, documents de cadrage) et les <strong>PDF du livre blanc</strong>. Le démonstrateur Web (<code>demo.open-eidas.eu</code>) n'a pas été évalué.</p>
+<p>À notre connaissance, OTSPI, initiative en cours de constitution, n'entre pas dans le champ d'une obligation légale de déclaration d'accessibilité. Nous la publions parce que la confiance numérique doit être accessible à tous.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="verifie">
+      <div class="container manifesto">
+        <h2 id="verifie">Ce qui a été vérifié</h2>
+        <ul>
+<li><strong>Tests automatiques Lighthouse</strong> (accessibilité, avec les autres catégories) : 100&nbsp;/&nbsp;100 sur les pages du site de présentation contrôlées au 25&nbsp;septembre&nbsp;2026, et sur le portail lors de son dernier contrôle.</li>
+<li><strong>Conception</strong> : lien d'évitement, navigation au clavier, contrastes vérifiés automatiquement en thème clair (le thème sombre n’a pas fait l’objet d’un contrôle automatisé), liens soulignés (jamais distingués par la seule couleur), langue de chaque page déclarée, aucun contenu animé ni sonore, aucun service tiers.</li>
+<li><strong>PDF du livre blanc</strong> : balisés, avec langue, titre et signets, et validés au format <strong>PDF/UA-1</strong> par l'outil veraPDF à chaque publication (aucune non-conformité relevée).</li>
+<li><strong>Schémas</strong> : les schémas d'architecture des pages Web sont des SVG dotés d'un titre et d'une description textuelle.</li>
+</ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="limites">
+      <div class="container manifesto">
+        <h2 id="limites">Limites connues</h2>
+        <ul>
+<li><strong>Pas d'audit par un expert</strong> ni de test avec des utilisateurs de lecteurs d'écran ou d'autres technologies d'assistance. Les contrôles automatiques ne détectent qu'une partie des obstacles.</li>
+<li><strong>PDF</strong> : la validation PDF/UA-1 est structurelle et automatique ; elle ne garantit pas la pertinence des textes alternatifs ni de l'ordre de lecture. Les schémas y sont des images avec description. La page HTML du livre blanc reste la version accessible de référence.</li>
+<li><strong>Langue</strong> : le français fait foi. Les statuts en projet et plusieurs documents du portail n'existent qu'en français.</li>
+<li><strong>Documents du portail</strong> : leur accessibilité repose sur les contrôles automatiques du thème et n'a pas fait l'objet d'une revue page par page.</li>
+</ul>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="contact">
+      <div class="container manifesto">
+        <h2 id="contact">Signaler un obstacle</h2>
+        <p>Si vous rencontrez une difficulté pour accéder à un contenu, écrivez à <a href="mailto:contact@otspi.org?subject=Accessibilit%C3%A9">contact@otspi.org</a> en indiquant la page concernée, le problème et, si possible, votre outil d'assistance. Nous nous efforçons de répondre et de corriger, et de vous fournir le contenu sous une autre forme si nécessaire.</p>
+<p>Cette déclaration sera mise à jour à chaque évolution significative des sites et après tout audit externe.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© OTSPI — Contenus sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC-BY-4.0</a> · Code sous licence <a href="https://eupl.eu/1.2/fr/">EUPL&nbsp;1.2</a>.</p>
+        <p><a href="./">Retour à l'accueil</a> · <a href="en/accessibility.html" hreflang="en" lang="en">English version</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
