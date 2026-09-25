@@ -1725,3 +1725,37 @@ html:not(.js) .js-only {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Questions fréquentes */
+.faq-item {
+  margin: 0 0 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface, #fff);
+}
+
+.faq-item > summary {
+  cursor: pointer;
+  padding: 0.9rem 1.1rem;
+  font-weight: 600;
+}
+
+.faq-item > summary:focus-visible {
+  outline: 2px solid var(--accent, #0033a0);
+  outline-offset: 2px;
+}
+
+.faq-item[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item > p {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+}
+
+.hero .lead a {
+  color: #ffd84d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

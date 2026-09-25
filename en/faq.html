@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ — OTSPI</title>
+  <meta name="description" content="The most frequent objections about OTSPI, with sourced answers: qualification, funding, governance, open code, TLS certificates.">
+  <meta name="theme-color" content="#0f2042">
+  <link rel="canonical" href="https://www.otspi.org/en/faq.html">
+  <link rel="alternate" hreflang="fr" href="https://www.otspi.org/faq.html">
+  <link rel="alternate" hreflang="en" href="https://www.otspi.org/en/faq.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.otspi.org/faq.html">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../assets/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+  <link rel="alternate" type="application/atom+xml" title="OTSPI — News" href="feed.xml">
+  <link rel="stylesheet" href="../style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="OTSPI — home">
+        <img class="logo-light" src="../assets/logo-horizontal.svg" alt="OTSPI — Open Trusted Service Provider Initiative" width="216" height="48">
+        <img class="logo-dark" src="../assets/logo-horizontal-dark.svg" alt="" width="216" height="48">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu</button>
+      <nav class="site-nav" id="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li><a href="https://about.otspi.org/white-paper/">White paper</a></li>
+          <li><a class="lang-switch" href="../faq.html" hreflang="fr" lang="fr">FR</a></li>
+          <li><a class="nav-cta" href="./#partners">Become a partner</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero hero-compact" aria-labelledby="titre">
+      <div class="container">
+        <p class="kicker">FAQ</p>
+        <h1 id="titre">What we are asked most often</h1>
+        <p class="lead">Short, sourced answers, without promising what does not exist yet. A question missing? <a href="mailto:contact@otspi.org">Write to us</a>.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="FAQ">
+      <div class="container manifesto faq">
+        <details class="faq-item"><summary>Is OTSPI already a qualified trust service provider?</summary><p><strong>No.</strong> OTSPI is an initiative currently being formed as a non-profit association; no qualification has been applied for to date. A time-stamping service runs in a <em>public test environment</em>: the tokens it issues have no legal value. Qualification requires an audit by an accredited body and then a decision of the supervisory body, which alone may grant it. See the <a href="index.html#roadmap">roadmap</a>: no timetable is set until the institutions' opinions have been gathered.</p></details>
+        <details class="faq-item"><summary>There are already about 280 qualified providers: why one more?</summary><p>Because the bottleneck is not their number but their access model: prior contract, per-unit pricing, proprietary interfaces, markets fragmented by country. At €0.03 to €0.15 excl. VAT per token, time-stamping 15,000 documents a month costs close to €10,000 excl. VAT a year. That shuts out SMEs, local authorities, universities and open source projects. OTSPI aims for the same level of qualification, with a free baseline service, identical for everyone and available through standard APIs. Details and sources in the <a href="https://about.otspi.org/white-paper/#2-market-failure-and-sovereignty-issues">white paper (§&nbsp;2)</a>.</p></details>
+        <details class="faq-item"><summary>Who funds the project?</summary><p>The baseline is free; only enhanced commitments (volumes, availability, support) would involve a contribution. For the seed phase, the white paper targets digital commons support schemes, in-kind technology sponsorship and financial sponsorship. <strong>No funding is announced to date.</strong> The main expense items are listed in <a href="https://about.otspi.org/white-paper/#55-cost-structure-and-guarantees">§&nbsp;5.5</a>; amounts will be established from quotes and then published.</p></details>
+        <details class="faq-item"><summary>What happens if the project is bought out or stops?</summary><p>The <strong>draft statutes</strong> are designed to prevent it: unamendable purpose, conversion into a commercial company forbidden in perpetuity, inalienable assets and keys, a reserve fund for the termination plan and devolution to a similar body. <strong>These safeguards will only take effect once the statutes are adopted</strong> by the founding general meeting: they have not yet been voted. See the <a href="index.html#statutes">table of safeguards</a> and the <a href="https://about.otspi.org/statuts/statuts-association/">full draft</a> (in French).</p></details>
+        <details class="faq-item"><summary>Is the baseline service really free and unlimited?</summary><p>Free and without prior contract, yes; unlimited, no: public access is subject to a fair-use policy that caps rates, to protect the service. Needs for volume, guaranteed availability or support fall under enhanced commitments (white paper §&nbsp;5.4).</p></details>
+        <details class="faq-item"><summary>Who decides, and how do you prevent one person from controlling everything?</summary><p>The draft statutes strictly separate the executive management (the Board), the Trust Policy Committee and the Authority Officers, in line with ETSI EN 319 401. The root key is activated under quorum (3 cards out of 5). Today, the <a href="team.html">team</a> is a single founder; the project is looking for the people who will hold the independent roles. Until the Committee is constituted, the draft statutes forbid any production release, production key ceremony and qualification application.</p></details>
+        <details class="faq-item"><summary>Is the code open? Can I audit it?</summary><p>Yes. The whole stack is published under the European Union Public Licence (EUPL&nbsp;1.2), compatible with AGPL&nbsp;v3, on <a href="https://github.com/otspi/open-eidas">GitHub</a>. The engine is written in Rust. You can <a href="index.html#pilot">try the pilot</a> with standard tools and <a href="https://github.com/otspi/organisation/discussions/new?category=ideas">comment on the white paper</a>.</p></details>
+        <details class="faq-item"><summary>Will OTSPI issue TLS certificates?</summary><p>It is a planned axis, not an available service. It requires two distinct roots (WebTrust for browsers, QWAC for the European trusted list), dedicated audits and inclusion in browser root programmes, whose decisions do not depend on OTSPI. It would only be started after the time-stamping service has been qualified. See <a href="https://about.otspi.org/white-paper/#24-tls-certificates-the-opportunity-for-a-european-webtrust-audited-authority">§&nbsp;2.4</a>.</p></details>
+        <details class="faq-item"><summary>How does this compare with Let's Encrypt?</summary><p>The method is comparable: free of charge, automated, transparent. The differences are fully acknowledged: a qualified provider is liable under Article 13 of the eIDAS Regulation, it is supervised by the national supervisory body, and its fixed audit, hosting and physical security costs are structurally higher. See <a href="https://about.otspi.org/white-paper/#26-scope-and-limits-of-the-lets-encrypt-comparison">§&nbsp;2.6</a>.</p></details>
+        <details class="faq-item"><summary>How can I get involved?</summary><p>You can <a href="manifesto.html">sign the manifesto</a>, <a href="https://github.com/otspi/organisation/discussions/new?category=ideas">comment on the white paper</a>, or write to <a href="mailto:contact@otspi.org">contact@otspi.org</a> if you are a hosting provider, funder, laboratory, auditor, software vendor or local authority (<a href="index.html#partners">see the expected contributions</a>). No membership is open to date: the statutes not having been voted, the association does not exist yet.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© OTSPI — Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a> · Code licensed under the <a href="https://eupl.eu/1.2/en/">EUPL&nbsp;1.2</a>.</p>
+        <p><a href="./">Back to home</a> · <a href="../faq.html" hreflang="fr" lang="fr">Version française</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>
