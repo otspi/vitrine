@@ -483,6 +483,8 @@ h3 {
   font-size: 0.45em;
   font-weight: 700;
   letter-spacing: 0;
+  display: block;
+  white-space: nowrap;
 }
 
 @media (prefers-color-scheme: dark) {
