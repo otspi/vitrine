@@ -64,4 +64,20 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/mentions-legales.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/legal-notice.html"/>
   </url>
+  <url>
+    <loc>https://www.otspi.org/equipe.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/equipe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/team.html"/>
+  </url>
+  <url>
+    <loc>https://www.otspi.org/en/team.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.otspi.org/equipe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.otspi.org/en/team.html"/>
+  </url>
 </urlset>

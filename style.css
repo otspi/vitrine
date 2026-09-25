@@ -1503,3 +1503,86 @@ html:not(.js) .js-only {
 .hero .lead-spaced {
   margin-top: 2.5rem;
 }
+
+/* Équipe */
+.team-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.team-card h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.team-card p {
+  margin: 0.5rem 0 0;
+  color: var(--text-muted);
+}
+
+.team-role {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+.team-photo {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-soft);
+}
+
+.team-note {
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.needs-list {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.needs-list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.needs-list strong,
+.needs-list span {
+  display: block;
+}
+
+.needs-list span {
+  color: var(--text-muted);
+}
+
+.btn-outline-dark {
+  color: var(--accent-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-outline-dark {
+    color: var(--text);
+  }
+}
+
+@media (max-width: 600px) {
+  .team-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .team-card .share-buttons {
+    justify-content: center;
+  }
+}
