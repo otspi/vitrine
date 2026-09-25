@@ -26,6 +26,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `404.html`, `robots.txt`, `sitemap.xml` | Page d'erreur bilingue et fichiers de référencement |
 | `en/` | Version anglaise : `index.html`, `manifesto.html`, `legal-notice.html` (balises `hreflang`, la version française fait foi) |
 | `scripts/signataires.py` | Génération de la liste publique des signataires (non déployé) |
+| `scripts/build_og.py` | Génération des images de partage de l'accueil (non déployé) |
 | `style.css` | Feuille de style |
 | `script.js` | Menu de navigation mobile |
 | `.htaccess` | HTTPS, domaine canonique, en-têtes de sécurité, cache |
@@ -99,6 +100,10 @@ Les **signataires de base** (`scripts/signataires-base.json`, consentement recue
 ```
 
 Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
+
+## Images de partage
+
+`python3 scripts/build_og.py` régénère `assets/og/og-fr.png` et `og-en.png` (1200 × 630 px, utilisées par les balises Open Graph et Twitter de l'accueil ; Chrome ou Chromium requis). Le titre et le sous-titre du script doivent rester alignés sur le hero de l'accueil. Les images du manifeste (`og-manifeste.png`, `og-manifesto.png`) ne sont pas générées par ce script. Les réseaux sociaux mettent les aperçus en cache : après un changement, forcer le rafraîchissement depuis leurs outils de débogage.
 
 ## Plaquette d'une page
 
