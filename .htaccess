@@ -1,5 +1,5 @@
 # ==============================================================================
-# OTSPI — Configuration Apache / Infomaniak (.htaccess) — www.otspi.org
+# OTSPI — Configuration Apache (.htaccess) — www.otspi.org
 # ==============================================================================
 
 # 1. HTTPS obligatoire et domaine canonique www.otspi.org
@@ -8,6 +8,8 @@
 
   # Tout domaine autre que www.otspi.org (otspi.org, otspi.com, otspi.eu,
   # otspi.fr et leurs variantes www) redirige vers l'adresse canonique
+  # (sauf les validations Let's Encrypt, servies sur chaque nom de domaine)
+  RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
   RewriteCond %{HTTP_HOST} !^www\.otspi\.org$ [NC]
   RewriteRule ^(.*)$ https://www.otspi.org/$1 [L,R=301]
 
