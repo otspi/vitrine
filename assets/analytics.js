@@ -1,17 +1,13 @@
-/* Mesure d'audience Matomo, configurée pour l'exemption de consentement (recommandations de la CNIL) :
-   aucun cookie, respect de la mention « Do Not Track ». L'instance est hébergée chez o2switch (France),
-   sous le contrôle de l'éditeur. Voir les mentions légales. */
+/* Mesure d'audience Matomo Tag Manager (conteneur GR7y5y3d), configurée pour l'exemption de consentement
+   (recommandations de la CNIL) : aucun cookie, respect de la mention « Do Not Track ». Ces réglages sont
+   portés par la variable « Matomo Configuration » du conteneur. L'instance est hébergée chez o2switch
+   (France), sous le contrôle de l'éditeur. Chargé depuis un fichier, sans script en ligne, pour respecter
+   la politique de sécurité du contenu. Voir les mentions légales. */
 (function () {
-  var base = "https://stats.otspi.org/";
-  var _paq = (window._paq = window._paq || []);
-  _paq.push(["disableCookies"]);
-  _paq.push(["setDoNotTrack", true]);
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-  _paq.push(["setTrackerUrl", base + "matomo.php"]);
-  _paq.push(["setSiteId", "1"]);
+  var _mtm = (window._mtm = window._mtm || []);
+  _mtm.push({ "mtm.startTime": new Date().getTime(), event: "mtm.Start" });
   var script = document.createElement("script");
   script.async = true;
-  script.src = base + "matomo.js";
+  script.src = "https://stats.otspi.org/js/container_GR7y5y3d.js";
   document.head.appendChild(script);
 })();
