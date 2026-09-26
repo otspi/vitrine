@@ -6,7 +6,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 
 - **Site** : [www.otspi.org](https://www.otspi.org)
 - **Livre blanc (source de référence)** : [about.otspi.org/livre-blanc](https://about.otspi.org/livre-blanc/) — dépôt [otspi/organisation](https://github.com/otspi/organisation)
-- **Hébergement** : Infomaniak (Genève, Suisse)
+- **Hébergement** : o2switch (Clermont-Ferrand, France), depuis le 26 septembre 2026
 
 ## Principes
 
@@ -31,7 +31,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `script.js` | Menu de navigation mobile |
 | `.htaccess` | HTTPS, domaine canonique, en-têtes de sécurité, cache |
 | `assets/` | Logos et favicons OTSPI |
-| `.github/workflows/deploy.yml` | Déploiement FTP vers Infomaniak à chaque push sur `main` |
+| `.github/workflows/deploy.yml` | Déploiement FTPS vers o2switch à chaque push sur `main` |
 
 Le script d'amorçage en ligne (`document.documentElement.classList.add('js')`) est autorisé dans la CSP par son empreinte SHA-256.
 Toute modification de ce script impose de recalculer l'empreinte dans `.htaccess` :
@@ -42,19 +42,16 @@ printf '%s' "document.documentElement.classList.add('js');" | openssl dgst -sha2
 
 ## Déploiement
 
-Le site est déployé par FTP (`lftp mirror`) vers Infomaniak à chaque push sur `main`.
-L'hébergement n'expose que le FTP sans TLS ; le compte utilisé est cantonné au seul répertoire du site www.otspi.org.
-
+Le site est déployé en FTPS (`lftp mirror`, TLS obligatoire, certificat vérifié) vers o2switch à chaque push sur `main`, avec un compte FTP cantonné au répertoire du site.
 Secrets et variables du dépôt (**Settings > Secrets and variables > Actions**) :
 
 | Nom | Type | Description |
 |---|---|---|
-| `FTP_HOST` | secret | Hôte FTP de l'hébergement Infomaniak |
-| `FTP_USERNAME` | secret | Utilisateur FTP du site www.otspi.org |
-| `FTP_PASSWORD` | secret | Mot de passe FTP |
-| `FTP_SERVER_DIR` | variable, optionnelle | Répertoire cible (racine du compte, `./`, par défaut) |
+| `O2_FTP_HOST` | variable | Hôte FTPS d'o2switch |
+| `O2_FTP_USERNAME` | secret | Compte FTP dédié au répertoire du site |
+| `O2_FTP_PASSWORD` | secret | Mot de passe de ce compte |
 
-Côté Infomaniak : activer le certificat SSL Let's Encrypt pour `www.otspi.org` et `otspi.org`.
+Côté o2switch (cPanel) : le domaine `otspi.org` (répertoire du site) couvre aussi `www.otspi.org` ; `otspi.com`, `otspi.eu` et `otspi.fr` pointent sur le même répertoire et sont redirigés par le `.htaccess`. Les certificats Let's Encrypt sont émis dans le module « Let's Encrypt™ SSL » et renouvelés automatiquement. Le routage des e-mails de ces domaines est « distant » : la messagerie reste chez Infomaniak.
 
 ## Manifeste : recueil des signatures
 
