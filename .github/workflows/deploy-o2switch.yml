@@ -1,8 +1,10 @@
 name: Déploiement o2switch (FTPS)
 
-# Pendant la migration, le site est déployé à la fois chez Infomaniak (deploy.yml) et chez
-# o2switch, pour pouvoir revenir en arrière par le DNS. Déclenchement manuel jusqu'à la bascule.
+# www.otspi.org est servi par o2switch depuis le 26 septembre 2026. Jusqu'au 3 octobre 2026,
+# deploy.yml continue d'alimenter Infomaniak pour pouvoir revenir en arrière par le DNS.
 on:
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
 concurrency:
