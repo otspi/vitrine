@@ -68,6 +68,7 @@
 
 # 6. Page d'erreur personnalisée
 ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
 
 # 7. Pas de listage des répertoires ni d'accès aux métadonnées de dépôt
 Options -Indexes

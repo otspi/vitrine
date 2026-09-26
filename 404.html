@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/style.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
+<body class="page-error">
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="OTSPI — accueil">
@@ -20,7 +20,7 @@
     </div>
   </header>
 
-  <main class="hero hero-compact">
+  <main class="hero hero-compact hero-error">
     <div class="container">
       <p class="kicker">Erreur 404</p>
       <h1>Cette page n'existe pas (ou plus).</h1>
@@ -28,15 +28,23 @@
       <div class="hero-actions">
         <a class="btn btn-primary" href="/">Accueil</a>
         <a class="btn btn-outline" href="https://about.otspi.org/livre-blanc/">Livre blanc</a>
-        <a class="btn btn-outline" href="/manifeste">Manifeste</a>
+        <a class="btn btn-outline" href="/manifeste">Signer le manifeste</a>
       </div>
       <p class="lead lead-spaced" lang="en">This page does not exist (or no longer does).</p>
       <div class="hero-actions" lang="en">
         <a class="btn btn-outline" href="/en/">Home</a>
         <a class="btn btn-outline" href="https://about.otspi.org/white-paper/">White paper</a>
-        <a class="btn btn-outline" href="/en/manifesto">Manifesto</a>
+        <a class="btn btn-outline" href="/en/manifesto">Sign the manifesto</a>
       </div>
     </div>
   </main>
+
+  <footer class="site-footer footer-compact">
+    <div class="container">
+      <div class="footer-bottom">
+        <p><a href="mailto:contact@otspi.org">contact@otspi.org</a> · <a href="/mentions-legales.html">Mentions légales</a> · <a href="/en/legal-notice.html" hreflang="en" lang="en">Legal notice</a></p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
