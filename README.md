@@ -83,36 +83,19 @@ Le retrait d'une signature dans l'application supprime la signature à la source
 
 `python3 scripts/build_plaquette.py` régénère `assets/docs/otspi-plaquette-fr.pdf` et `otspi-plaquette-en.pdf` (Chrome ou Chromium requis ; sources dans `scripts/plaquette/`). Les chiffres sont ceux de la page d'accueil : les mettre à jour ensemble.
 
-## Mesure d'audience (non activée)
+## Mesure d'audience
 
-Le site n'utilise aucun outil de mesure d'audience. **Choix retenu : Matomo configuré selon le guide de la CNIL** (mesure d'audience exemptée de consentement). Matomo est l'un des outils que la CNIL a évalués ; Plausible et Umami ne figurent pas nommément dans sa liste, ce qui ne permet pas de garantir l'exemption.
-
-### Deux hébergements possibles
-
-| | Matomo Cloud | Matomo auto-hébergé |
-|---|---|---|
-| Mise en place | Compte à créer, service payant après l'essai | Application PHP et base MySQL à installer sur un hébergement (Infomaniak, par exemple sur `stats.otspi.org`) |
-| Données | Chez le prestataire, sous-traitant au sens du RGPD (contrat de sous-traitance et lieu d'hébergement à vérifier) | Chez l'hébergeur du site, sans tiers supplémentaire |
-| Maintenance | Aucune | Mises à jour de sécurité à assurer |
+Les sites d'OTSPI (vitrine, portail, démonstrateur, formulaire de signature) mesurent leur audience avec **Matomo Tag Manager**, conteneur `GR7y5y3d` de l'instance `stats.otspi.org` (o2switch, France), configuré pour l'exemption de consentement de la CNIL. Chaque site charge le même fichier `analytics.js` (ici `assets/analytics.js`, avec `defer`, sur toutes les pages FR et EN) : pas de script en ligne, que la politique de sécurité (`.htaccess`) interdit ; elle autorise `https://stats.otspi.org` dans `script-src`, `img-src` et `connect-src`.
 
 ### Configuration obligatoire (exemption CNIL)
 
-Dans Matomo : *Administration > Confidentialité > Conformité*, activer « Appliquer la conformité dès que possible » pour le site. Cela impose notamment : adresse IP tronquée, conservation limitée à 759 jours, aucun identifiant utilisateur, paramètres de campagne retirés, référent réduit au domaine, journal des visites et profils désactivés, cartes de chaleur et enregistrement de sessions désactivés. À vérifier ensuite à la main : aucun suivi entre domaines, aucun événement personnalisé hors présence de page, usage de fonctionnalité et performance, aucune donnée personnelle dans les URL.
+La conformité ne dépend pas du code du site mais de Matomo. À vérifier après chaque publication du conteneur :
 
-### Mise en œuvre sur le site
+- **Tag Manager**, variable « Matomo Configuration » : « Disable cookies » et « Enable Do Not Track » cochés, suivi entre domaines désactivé, aucun identifiant utilisateur ni dimension personnalisée. Ne pas ajouter de balise « Custom HTML » ni de balise tierce.
+- **Administration > Confidentialité** : « Forcer le suivi sans cookie » (filet de sécurité si le conteneur est mal réglé), adresses IP tronquées, suppression des anciennes données brutes à 180 jours, rapports agrégés conservés au plus 25 mois.
+- **Aucune donnée personnelle dans les URL** : le formulaire de signature ne charge pas le traceur sur les pages de confirmation, de retrait et de modération, dont l'adresse porte un jeton.
 
-1. Créer l'instance Matomo et le site `www.otspi.org` ; relever l'URL de l'instance et l'identifiant du site.
-2. Ajouter un fichier `assets/matomo.js` (le code de suivi de Matomo, sans script en ligne : la politique de sécurité du site l'interdit) et le charger avec `defer` sur toutes les pages, FR et EN.
-3. Adapter la politique de sécurité (`.htaccess`) : autoriser le domaine de l'instance dans `script-src` et `connect-src` (et `img-src` si l'image de suivi est utilisée).
-4. Mettre à jour les mentions légales (FR et EN), qui affirment aujourd'hui l'absence de tout outil de mesure d'audience et de toute ressource tierce, et ajouter le lien de retrait (*opt-out*) fourni par Matomo.
-5. Mettre à jour la page de transparence sur les [hébergements](https://about.otspi.org/reunions/hebergements/) si l'instance n'est pas hébergée chez Infomaniak.
-6. Contrôler avec Lighthouse (les scores ne doivent pas baisser) et dans le navigateur qu'**aucun cookie** n'est déposé.
-
-### Texte de mentions légales (projet, à faire valider avant publication)
-
-> **Mesure d'audience.** Pour connaître la fréquentation du site (pages consultées, provenance approximative), l'éditeur utilise Matomo, configuré pour être exempté de consentement selon les recommandations de la CNIL : aucun cookie ni identifiant n'est déposé, les adresses IP sont tronquées, seules des statistiques agrégées sont produites et elles ne sont ni croisées avec d'autres données ni transmises à des tiers à d'autres fins. Les données sont conservées au plus 25 mois. Vous pouvez vous opposer à cette mesure ici : [lien de retrait] ou en écrivant à contact@otspi.org.
-
-> **Audience measurement.** To understand how the site is used (pages viewed, approximate origin), the publisher uses Matomo, configured to be exempt from consent under CNIL guidance: no cookie or identifier is set, IP addresses are truncated, only aggregated statistics are produced and they are neither combined with other data nor shared with third parties for other purposes. Data is kept for at most 25 months. You may object to this measurement here: [opt-out link] or by writing to contact@otspi.org.
+Contrôle : dans le navigateur, aucun cookie `_pk_*` ni `mtm_*` ne doit apparaître après une visite ; le lien de retrait (*opt-out*) figure dans les mentions légales (FR et EN).
 
 ## Contrôle des liens
 
