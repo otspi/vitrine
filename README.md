@@ -58,48 +58,25 @@ Côté Infomaniak : activer le certificat SSL Let's Encrypt pour `www.otspi.org`
 
 ## Manifeste : recueil des signatures
 
-Les signatures sont recueillies sur un formulaire [Framaforms](https://framaforms.org) (Framasoft) :
-<https://framaforms.org/manifeste-pour-une-identite-numerique-libre-et-ouverte-1790280399>
-(nœud 1538128, compte de l'association).
+Les signatures sont recueillies par une petite application PHP hébergée chez o2switch (France), dont le code est dans le dépôt `otspi-signatures` : <https://manifesto-sign.otspi.org/>. La page du manifeste renvoie vers ce formulaire. Le parcours : formulaire, e-mail de confirmation (double consentement), confirmation, puis lien de retrait qui supprime tout. Rien n'est publié avant confirmation, et seules les signatures dont l'auteur a consenti à la publication figurent dans la liste.
 
-### Champs du formulaire
-
-| Libellé | Clé (Form Key) | Type | Obligatoire | Remarque |
-|---|---|---|---|---|
-| Prénom | `prenom` | texte | oui | |
-| Nom | `nom` | texte | oui | |
-| Adresse e-mail | `adresse_e_mail` | courriel | oui | jamais publiée |
-| Fonction | `fonction` | texte | non | |
-| Organisation | `organisation` | texte | non | |
-| Publication | `publication` | case à cocher | non | accord pour figurer dans la liste publique |
-| Suites | `suites` | case à cocher | non | être informé·e des suites |
-| Consentement | `consentement` | case à cocher | oui | traitement des données (mentions légales) |
-
-Résultats non publics. Le script s'appuie sur les **clés** : ne pas les modifier.
-
-**Expiration** : Framaforms limite la durée de vie d'un formulaire à 6 mois (échéance actuelle : 24 mars 2027).
-Avant l'échéance, prolonger en modifiant le formulaire (« Modifier » > date d'expiration).
-Le formulaire est limité à 5 000 réponses.
+L'application expose la liste publique en JSON, sans adresse e-mail : <https://manifesto-sign.otspi.org/signataires.php>.
 
 ### Mise à jour de la liste publique
 
-1. Framaforms > Résultats > Télécharger : format **Texte délimité** (tabulation), en-têtes **Form Key**,
-   liste des options **Compact**. Enregistrer l'export hors du dépôt.
-2. `python3 scripts/signataires.py ~/export-framaforms.csv --exclure ~/retraits.txt`
-   (`retraits.txt` : adresses à exclure — retraits de signature et signatures douteuses, une par ligne).
-3. Relire la liste générée dans `manifeste.html` et `en/manifesto.html` (mises à jour ensemble), puis commiter et pousser.
+`python3 scripts/signataires.py --json https://manifesto-sign.otspi.org/signataires.php` régénère la liste dans `manifeste.html` et `en/manifesto.html` (mises à jour ensemble). Le total compte aussi les signatures dont l'auteur n'a pas consenti à la publication, qui ne sont jamais listées. Les **signataires de base** (`scripts/signataires-base.json`, consentement recueilli directement) sont toujours ajoutés.
 
-Les **signataires de base** (`scripts/signataires-base.json`, consentement recueilli directement) sont toujours ajoutés à la liste. Sans export, `python3 scripts/signataires.py` régénère la liste à partir de ces seuls signataires.
+Signatures historiques : le script accepte encore un export CSV Framaforms (`python3 scripts/signataires.py export.csv --exclure retraits.txt`), utile seulement si des signatures y ont été recueillies avant la migration.
 
 ### Rafraîchissement automatique (cron)
 
-`scripts/refresh-signataires.sh` fait les étapes 2 et 3 à partir du dernier CSV déposé dans `~/otspi-export/` (dossier hors dépôt, droits 700) : si l'export ou `retraits.txt` a changé, il régénère la liste, committe uniquement `manifeste.html` et `en/manifesto.html`, puis pousse (le déploiement suit). Il s'arrête sans rien faire si le dépôt n'est pas sur `main` ou contient des modifications en cours. Seul le téléchargement de l'export Framaforms reste manuel (l'interface exige une session connectée). Le journal est `~/otspi-export/refresh.log`.
+`scripts/refresh-signataires.sh` télécharge la liste JSON, et si elle a changé (ou si un CSV historique ou `retraits.txt` de `~/otspi-export/` a changé), il régénère les pages, committe uniquement `manifeste.html` et `en/manifesto.html`, puis pousse (le déploiement suit). Il abandonne sans rien modifier si la liste est inaccessible ou invalide, si le dépôt n'est pas sur `main` ou s'il contient des modifications en cours. Le journal est `~/otspi-export/refresh.log`.
 
 ```
 17 8 * * * /chemin/vers/otspi-vitrine/scripts/refresh-signataires.sh >> ~/otspi-export/refresh.log 2>&1
 ```
 
-Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
+Le retrait d'une signature dans l'application supprime la signature à la source ; la liste publique du site est actualisée au prochain passage du cron (au plus 24 heures). Les exports CSV et le fichier de retraits contiennent des données personnelles : ils ne doivent jamais être commités (`.gitignore`).
 
 ## Images de partage
 

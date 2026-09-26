@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Met à jour la liste publique des signataires du manifeste à partir d'un export CSV Framaforms.
+"""Met à jour la liste publique des signataires du manifeste à partir de l'application de signature
+(liste JSON publique) et, pour les signatures historiques, d'un export CSV Framaforms.
 
 Seules les personnes ayant consenti à la publication apparaissent dans la liste ;
 les adresses e-mail ne sont jamais publiées. Les doublons (même e-mail) sont fusionnés
@@ -11,8 +12,14 @@ en-têtes de colonnes « Form Key », liste des options « Compact ».
 Les signataires de base (scripts/signataires-base.json), qui ont consenti à figurer
 dans la liste, sont toujours ajoutés aux signatures issues du formulaire.
 
+Sources :
+    --json URL_OU_FICHIER   liste JSON de l'application de signature (signataires.php) : uniquement des
+                            signatures confirmées ; le total inclut celles dont l'auteur n'a pas consenti
+                            à la publication, qui ne sont comptées que.
+
 Usage :
     python3 scripts/signataires.py                     # signataires de base uniquement
+    python3 scripts/signataires.py --json https://manifesto-sign.otspi.org/signataires.php
     python3 scripts/signataires.py export-framaforms.csv
     python3 scripts/signataires.py export.csv --exclure retraits.txt
 
@@ -26,6 +33,7 @@ import html
 import json
 import re
 import sys
+import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -78,6 +86,7 @@ def find_header(rows, columns):
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("export", type=Path, nargs="?", help="export CSV des réponses Framaforms (facultatif)")
+    parser.add_argument("--json", dest="json_source", help="URL ou fichier de la liste JSON de l'application de signature")
     parser.add_argument("--exclure", type=Path, help="fichier d'adresses e-mail à exclure (une par ligne)")
     for key, label in DEFAULT_COLUMNS.items():
         parser.add_argument(f"--col-{key}", default=label, help=f"libellé de la colonne (défaut : {label})")
@@ -114,6 +123,24 @@ def main():
             "organisation": cell(row, "organisation"),
             "public": bool(cell(row, "publication")),
         }
+
+    # Application de signature : signatures déjà confirmées, sans adresse e-mail
+    if args.json_source:
+        if args.json_source.startswith(("http://", "https://")):
+            with urllib.request.urlopen(args.json_source, timeout=30) as response:
+                feed = json.load(response)
+        else:
+            feed = json.loads(Path(args.json_source).read_text(encoding="utf-8"))
+        listed = feed.get("signataires", [])
+        for index, entry in enumerate(listed):
+            signatures[f"app:{index}"] = {
+                "prenom": entry.get("prenom", ""), "nom": entry.get("nom", ""),
+                "fonction": entry.get("fonction", ""), "organisation": entry.get("organisation", ""),
+                "public": True,
+            }
+        # Signatures confirmées dont l'auteur n'a pas consenti à la publication : comptées, jamais listées
+        for index in range(max(0, int(feed.get("total", 0)) - len(listed))):
+            signatures[f"app-anon:{index}"] = {"prenom": "", "nom": "", "fonction": "", "organisation": "", "public": False}
 
     # Signataires de base : clé propre, pour ne pas dépendre d'une adresse e-mail
     if BASE_SIGNATORIES.is_file():
