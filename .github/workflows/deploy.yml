@@ -39,6 +39,10 @@ jobs:
             touch -d "@$(git log -1 --first-parent --format=%ct -- "$f")" "$f"
           done
 
+      # Les dates <lastmod> du plan du site suivent celles des pages : rien à tenir à la main.
+      - name: Dates du plan du site
+        run: python3 scripts/sitemap_lastmod.py
+
       # Une page au menu divergent ou appelant une ancienne version du CSS n'est pas publiée.
       - name: Contrôle des pages
         run: python3 scripts/verifier_site.py
