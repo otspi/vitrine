@@ -30,6 +30,37 @@
   <link rel="alternate" type="application/atom+xml" title="OTSPI — Actualités" href="feed.xml">
   <link rel="stylesheet" href="style.css?v=ba07fc3d">
   <script>document.documentElement.classList.add('js');</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.otspi.org/#organisation",
+        "name": "OTSPI",
+        "alternateName": "Open Trusted Service Provider Initiative",
+        "url": "https://www.otspi.org/",
+        "logo": "https://www.otspi.org/assets/icon.svg",
+        "email": "contact@otspi.org",
+        "description": "Comme Let's Encrypt pour le chiffrement du Web, OTSPI, association en cours de constitution, veut rendre la preuve qualifiée eIDAS ouverte, automatisable et inappropriable. Pilote en ligne, livre blanc et appel à partenaires.",
+        "sameAs": [
+          "https://github.com/otspi",
+          "https://about.otspi.org/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.otspi.org/#site",
+        "name": "OTSPI",
+        "url": "https://www.otspi.org/",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://www.otspi.org/#organisation"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>

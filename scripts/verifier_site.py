@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: EUPL-1.2
 """Contrôle de cohérence des pages du site (non déployé).
 
-Trois règles, vérifiées sur toutes les pages HTML :
+Quatre règles, les trois premières vérifiées sur toutes les pages HTML :
 
 - menu : chaque page porte le menu commun de sa langue (MENU ci-dessous), la page courante
   marquée par aria-current="page", un sélecteur de langue vers une page qui existe et
@@ -12,7 +12,10 @@ Trois règles, vérifiées sur toutes les pages HTML :
   7 jours (.htaccess), l'empreinte change dès que le fichier change et force le rechargement ;
 - partage : chaque page indexée (adresse canonique) déclare les balises Open Graph et Twitter,
   avec une image de assets/og/ qui existe et og:url égale à l'adresse canonique. Non corrigé
-  automatiquement : titre, description et image se choisissent page par page.
+  automatiquement : titre, description et image se choisissent page par page ;
+- actualités : pour chaque langue, la page d'actualités et le flux Atom listent les mêmes
+  articles (identifiant, date, titre) dans le même ordre, la date <updated> du flux est celle
+  de l'article le plus récent, et les deux langues comptent les mêmes articles aux mêmes dates.
 
 Sans option, le script signale les écarts et sort avec le code 1 s'il en trouve.
 Avec --corriger, il réécrit le menu et les versions en place.
@@ -21,6 +24,8 @@ Avec --corriger, il réécrit le menu et les versions en place.
 """
 import argparse
 import hashlib
+import html
+import xml.etree.ElementTree as ET
 import re
 import sys
 from pathlib import Path
@@ -141,6 +146,38 @@ def verifier_partage(page, texte, ecarts):
             ecarts.append(f"{page} : {balise} ne désigne pas une image du site ({balises[balise]})")
 
 
+ACTUALITES = {"fr": ("actualites.html", "feed.xml"), "en": ("en/news.html", "en/feed.xml")}
+ARTICLE = re.compile(r'<article class="news-item" id="([^"]+)">\s*<p class="news-date"><time datetime="([^"]+)">'
+                     r'.*?<h2>(.*?)</h2>', re.S)
+ATOM = "{http://www.w3.org/2005/Atom}"
+
+
+def texte_brut(fragment):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", fragment)).replace("\xa0", " ")).strip()
+
+
+def verifier_actualites(ecarts):
+    dates_par_langue = {}
+    for lang, (page, flux) in ACTUALITES.items():
+        articles = [(i, d, texte_brut(t)) for i, d, t in ARTICLE.findall((ROOT / page).read_text(encoding="utf-8"))]
+        racine = ET.parse(ROOT / flux).getroot()
+        entrees = [(e.findtext(ATOM + "id").rpartition("#")[2], e.findtext(ATOM + "updated")[:10],
+                    texte_brut(e.findtext(ATOM + "title"))) for e in racine.findall(ATOM + "entry")]
+        if articles != entrees:
+            for n, (a, e) in enumerate(zip(articles + [None] * len(entrees), entrees + [None] * len(articles))):
+                if a != e:
+                    ecarts.append(f"{page} / {flux} : article n° {n + 1} différent (page : {a}, flux : {e})")
+                    break
+        dates = [e.findtext(ATOM + "updated") for e in racine.findall(ATOM + "entry")]
+        if dates and racine.findtext(ATOM + "updated") != max(dates):
+            ecarts.append(f"{flux} : <updated> du flux ({racine.findtext(ATOM + 'updated')}) différent "
+                          f"de l'article le plus récent ({max(dates)})")
+        dates_par_langue[lang] = [d for _, d, _ in articles]
+    if dates_par_langue["fr"] != dates_par_langue["en"]:
+        ecarts.append(f"actualités : les versions française ({len(dates_par_langue['fr'])} articles) et anglaise "
+                      f"({len(dates_par_langue['en'])}) ne concordent pas (nombre ou dates)")
+
+
 def verifier_versions(page, texte, ecarts, empreintes):
     def remplacer(m):
         chemin = m.group(2)
@@ -174,6 +211,7 @@ def main():
             fichier.write_text(nouveau, encoding="utf-8")
             modifiees.append(page)
 
+    verifier_actualites(ecarts)
     for ecart in ecarts:
         print(ecart)
     if args.corriger:
@@ -181,7 +219,7 @@ def main():
         return 0
     if ecarts:
         print(f"{len(ecarts)} écart(s). Menu et versions : python3 scripts/verifier_site.py --corriger ;"
-              " balises de partage : à compléter à la main.")
+              " partage et actualités : à corriger à la main.")
         return 1
     print(f"{len(pages())} pages conformes")
     return 0
