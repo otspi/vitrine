@@ -27,6 +27,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `en/` | Version anglaise : `index.html`, `manifesto.html`, `legal-notice.html` (balises `hreflang`, la version française fait foi) |
 | `scripts/signataires.py` | Génération de la liste publique des signataires (non déployé) |
 | `scripts/build_og.py` | Génération des images de partage de l'accueil (non déployé) |
+| `scripts/sitemap_lastmod.py` | Dates `lastmod` du plan du site d'après Git, recalculées au déploiement (non déployé) |
 | `scripts/verifier_site.py` | Contrôle du menu commun et des versions des feuilles de style et scripts (non déployé) |
 | `scripts/build_logos.py`, `scripts/logos/` | Génération des logos de `assets/` (texte converti en tracés) à partir de leurs sources (non déployé) |
 | `style.css` | Feuille de style |
@@ -166,12 +167,12 @@ Après une modification de `style.css`, d'un script ou du menu (dans le script),
 
 ## Sécurité
 
-`/.well-known/security.txt` (RFC 9116) indique où signaler une vulnérabilité. **Sa date `Expires` doit être renouvelée avant le 25 mars 2027** ; passé cette date, le fichier est considéré comme périmé.
+`/.well-known/security.txt` (RFC 9116) indique où signaler une vulnérabilité. **Sa date `Expires` doit être renouvelée avant le 25 mars 2027** ; passé cette date, le fichier est considéré comme périmé. Le contrôle mensuel des liens ouvre un ticket 60 jours avant l'échéance.
 
 ## Publier une actualité
 
 Ajouter l'entrée **en tête** de `actualites.html` et `en/news.html`, ainsi que dans `feed.xml` et `en/feed.xml`
-(identifiant stable, date `updated`, résumé), puis mettre à jour la date `updated` du flux et `lastmod` dans `sitemap.xml`.
+(identifiant stable, date `updated`, résumé), puis mettre à jour la date `updated` du flux. Les dates `lastmod` de `sitemap.xml` sont recalculées d'après Git à chaque déploiement (`scripts/sitemap_lastmod.py`).
 
 ## Aperçu local
 

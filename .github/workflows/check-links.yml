@@ -46,6 +46,23 @@ jobs:
           } > /tmp/body.md
           gh issue create --title "$title" --body-file /tmp/body.md
 
+      # security.txt périmé (RFC 9116) : les signalements de vulnérabilité ne sont plus guidés.
+      # Le contrôle étant mensuel, l'alerte part 60 jours avant l'échéance.
+      - name: Échéance de security.txt
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          expires=$(sed -n 's/^Expires: *//p' .well-known/security.txt)
+          restant=$(( ($(date -d "$expires" +%s) - $(date +%s)) / 86400 ))
+          echo "security.txt expire le $expires (dans $restant jours)"
+          [ "$restant" -gt 60 ] && exit 0
+          title="security.txt expire le ${expires%%T*}"
+          if gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number' | grep -q .; then
+            echo "Un ticket est déjà ouvert."
+            exit 0
+          fi
+          gh issue create --title "$title" --body "Le champ \`Expires\` de \`.well-known/security.txt\` arrive à échéance dans $restant jours. Le repousser d'un an au plus (RFC 9116 recommande moins d'un an), puis fusionner pour redéployer."
+
       - name: Conserver le rapport
         if: always()
         uses: actions/upload-artifact@v4
