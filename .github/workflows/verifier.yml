@@ -1,0 +1,21 @@
+name: Contrôle des pages
+
+# Menu commun et versions des feuilles de style et scripts (scripts/verifier_site.py).
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Vérifier les pages
+        run: python3 scripts/verifier_site.py

@@ -27,6 +27,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `en/` | Version anglaise : `index.html`, `manifesto.html`, `legal-notice.html` (balises `hreflang`, la version française fait foi) |
 | `scripts/signataires.py` | Génération de la liste publique des signataires (non déployé) |
 | `scripts/build_og.py` | Génération des images de partage de l'accueil (non déployé) |
+| `scripts/verifier_site.py` | Contrôle du menu commun et des versions des feuilles de style et scripts (non déployé) |
 | `style.css` | Feuille de style |
 | `script.js` | Menu de navigation mobile |
 | `assets/signataires.js` | Liste des signataires à jour en direct sur les pages du manifeste |
@@ -92,7 +93,7 @@ Le retrait d'une signature dans l'application supprime la signature à la source
 
 ## Mesure d'audience
 
-Les sites d'OTSPI (vitrine, portail, démonstrateur, formulaire de signature) mesurent leur audience avec **Matomo Tag Manager**, conteneur `GR7y5y3d` de l'instance `stats.otspi.org` (o2switch, France), configuré pour l'exemption de consentement de la CNIL. Chaque site charge le même fichier `analytics.js` (ici `assets/analytics.js`, avec `defer`, sur toutes les pages FR et EN) : pas de script en ligne, que la politique de sécurité (`.htaccess`) interdit ; elle autorise `https://stats.otspi.org` dans `script-src`, `img-src` et `connect-src`. Après toute modification du fichier, incrémenter le paramètre `?v=` dans les pages (le JavaScript est mis en cache 7 jours).
+Les sites d'OTSPI (vitrine, portail, démonstrateur, formulaire de signature) mesurent leur audience avec **Matomo Tag Manager**, conteneur `GR7y5y3d` de l'instance `stats.otspi.org` (o2switch, France), configuré pour l'exemption de consentement de la CNIL. Chaque site charge le même fichier `analytics.js` (ici `assets/analytics.js`, avec `defer`, sur toutes les pages FR et EN) : pas de script en ligne, que la politique de sécurité (`.htaccess`) interdit ; elle autorise `https://stats.otspi.org` dans `script-src`, `img-src` et `connect-src`. Après toute modification du fichier, lancer `python3 scripts/verifier_site.py --corriger`, qui met à jour le paramètre `?v=` des pages (voir « Contrôle des pages »).
 
 En plus des pages vues, des liens sortants et des téléchargements (mesurés par le conteneur), `analytics.js` envoie des événements anonymes, reconnus d'après l'adresse des liens, sans attribut à poser dans les pages :
 
@@ -147,6 +148,12 @@ Posés le 27 septembre 2026 par l'API (`SitesManager`, `Goals`, `SegmentEditor`,
 
 - **Archivage** : les rapports sont calculés à l'affichage (pas de tâche planifiée), ce qui interdit les segments pré-calculés. Si le trafic augmente, planifier `core:archive` chez o2switch, puis passer les segments en pré-calcul. Les données brutes étant supprimées à 180 jours, un segment créé plus tard ne couvre pas les périodes antérieures.
 - **Journal des visites** : désactivé globalement (pas de « Visites en temps réel », pas d'API `Live`). Contrôler la mesure avec les rapports **Comportement > Événements** et **Objectifs**.
+
+## Contrôle des pages
+
+Le menu d'en-tête est recopié dans chaque page. `python3 scripts/verifier_site.py` vérifie que toutes portent le menu commun (défini en tête du script, avec la page courante marquée par `aria-current`), et que chaque feuille de style ou script local est appelé avec `?v=` suivi de l'empreinte du fichier : le CSS et le JavaScript étant mis en cache 7 jours (`.htaccess`), l'empreinte change dès que le fichier change et les visiteurs reçoivent aussitôt la nouvelle version.
+
+Après une modification de `style.css`, d'un script ou du menu (dans le script), lancer `python3 scripts/verifier_site.py --corriger` : il réécrit les menus et les versions en place. Le contrôle tourne sur chaque pull request et avant chaque déploiement, qui est bloqué en cas d'écart.
 
 ## Contrôle des liens
 
