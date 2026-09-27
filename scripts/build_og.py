@@ -3,7 +3,9 @@
 """Génère les images de partage (1200 × 630) : accueil et manifeste, en français et en anglais, dans assets/og/.
 
 L'image est composée en HTML puis capturée par Chrome ou Chromium en mode headless ; la variable
-d'environnement CHROME permet d'imposer le binaire. Les textes de l'accueil doivent rester
+d'environnement CHROME permet d'imposer le binaire. La capture est ensuite réduite à une palette
+de 256 couleurs par libimagequant (Pillow), avec tramage : environ quatre fois plus légère, sans
+différence visible sur le dégradé ni sur les couleurs du logo. Les textes de l'accueil doivent rester
 alignés sur ceux du hero de la page d'accueil, ceux du manifeste sur la page du manifeste.
 
 Usage :
@@ -16,6 +18,8 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "og"
@@ -70,6 +74,12 @@ def find_chrome():
     sys.exit("Chrome ou Chromium introuvable : définir la variable d'environnement CHROME.")
 
 
+def compresser(chemin):
+    image = Image.open(chemin).convert("RGB")
+    palette = image.quantize(colors=256, method=Image.Quantize.LIBIMAGEQUANT, dither=Image.Dither.FLOYDSTEINBERG)
+    palette.save(chemin, optimize=True)
+
+
 def main():
     chrome = find_chrome()
     with tempfile.TemporaryDirectory() as work:
@@ -91,6 +101,7 @@ def main():
             if result.returncode != 0 or not output.is_file():
                 sys.stderr.write(result.stderr)
                 sys.exit(f"Échec de la génération de {output.name}")
+            compresser(output)
             print(output.relative_to(ROOT))
 
 
