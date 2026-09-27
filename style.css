@@ -1860,3 +1860,8 @@ html:not(.js) .js-only {
   border-left: 4px solid var(--accent, #0033a0);
   background: var(--surface, #fff);
 }
+
+/* Compteur de signatures (image servie par manifesto-sign.otspi.org) et lien vers le registre horodaté */
+.manifesto-counter { margin: .75rem 0 0; }
+.manifesto-counter img { display: block; height: 28px; width: auto; }
+.signatures-registry { margin-top: 1.25rem; font-size: .9rem; color: var(--text-muted); }
