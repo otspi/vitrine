@@ -2,14 +2,17 @@
 # SPDX-License-Identifier: EUPL-1.2
 """Contrôle de cohérence des pages du site (non déployé).
 
-Deux règles, vérifiées sur toutes les pages HTML :
+Trois règles, vérifiées sur toutes les pages HTML :
 
 - menu : chaque page porte le menu commun de sa langue (MENU ci-dessous), la page courante
   marquée par aria-current="page", un sélecteur de langue vers une page qui existe et
   l'appel à l'action (CTA, ci-dessous) ;
 - versions : chaque feuille de style et script local est appelé avec ?v=<empreinte>, les huit
   premiers caractères du SHA-256 du fichier. Le CSS et le JavaScript étant mis en cache
-  7 jours (.htaccess), l'empreinte change dès que le fichier change et force le rechargement.
+  7 jours (.htaccess), l'empreinte change dès que le fichier change et force le rechargement ;
+- partage : chaque page indexée (adresse canonique) déclare les balises Open Graph et Twitter,
+  avec une image de assets/og/ qui existe et og:url égale à l'adresse canonique. Non corrigé
+  automatiquement : titre, description et image se choisissent page par page.
 
 Sans option, le script signale les écarts et sort avec le code 1 s'il en trouve.
 Avec --corriger, il réécrit le menu et les versions en place.
@@ -118,6 +121,26 @@ def verifier_menu(page, texte, ecarts):
     return texte
 
 
+PARTAGE = ("og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:image")
+
+
+def verifier_partage(page, texte, ecarts):
+    canonique = re.search(r'<link rel="canonical" href="([^"]+)">', texte)
+    if not canonique:
+        return
+    balises = dict(re.findall(r'<meta (?:property|name)="((?:og|twitter):[\w:]+)" content="([^"]*)">', texte))
+    manquantes = [b for b in PARTAGE if not balises.get(b)]
+    if manquantes:
+        ecarts.append(f"{page} : balises de partage absentes ({', '.join(manquantes)})")
+        return
+    if balises["og:url"] != canonique.group(1):
+        ecarts.append(f"{page} : og:url ({balises['og:url']}) diffère de l'adresse canonique")
+    for balise in ("og:image", "twitter:image"):
+        chemin = balises[balise].removeprefix("https://www.otspi.org/")
+        if chemin == balises[balise] or not (ROOT / chemin).is_file():
+            ecarts.append(f"{page} : {balise} ne désigne pas une image du site ({balises[balise]})")
+
+
 def verifier_versions(page, texte, ecarts, empreintes):
     def remplacer(m):
         chemin = m.group(2)
@@ -145,6 +168,7 @@ def main():
     for page in pages():
         fichier = ROOT / page
         texte = fichier.read_text(encoding="utf-8")
+        verifier_partage(page, texte, ecarts)
         nouveau = verifier_versions(page, verifier_menu(page, texte, ecarts), ecarts, empreintes)
         if args.corriger and nouveau != texte:
             fichier.write_text(nouveau, encoding="utf-8")
@@ -156,7 +180,8 @@ def main():
         print(f"{len(modifiees)} page(s) corrigée(s)" + (" : " + ", ".join(modifiees) if modifiees else ""))
         return 0
     if ecarts:
-        print(f"{len(ecarts)} écart(s). Corriger avec : python3 scripts/verifier_site.py --corriger")
+        print(f"{len(ecarts)} écart(s). Menu et versions : python3 scripts/verifier_site.py --corriger ;"
+              " balises de partage : à compléter à la main.")
         return 1
     print(f"{len(pages())} pages conformes")
     return 0

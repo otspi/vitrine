@@ -156,9 +156,9 @@ Posés le 27 septembre 2026 par l'API (`SitesManager`, `Goals`, `SegmentEditor`,
 
 ## Contrôle des pages
 
-Le menu d'en-tête est recopié dans chaque page. `python3 scripts/verifier_site.py` vérifie que toutes portent le menu commun (défini en tête du script, avec la page courante marquée par `aria-current`), et que chaque feuille de style ou script local est appelé avec `?v=` suivi de l'empreinte du fichier : le CSS et le JavaScript étant mis en cache 7 jours (`.htaccess`), l'empreinte change dès que le fichier change et les visiteurs reçoivent aussitôt la nouvelle version.
+Le menu d'en-tête est recopié dans chaque page. `python3 scripts/verifier_site.py` vérifie que toutes portent le menu commun (défini en tête du script, avec la page courante marquée par `aria-current`), que chaque page indexée déclare ses balises de partage (Open Graph et Twitter, image de `assets/og/`), et que chaque feuille de style ou script local est appelé avec `?v=` suivi de l'empreinte du fichier : le CSS et le JavaScript étant mis en cache 7 jours (`.htaccess`), l'empreinte change dès que le fichier change et les visiteurs reçoivent aussitôt la nouvelle version.
 
-Après une modification de `style.css`, d'un script ou du menu (dans le script), lancer `python3 scripts/verifier_site.py --corriger` : il réécrit les menus et les versions en place. Le contrôle tourne sur chaque pull request et avant chaque déploiement, qui est bloqué en cas d'écart.
+Après une modification de `style.css`, d'un script ou du menu (dans le script), lancer `python3 scripts/verifier_site.py --corriger` : il réécrit les menus et les versions en place (les balises de partage se complètent à la main). Le contrôle tourne sur chaque pull request et avant chaque déploiement, qui est bloqué en cas d'écart.
 
 ## Contrôle des liens
 
