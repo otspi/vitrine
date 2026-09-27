@@ -28,6 +28,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `scripts/signataires.py` | Génération de la liste publique des signataires (non déployé) |
 | `scripts/build_og.py` | Génération des images de partage de l'accueil (non déployé) |
 | `scripts/verifier_site.py` | Contrôle du menu commun et des versions des feuilles de style et scripts (non déployé) |
+| `scripts/build_logos.py`, `scripts/logos/` | Génération des logos de `assets/` (texte converti en tracés) à partir de leurs sources (non déployé) |
 | `style.css` | Feuille de style |
 | `script.js` | Menu de navigation mobile |
 | `assets/signataires.js` | Liste des signataires à jour en direct sur les pages du manifeste |
@@ -86,6 +87,10 @@ Le retrait d'une signature dans l'application supprime la signature à la source
 ## Images de partage
 
 `python3 scripts/build_og.py` régénère les quatre images de partage de `assets/og/` (`og-fr.png`, `og-en.png` pour l'accueil, `og-manifeste.png`, `og-manifesto.png` pour le manifeste ; 1200 × 630 px, utilisées par les balises Open Graph et Twitter ; Chrome ou Chromium requis). Les textes de l'accueil doivent rester alignés sur le hero de la page d'accueil, ceux du manifeste sur la page du manifeste. Les réseaux sociaux mettent les aperçus en cache : après un changement, forcer le rafraîchissement depuis leurs outils de débogage.
+
+## Logos
+
+Les logos `logo-horizontal*.svg` et `logo-vertical*.svg` de `assets/` sont générés : ne pas les modifier directement. Leurs sources, dans `scripts/logos/`, écrivent « OTSPI » et le sous-titre en texte SVG (Ubuntu Sans). Chargé par `<img>`, un SVG n'a pas accès aux polices de la page : chaque navigateur prenait la police installée sur le poste, et le texte changeait de largeur d'un système à l'autre. `python3 scripts/build_logos.py` convertit ce texte en tracés, positionnés par HarfBuzz comme le ferait un navigateur disposant de la police (prérequis : `pip install fonttools uharfbuzz` et la police Ubuntu Sans variable, paquet `fonts-ubuntu`, ou l'option `--police`).
 
 ## Plaquette d'une page
 
