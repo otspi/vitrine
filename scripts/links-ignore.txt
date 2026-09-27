@@ -4,3 +4,6 @@ https://github.com/otspi/open-eidas/security/advisories/new
 https://github.com/otspi/organisation/discussions/new
 https://api.staging.open-eidas.eu/
 https://www.otspi.org/.well-known/
+# Pages derrière un contrôle anti-robots (Cloudflare) : 403 même pour un navigateur sans
+# interface. Vérifiées à la main (archive web : 200 le 2 septembre 2026).
+https://www.economie.gouv.fr/tout-savoir-sur-la-facturation-electronique-pour-les-entreprises
