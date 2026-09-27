@@ -85,7 +85,21 @@ Le retrait d'une signature dans l'application supprime la signature à la source
 
 ## Mesure d'audience
 
-Les sites d'OTSPI (vitrine, portail, démonstrateur, formulaire de signature) mesurent leur audience avec **Matomo Tag Manager**, conteneur `GR7y5y3d` de l'instance `stats.otspi.org` (o2switch, France), configuré pour l'exemption de consentement de la CNIL. Chaque site charge le même fichier `analytics.js` (ici `assets/analytics.js`, avec `defer`, sur toutes les pages FR et EN) : pas de script en ligne, que la politique de sécurité (`.htaccess`) interdit ; elle autorise `https://stats.otspi.org` dans `script-src`, `img-src` et `connect-src`.
+Les sites d'OTSPI (vitrine, portail, démonstrateur, formulaire de signature) mesurent leur audience avec **Matomo Tag Manager**, conteneur `GR7y5y3d` de l'instance `stats.otspi.org` (o2switch, France), configuré pour l'exemption de consentement de la CNIL. Chaque site charge le même fichier `analytics.js` (ici `assets/analytics.js`, avec `defer`, sur toutes les pages FR et EN) : pas de script en ligne, que la politique de sécurité (`.htaccess`) interdit ; elle autorise `https://stats.otspi.org` dans `script-src`, `img-src` et `connect-src`. Après toute modification du fichier, incrémenter le paramètre `?v=` dans les pages (le JavaScript est mis en cache 7 jours).
+
+En plus des pages vues, des liens sortants et des téléchargements (mesurés par le conteneur), `analytics.js` envoie des événements anonymes, reconnus d'après l'adresse des liens, sans attribut à poser dans les pages :
+
+| Catégorie | Action | Nom |
+| --- | --- | --- |
+| Manifeste | Ouvrir le formulaire, Aller au manifeste, Aller à la signature | emplacement du lien (menu, pied de page, identifiant de section) |
+| Livre blanc | Web, PDF | paragraphe visé (Web) ou emplacement (PDF) |
+| Consultation | Commenter | emplacement |
+| Partage | LinkedIn, Mastodon, Bluesky, X, Facebook, WhatsApp, Copier le lien, Partage natif | emplacement |
+| Copie | identifiant du bloc copié | emplacement |
+| FAQ | Ouvrir | question |
+| Lecture | Section vue, Profondeur (25 à 100 %) | identifiant de section, palier |
+
+Le traceur envoie aussi un signal de présence toutes les 15 secondes pour mesurer le temps passé sur la dernière page. Les signatures effectives se mesurent sur le formulaire de signature, pas ici. Cartes de chaleur et enregistrements de session sont exclus : ils sortent de l'exemption de consentement.
 
 ### Configuration obligatoire (exemption CNIL)
 
