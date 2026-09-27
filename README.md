@@ -115,6 +115,8 @@ En plus des pages vues, des liens sortants et des téléchargements (mesurés pa
 
 Ce fichier est commun aux quatre sites : le modifier ici, puis le recopier tel quel dans les dépôts `organisation` (`docs/javascripts/analytics.js`), `demo` (`analytics.js`, en changeant `CACHE_NAME` dans `sw.js`) et `signatures` (`public/assets/analytics.js`). Une page peut déclarer ses propres événements avec `data-track="Catégorie|Action|Nom"` (au clic) ou `data-track-load="…"` (à l'affichage) : c'est ainsi que le démonstrateur mesure ses onglets et que le formulaire compte les demandes de signature envoyées.
 
+La page d'erreur (`404.html`) charge aussi le traceur : servie à l'adresse demandée, elle apparaît dans Matomo sous le titre « Page introuvable / Page not found — OTSPI » (**Comportement > Titres des pages**), avec les adresses cassées et, dans les provenances, les sites qui y renvoient. À rediriger dans le `.htaccess` si elles reviennent souvent.
+
 Le traceur envoie aussi un signal de présence toutes les 15 secondes pour mesurer le temps passé sur la dernière page. Les demandes de signature envoyées et les signatures confirmées se mesurent sur le formulaire de signature (dépôt `signatures`). Cartes de chaleur et enregistrements de session sont exclus : ils sortent de l'exemption de consentement.
 
 ### Configuration obligatoire (exemption CNIL)
