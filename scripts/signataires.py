@@ -9,7 +9,7 @@ en conservant la réponse la plus récente.
 Export attendu (Framaforms > Résultats > Télécharger) : format « Texte délimité »,
 en-têtes de colonnes « Form Key », liste des options « Compact ».
 
-Les signataires de base (scripts/signataires-base.json), qui ont consenti à figurer
+Les signataires de base (assets/signataires-base.json, lus aussi par assets/signataires.js), qui ont consenti à figurer
 dans la liste, sont toujours ajoutés aux signatures issues du formulaire.
 
 Sources :
@@ -37,7 +37,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE_SIGNATORIES = Path(__file__).resolve().parent / "signataires-base.json"
+BASE_SIGNATORIES = ROOT / "assets" / "signataires-base.json"
 # Pages mises à jour et libellés du compteur, par langue
 PAGES = {
     ROOT / "manifeste.html": "fr",

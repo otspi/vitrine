@@ -29,6 +29,7 @@ Il s'adresse aux partenaires potentiels : hébergeurs, financeurs, laboratoires,
 | `scripts/build_og.py` | Génération des images de partage de l'accueil (non déployé) |
 | `style.css` | Feuille de style |
 | `script.js` | Menu de navigation mobile |
+| `assets/signataires.js` | Liste des signataires à jour en direct sur les pages du manifeste |
 | `.htaccess` | HTTPS, domaine canonique, en-têtes de sécurité, cache |
 | `assets/` | Logos et favicons OTSPI |
 | `.github/workflows/deploy.yml` | Déploiement FTPS vers o2switch à chaque push sur `main` |
@@ -61,13 +62,19 @@ L'application expose la liste publique en JSON, sans adresse e-mail : <https://m
 
 ### Mise à jour de la liste publique
 
-`python3 scripts/signataires.py --json https://manifesto-sign.otspi.org/signataires.php` régénère la liste dans `manifeste.html` et `en/manifesto.html` (mises à jour ensemble). Le total compte aussi les signatures dont l'auteur n'a pas consenti à la publication, qui ne sont jamais listées. Les **signataires de base** (`scripts/signataires-base.json`, consentement recueilli directement) sont toujours ajoutés.
+`python3 scripts/signataires.py --json https://manifesto-sign.otspi.org/signataires.php` régénère la liste dans `manifeste.html` et `en/manifesto.html` (mises à jour ensemble). Le total compte aussi les signatures dont l'auteur n'a pas consenti à la publication, qui ne sont jamais listées. Les **signataires de base** (`assets/signataires-base.json`, consentement recueilli directement) sont toujours ajoutés.
 
 Signatures historiques : le script accepte encore un export CSV Framaforms (`python3 scripts/signataires.py export.csv --exclure retraits.txt`), utile seulement si des signatures y ont été recueillies avant la migration.
 
+### Affichage en direct
+
+`assets/signataires.js`, chargé par `manifeste.html` et `en/manifesto.html`, lit la liste JSON (adresse dans l'attribut `data-source` de la section des signataires) et les signataires de base, puis réécrit le compteur et la liste avec le même rendu que `scripts/signataires.py`. Une signature apparaît donc quelques minutes après sa **validation dans l'administration** de l'application (cache de 5 minutes) : rien n'est affiché sans cette approbation, le JSON ne contenant que les signatures confirmées et validées. La liste générée dans le HTML reste affichée sans JavaScript, pour les moteurs de recherche, ou si l'application ne répond pas.
+
+Champs libres : les noms, fonctions et organisations sont insérés uniquement en texte (`textContent`, jamais `innerHTML`) ; une entrée anormale (type, longueur, `<`, `>`, lien, caractère de contrôle ou bidirectionnel) est comptée sans être listée. L'application refuse déjà ces contenus à la saisie. La CSP n'autorise la lecture que de `https://manifesto-sign.otspi.org`, qui n'accepte en retour (CORS) que `https://www.otspi.org`.
+
 ### Rafraîchissement automatique (cron)
 
-`scripts/refresh-signataires.sh` télécharge la liste JSON, et si elle a changé (ou si un CSV historique ou `retraits.txt` de `~/otspi-export/` a changé), il régénère les pages, committe uniquement `manifeste.html` et `en/manifesto.html`, puis pousse (le déploiement suit). Il abandonne sans rien modifier si la liste est inaccessible ou invalide, si le dépôt n'est pas sur `main` ou s'il contient des modifications en cours. Le journal est `~/otspi-export/refresh.log`.
+Facultatif depuis l'affichage en direct : il ne sert plus qu'à tenir à jour la liste générée dans le HTML (référencement, affichage sans JavaScript). `scripts/refresh-signataires.sh` télécharge la liste JSON, et si elle a changé (ou si un CSV historique ou `retraits.txt` de `~/otspi-export/` a changé), il régénère les pages, committe uniquement `manifeste.html` et `en/manifesto.html`, puis pousse (le déploiement suit). Il abandonne sans rien modifier si la liste est inaccessible ou invalide, si le dépôt n'est pas sur `main` ou s'il contient des modifications en cours. Le journal est `~/otspi-export/refresh.log`.
 
 ```
 17 8 * * * /chemin/vers/otspi-vitrine/scripts/refresh-signataires.sh >> ~/otspi-export/refresh.log 2>&1
