@@ -5,6 +5,11 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Essai : lister les transferts et suppressions sans rien modifier"
+        type: boolean
+        default: false
 
 concurrency:
   group: "deploy"
@@ -26,11 +31,15 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
       # Compte FTP dédié, cantonné au répertoire du site ; TLS obligatoire et certificat vérifié.
+      # --delete retire du serveur les fichiers supprimés du dépôt. Les chemins exclus ne sont
+      # ni envoyés ni supprimés : on y protège aussi ce que l'hébergeur dépose lui-même
+      # (validation des certificats, cgi-bin, réglages PHP, journal d'erreurs).
       - name: Déploiement FTPS
         env:
           FTP_HOST: ${{ vars.O2_FTP_HOST }}
           FTP_USERNAME: ${{ secrets.O2_FTP_USERNAME }}
           LFTP_PASSWORD: ${{ secrets.O2_FTP_PASSWORD }}
+          DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
         run: |
           lftp -u "$FTP_USERNAME" --env-password "ftp://$FTP_HOST" -e "
             set ftp:ssl-force yes;
@@ -38,5 +47,10 @@ jobs:
             set ssl:verify-certificate yes;
             set ftp:passive-mode yes;
             set net:max-retries 2;
-            mirror --reverse --verbose --no-perms --exclude '^\\.git(/|$)' --exclude '^\\.github/' --exclude '^\\.gitignore$' --exclude '^README\\.md$' --exclude '^LICENSE$' --exclude '^scripts/' ./ ./;
+            mirror --reverse --delete $DRY_RUN --verbose --no-perms \
+              --exclude '^\\.git(/|$)' --exclude '^\\.github/' --exclude '^\\.gitignore$' \
+              --exclude '^README\\.md$' --exclude '^LICENSE$' --exclude '^scripts/' \
+              --exclude '^\\.well-known/(acme-challenge|pki-validation)/' --exclude '^cgi-bin/' \
+              --exclude '^\\.user\\.ini$' --exclude '^\\.ftpquota$' --exclude '(^|/)error_log$' \
+              ./ ./;
             bye"
