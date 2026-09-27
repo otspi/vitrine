@@ -4,9 +4,15 @@
    (France), sous le contrôle de l'éditeur. Chargé depuis un fichier, sans script en ligne, pour respecter
    la politique de sécurité du contenu. Voir les mentions légales.
 
+   Fichier commun aux sites d'OTSPI (vitrine, portail, démonstrateur, formulaire de signature) : le
+   modifier dans le dépôt de la vitrine, puis le recopier tel quel dans les autres.
+
    Le conteneur mesure les pages vues, les liens sortants et les téléchargements. Ce fichier y ajoute des
    événements anonymes sur l'usage des pages (catégorie, action, nom) : aucun texte saisi, aucune donnée
-   personnelle. Après toute modification, incrémenter le paramètre ?v= dans les pages. */
+   personnelle. Une page peut en déclarer d'autres :
+   - data-track="Catégorie|Action|Nom" sur un élément cliquable : envoyé à chaque clic ;
+   - data-track-load="Catégorie|Action|Nom" sur n'importe quel élément : envoyé à l'affichage de la page.
+   Après toute modification, invalider le cache du fichier sur chaque site (paramètre ?v=, service worker). */
 (function () {
   var _mtm = (window._mtm = window._mtm || []);
   _mtm.push({ "mtm.startTime": new Date().getTime(), event: "mtm.Start" });
@@ -43,6 +49,12 @@
     else pending.push([category, action, name]);
   }
 
+  // « Catégorie|Action|Nom » déclaré dans la page.
+  function trackDeclared(value) {
+    var parts = value.split("|");
+    if (parts[0] && parts[1]) track(parts[0], parts[1], parts[2]);
+  }
+
   // Emplacement d'un élément : menu, pied de page ou section de la page.
   function zone(el) {
     if (el.closest("header, nav")) return "menu";
@@ -59,19 +71,21 @@
   // Clics sur les liens qui comptent : signature, livre blanc, consultation, partage.
   document.addEventListener("click", function (event) {
     var link = event.target.closest && event.target.closest("a[href]");
-    if (!link) return;
+    if (!link || link.hasAttribute("data-track")) return;
     var url;
     try { url = new URL(link.href); } catch (e) { return; }
+    var samePage = url.hostname === location.hostname && url.pathname === location.pathname;
     var where = zone(link);
 
     if (url.hostname === "manifesto-sign.otspi.org") {
-      track("Manifeste", "Ouvrir le formulaire", where);
-    } else if (url.hostname === location.hostname && /^\/(en\/)?manifest[eo]/.test(url.pathname)
-               && url.pathname !== location.pathname) {
-      track("Manifeste", "Aller au manifeste", where);
-    } else if (url.hostname === location.hostname && /^#(signer|sign)$/.test(url.hash)) {
+      if (location.hostname !== url.hostname) track("Manifeste", "Ouvrir le formulaire", where);
+    } else if (/^(#signer|#sign)$/.test(url.hash) && /manifest/.test(url.pathname + location.pathname)) {
       track("Manifeste", "Aller à la signature", where);
-    } else if (url.hostname === "about.otspi.org" && /^\/(livre-blanc|white-paper)\//.test(url.pathname)) {
+    } else if ((url.hostname === "www.otspi.org" || url.hostname === location.hostname)
+               && /^\/(en\/)?manifest(e|o)(\.html)?$/.test(url.pathname) && !samePage) {
+      track("Manifeste", "Aller au manifeste", where);
+    } else if (url.hostname === "about.otspi.org" && /^\/(livre-blanc|white-paper)\//.test(url.pathname)
+               && !samePage) {
       var pdf = /\.pdf$/.test(url.pathname);
       track("Livre blanc", pdf ? "PDF" : "Web", pdf ? where : (url.hash ? url.hash.slice(1) : "sommaire"));
     } else if (url.hostname === "github.com" && /\/discussions/.test(url.pathname)) {
@@ -81,8 +95,10 @@
     }
   });
 
-  // Boutons de partage et de copie (voir script.js).
+  // Éléments déclarés par la page, puis boutons de partage et de copie de la vitrine.
   document.addEventListener("click", function (event) {
+    var declared = event.target.closest && event.target.closest("[data-track]");
+    if (declared) { trackDeclared(declared.getAttribute("data-track")); return; }
     var button = event.target.closest && event.target.closest("button");
     if (!button) return;
     var where = zone(button);
@@ -100,22 +116,38 @@
     track("FAQ", "Ouvrir", summary ? summary.textContent.trim() : "");
   }, true);
 
-  // Sections lues : une fois par page, quand la moitié de la section est visible ou, pour une section
-  // plus haute que l'écran, quand elle en occupe la moitié.
-  if ("IntersectionObserver" in window) {
-    var seen = new IntersectionObserver(function (entries) {
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-track-load]").forEach(function (el) {
+      trackDeclared(el.getAttribute("data-track-load"));
+    });
+    if (!("IntersectionObserver" in window)) return;
+
+    // Sections lues : une fois par page, quand la moitié de la section est visible ou, pour une section
+    // plus haute que l'écran, quand elle en occupe la moitié.
+    var sections = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.intersectionRatio < 0.5 && entry.intersectionRect.height < window.innerHeight / 2) return;
-        seen.unobserve(entry.target);
+        sections.unobserve(entry.target);
         track("Lecture", "Section vue", entry.target.id);
       });
     }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] });
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll("main section[id]").forEach(function (section) {
-        seen.observe(section);
-      });
+    document.querySelectorAll("main section[id]").forEach(function (section) {
+      sections.observe(section);
     });
-  }
+
+    // Documents du portail (livre blanc, statuts…) : titres atteints, une fois par page, quand le titre
+    // passe dans les deux tiers supérieurs de l'écran.
+    var headings = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        headings.unobserve(entry.target);
+        track("Lecture", "Titre atteint", entry.target.id);
+      });
+    }, { rootMargin: "0px 0px -33% 0px" });
+    document.querySelectorAll("article h2[id]").forEach(function (heading) {
+      headings.observe(heading);
+    });
+  });
 
   // Profondeur de lecture : 25, 50, 75 et 100 % de la page, une fois chacun.
   var steps = [25, 50, 75, 100];

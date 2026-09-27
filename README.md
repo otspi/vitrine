@@ -97,7 +97,9 @@ En plus des pages vues, des liens sortants et des téléchargements (mesurés pa
 | Partage | LinkedIn, Mastodon, Bluesky, X, Facebook, WhatsApp, Copier le lien, Partage natif | emplacement |
 | Copie | identifiant du bloc copié | emplacement |
 | FAQ | Ouvrir | question |
-| Lecture | Section vue, Profondeur (25 à 100 %) | identifiant de section, palier |
+| Lecture | Section vue, Titre atteint (portail), Profondeur (25 à 100 %) | identifiant de section ou de titre, palier |
+
+Ce fichier est commun aux quatre sites : le modifier ici, puis le recopier tel quel dans les dépôts `organisation` (`docs/javascripts/analytics.js`), `demo` (`analytics.js`, en changeant `CACHE_NAME` dans `sw.js`) et `signatures` (`public/assets/analytics.js`). Une page peut déclarer ses propres événements avec `data-track="Catégorie|Action|Nom"` (au clic) ou `data-track-load="…"` (à l'affichage) : c'est ainsi que le démonstrateur mesure ses onglets et que le formulaire compte les demandes de signature envoyées.
 
 Le traceur envoie aussi un signal de présence toutes les 15 secondes pour mesurer le temps passé sur la dernière page. Les signatures effectives se mesurent sur le formulaire de signature, pas ici. Cartes de chaleur et enregistrements de session sont exclus : ils sortent de l'exemption de consentement.
 
