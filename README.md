@@ -75,6 +75,10 @@ Signatures historiques : le script accepte encore un export CSV Framaforms (`pyt
 
 Champs libres : les noms, fonctions et organisations sont insérés uniquement en texte (`textContent`, jamais `innerHTML`) ; une entrée anormale (type, longueur, `<`, `>`, lien, caractère de contrôle ou bidirectionnel) est comptée sans être listée. L'application refuse déjà ces contenus à la saisie. La CSP n'autorise la lecture que de `https://manifesto-sign.otspi.org`, qui n'accepte en retour (CORS) que `https://www.otspi.org`.
 
+### Compteur et registre horodaté
+
+Le bandeau « Manifeste » de l'accueil (FR et EN) affiche le compteur de l'application de signature, une image SVG sans script ni traceur (`https://manifesto-sign.otspi.org/compteur.php`, `?lang=en`) ; la CSP autorise donc `https://manifesto-sign.otspi.org` dans `img-src`. Sous la liste des signataires, hors des marqueurs générés, un lien mène au [registre horodaté](https://manifesto-sign.otspi.org/registre.php) de la liste.
+
 ### Rafraîchissement automatique (cron)
 
 Facultatif depuis l'affichage en direct : il ne sert plus qu'à tenir à jour la liste générée dans le HTML (référencement, affichage sans JavaScript). `scripts/refresh-signataires.sh` télécharge la liste JSON, et si elle a changé (ou si un CSV historique ou `retraits.txt` de `~/otspi-export/` a changé), il régénère les pages, committe uniquement `manifeste.html` et `en/manifesto.html`, puis pousse (le déploiement suit). Il abandonne sans rien modifier si la liste est inaccessible ou invalide, si le dépôt n'est pas sur `main` ou s'il contient des modifications en cours. Le journal est `~/otspi-export/refresh.log`.
