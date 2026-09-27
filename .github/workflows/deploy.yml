@@ -26,6 +26,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
+
+      # Chaque fichier prend la date de son dernier commit (le checkout les date toutes du jour).
+      # lftp renvoie un fichier dont la taille ou la date diffère du serveur, puis y reporte la
+      # date locale : seuls les fichiers modifiés depuis le dernier déploiement partent.
+      - name: Dater les fichiers selon Git
+        run: |
+          git ls-files -z | while IFS= read -r -d '' f; do
+            touch -d "@$(git log -1 --format=%ct -- "$f")" "$f"
+          done
 
       # Une page au menu divergent ou appelant une ancienne version du CSS n'est pas publiée.
       - name: Contrôle des pages
