@@ -1416,8 +1416,10 @@ html:not(.js) .js-only {
   align-self: flex-start;
 }
 
-.share-card p + .share-cta {
-  margin-top: 1.25rem;
+/* L'écart sous le texte passe par le paragraphe : margin-top: auto reste libre
+   de caler les boutons en bas de la carte, alignés d'une carte à l'autre. */
+.share-card p:has(+ .share-cta) {
+  margin-bottom: 1.25rem;
 }
 
 .share-buttons {
@@ -1661,6 +1663,11 @@ html:not(.js) .js-only {
 .share-card .share-buttons .share-btn .icon {
   width: 1.15rem;
   height: 1.15rem;
+}
+
+.share-card .share-buttons-stack {
+  grid-template-columns: 1fr;
+  align-self: stretch;
 }
 
 .share-card .share-buttons .share-native {
