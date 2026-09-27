@@ -101,7 +101,7 @@ En plus des pages vues, des liens sortants et des téléchargements (mesurés pa
 
 Ce fichier est commun aux quatre sites : le modifier ici, puis le recopier tel quel dans les dépôts `organisation` (`docs/javascripts/analytics.js`), `demo` (`analytics.js`, en changeant `CACHE_NAME` dans `sw.js`) et `signatures` (`public/assets/analytics.js`). Une page peut déclarer ses propres événements avec `data-track="Catégorie|Action|Nom"` (au clic) ou `data-track-load="…"` (à l'affichage) : c'est ainsi que le démonstrateur mesure ses onglets et que le formulaire compte les demandes de signature envoyées.
 
-Le traceur envoie aussi un signal de présence toutes les 15 secondes pour mesurer le temps passé sur la dernière page. Les signatures effectives se mesurent sur le formulaire de signature, pas ici. Cartes de chaleur et enregistrements de session sont exclus : ils sortent de l'exemption de consentement.
+Le traceur envoie aussi un signal de présence toutes les 15 secondes pour mesurer le temps passé sur la dernière page. Les demandes de signature envoyées et les signatures confirmées se mesurent sur le formulaire de signature (dépôt `signatures`). Cartes de chaleur et enregistrements de session sont exclus : ils sortent de l'exemption de consentement.
 
 ### Configuration obligatoire (exemption CNIL)
 
@@ -109,9 +109,37 @@ La conformité ne dépend pas du code du site mais de Matomo. À vérifier aprè
 
 - **Tag Manager**, variable « Matomo Configuration » : « Disable cookies » et « Enable Do Not Track » cochés, suivi entre domaines désactivé, aucun identifiant utilisateur ni dimension personnalisée. Ne pas ajouter de balise « Custom HTML » ni de balise tierce.
 - **Administration > Confidentialité** : « Forcer le suivi sans cookie » (filet de sécurité si le conteneur est mal réglé), adresses IP tronquées, suppression des anciennes données brutes à 180 jours, rapports agrégés conservés au plus 25 mois.
-- **Aucune donnée personnelle dans les URL** : le formulaire de signature ne charge pas le traceur sur les pages de confirmation, de retrait et de modération, dont l'adresse porte un jeton.
+- **Aucune donnée personnelle dans les URL** : le formulaire de signature ne charge pas le traceur sur les pages dont l'adresse porte un jeton (lien de confirmation, retrait, modération). La page « signature confirmée » est mesurée : elle répond au POST de confirmation, à l'adresse `confirm.php?lang=…`, sans le jeton.
 
 Contrôle : dans le navigateur, aucun cookie `_pk_*` ni `mtm_*` ne doit apparaître après une visite ; le lien de retrait (*opt-out*) figure dans les mentions légales (FR et EN).
+
+### Réglages de l'instance (site n° 1 « OTSPI »)
+
+Posés le 27 septembre 2026 par l'API (`SitesManager`, `Goals`, `SegmentEditor`, token temporaire, révoqué après usage). À recréer à l'identique en cas de réinstallation.
+
+- **URL du site** : `https://www.otspi.org` (principale), `https://about.otspi.org`, `https://manifesto-sign.otspi.org`, `https://demo.open-eidas.eu`, avec « Ne suivre que les visites sur ces URL ». Les quatre sites forment ainsi un seul parcours : passer de l'un à l'autre n'est ni un lien sortant ni une nouvelle provenance. Ajouter ici tout nouveau site qui charge `analytics.js`, sinon ses visites sont ignorées.
+- **Objectifs** (une conversion par visite, sans revenu) :
+
+| N° | Objectif | Déclencheur |
+| --- | --- | --- |
+| 1 | Formulaire de signature ouvert | action d'événement = `Ouvrir le formulaire` |
+| 2 | Demande de signature envoyée | action d'événement = `Demande envoyée` |
+| 3 | Signature confirmée | action d'événement = `Signature confirmée` |
+| 4 | Livre blanc consulté | URL, expression régulière `about\.otspi\.org/(livre-blanc\|white-paper)/` |
+| 5 | Livre blanc PDF téléchargé | fichier, expression régulière `(livre-blanc\|white-paper)\.pdf` |
+| 6 | Livre blanc lu jusqu'au § 5 | nom d'événement, expression régulière `^5-(modele-economique-et-perennite\|business-model-and-sustainability)$` |
+
+  Les objectifs 1 à 3 forment l'entonnoir de signature (le rapport « Entonnoirs » de Matomo est payant). L'objectif 6 dépend des identifiants de titres du livre blanc : à mettre à jour si le titre du § 5 change.
+- **Segments** (partagés avec tous les utilisateurs, calculés en temps réel) :
+
+| Segment | Définition |
+| --- | --- |
+| Lecteurs du livre blanc | `visitConvertedGoalId==4,visitConvertedGoalId==5,eventCategory==Livre%20blanc` |
+| Signataires (confirmés) | `visitConvertedGoalId==3` |
+| Passés par le démonstrateur | `pageUrl=@demo.open-eidas.eu` |
+
+- **Archivage** : les rapports sont calculés à l'affichage (pas de tâche planifiée), ce qui interdit les segments pré-calculés. Si le trafic augmente, planifier `core:archive` chez o2switch, puis passer les segments en pré-calcul. Les données brutes étant supprimées à 180 jours, un segment créé plus tard ne couvre pas les périodes antérieures.
+- **Journal des visites** : désactivé globalement (pas de « Visites en temps réel », pas d'API `Live`). Contrôler la mesure avec les rapports **Comportement > Événements** et **Objectifs**.
 
 ## Contrôle des liens
 
